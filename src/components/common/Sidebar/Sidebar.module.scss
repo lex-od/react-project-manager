@@ -1,0 +1,13 @@
+@import 'styles/shared.scss';
+
+.sidebar {
+    @include for-size(mobile-only) {
+        display: none;
+    }
+    @include for-size(tablet) {
+        width: 216px;
+    }
+    @include for-size(desktop) {
+        width: 200px;
+    }
+}
