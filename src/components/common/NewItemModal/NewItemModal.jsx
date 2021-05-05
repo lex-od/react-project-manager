@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import css from './NewItemModal.module.scss';
+import sprite from '../../../assets/icons/modalSprite.svg';
 
 const modalRootRef = document.querySelector('#modal-root');
 
@@ -24,7 +25,14 @@ export default function NewItemModal({ children, onClose }) {
 
     return createPortal(
         <div className={css.overlay} onClick={handleOverlayClick}>
-            <div className={css.content}>{children}</div>
+            <div className={css.content}>
+                {children}
+                <button onClick={onClose} className={css.closeBtn}>
+                    <svg className={css.closeIcon}>
+                        <use href={`${sprite}#close`}></use>
+                    </svg>
+                </button>
+            </div>
         </div>,
         modalRootRef,
     );
