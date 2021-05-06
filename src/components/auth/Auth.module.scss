@@ -22,10 +22,13 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 429px;
 }
 
 .RegInput {
-    width: 280px;
+    width: 429px;
     padding: 10px;
     border: none;
     border-bottom: 1px solid rgba(24, 28, 39, 0.2);
@@ -35,7 +38,4 @@
     letter-spacing: 0.04em;
     background-color: transparent;
     margin-bottom: 60px;
-    outline: none;
-    justify-content: center;
-    display: flex;
 }
