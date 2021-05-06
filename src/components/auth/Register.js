@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { useDispatch } from 'react-redux';
 import { authOps } from '../../redux/auth';
 import { NavLink } from 'react-router-dom';
@@ -81,3 +82,6 @@ export default function Register() {
         </main>
     );
 }
+=======
+<h1>hbjgjbuogo</h1>;
+>>>>>>> Stashed changes
