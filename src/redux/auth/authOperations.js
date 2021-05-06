@@ -1,3 +1,4 @@
+import { authSls } from '.';
 import { api } from '../../services';
 import authActs from './authActions';
 
@@ -8,12 +9,12 @@ const {
     loginRequest,
     loginSuccess,
     loginError,
-    // logoutRequest,
-    // logoutSuccess,
-    // logoutError,
-    // refreshRequest,
-    // refreshSuccess,
-    // refreshError,
+    logoutRequest,
+    logoutSuccess,
+    logoutError,
+    refreshRequest,
+    refreshSuccess,
+    refreshError,
 } = authActs;
 
 const register = credentials => async dispatch => {
@@ -42,5 +43,39 @@ const login = credentials => async dispatch => {
     }
 };
 
-const authOperations = { register, login };
+const logOut = () => async dispatch => {
+    dispatch(logoutRequest());
+
+    try {
+        await api.logOut();
+
+        api.unsetToken();
+        dispatch(logoutSuccess());
+    } catch (error) {
+        dispatch(logoutError(error.message));
+        if (error.response.status === 401) {
+            dispatch(refreshToken(logOut));
+        }
+    }
+};
+
+const refreshToken = prevOps => async (dispatch, getState) => {
+    const refreshToken = authSls.getRefreshToken(getState());
+    const sid = authSls.getSid(getState());
+    api.setToken(refreshToken);
+    dispatch(refreshRequest());
+
+    try {
+        const data = await api.refresh(sid);
+
+        dispatch(refreshSuccess(data));
+        api.setToken(data.newAccessToken);
+
+        dispatch(prevOps());
+    } catch (error) {
+        dispatch(refreshError(error.message));
+    }
+};
+
+const authOperations = { register, login, logOut, refreshToken };
 export default authOperations;
