@@ -4,7 +4,7 @@ import React from 'react';
 
 import css from './AppBar.module.scss';
 // import logout from '../../../assets/icons/logout.svg';
-import sprite from '../../../assets/icons/sprite.svg';
+import sprite from '../../../assets/icons/sprite-logout-icon.svg';
 
 export default function AppBar() {
     // const dispatch = useDispatch();

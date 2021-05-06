@@ -2,9 +2,9 @@ import { lazy, Suspense } from 'react';
 import { Redirect, Switch } from 'react-router';
 import { routes, PrivateRoute, PublicRoute } from '../routes';
 import { Header } from './header';
-import { Container } from './common';
+import { Container, Spinner } from './common';
 
-import Spinner from '../components/spinner/Spinner';
+// import Spinner from './common';
 
 const { REGISTER, LOGIN, TASKS, SPRINTS, PROJECTS } = routes;
 
