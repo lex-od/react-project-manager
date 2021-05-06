@@ -7,11 +7,23 @@ const setToken = token =>
 
 const unsetToken = () => (axios.defaults.headers.common.Authorization = '');
 
+const formatError = ({ name, message, response: { status } }) => ({
+    name,
+    message,
+    status,
+});
+
 const register = async credentials =>
     (await axios.post('/auth/register', credentials)).data;
 
 const login = async credentials =>
     (await axios.post('/auth/login', credentials)).data;
 
-const api = { setToken, unsetToken, register, login };
+const logOut = async credentials =>
+    (await axios.post('/auth/logout', credentials)).data;
+
+const refresh = async sid => (await axios.post('/auth/refresh', { sid })).data;
+
+const api = { setToken, unsetToken, formatError, register, login, logOut, refresh };
+
 export default api;

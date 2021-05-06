@@ -41,6 +41,7 @@ const loading = createReducer(false, {
     [registerError]: () => false,
 
     [loginRequest]: () => true,
+
     [loginSuccess]: () => false,
     [loginError]: () => false,
 });
@@ -56,6 +57,7 @@ const error = createReducer(null, {
 export default combineReducers({
     user,
     tokens,
+
     loading,
     error,
 });
