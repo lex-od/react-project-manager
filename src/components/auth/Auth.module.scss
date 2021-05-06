@@ -1,0 +1,41 @@
+.main {
+    margin-top: 56px;
+    display: flex;
+    justify-content: center;
+}
+
+.RegisterForm {
+    width: 570px;
+    height: 538px;
+
+    background: #fafafa;
+    box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.RegForm {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.RegInput {
+    width: 280px;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid rgba(24, 28, 39, 0.2);
+    color: rgba(24, 28, 39, 0.6);
+    font-size: 16px;
+    line-height: 19, 5px;
+    letter-spacing: 0.04em;
+    background-color: transparent;
+    margin-bottom: 60px;
+    outline: none;
+    justify-content: center;
+    display: flex;
+}

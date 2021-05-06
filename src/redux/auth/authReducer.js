@@ -8,12 +8,12 @@ const {
     loginRequest,
     loginSuccess,
     loginError,
-    // logoutRequest,
-    // logoutSuccess,
+    logoutRequest,
+    logoutSuccess,
     // logoutError,
     // refreshRequest,
-    // refreshSuccess,
-    // refreshError,
+    refreshSuccess,
+    refreshError,
 } = authActs;
 
 const initUser = { id: null, email: null };
@@ -34,6 +34,19 @@ const tokens = createReducer(initTokens, {
         sid,
     }),
 });
+const refreshToken = createReducer(null, {
+    [loginSuccess]: (_, { payload }) => payload.refreshToken,
+    [refreshSuccess]: (_, { payload }) => payload.newRefreshToken,
+    [refreshError]: () => null,
+    [logoutSuccess]: () => null,
+});
+
+const sid = createReducer(null, {
+    [loginSuccess]: (_, { payload }) => payload.sid,
+    [refreshSuccess]: (_, { payload }) => payload.newSid,
+    [refreshError]: () => null,
+    [logoutSuccess]: () => null,
+});
 
 const loading = createReducer(false, {
     [registerRequest]: () => true,
@@ -41,6 +54,7 @@ const loading = createReducer(false, {
     [registerError]: () => false,
 
     [loginRequest]: () => true,
+    [logoutRequest]: () => true,
     [loginSuccess]: () => false,
     [loginError]: () => false,
 });
@@ -56,6 +70,9 @@ const error = createReducer(null, {
 export default combineReducers({
     user,
     tokens,
+    refreshToken,
+
+    sid,
     loading,
     error,
 });
