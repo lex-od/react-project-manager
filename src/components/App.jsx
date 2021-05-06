@@ -1,10 +1,14 @@
-import { lazy, Suspense } from 'react';
+import {
+    lazy,
+    Suspense,
+    // useEffect
+} from 'react';
+// import { useDispatch } from 'react-redux';
 import { Redirect, Switch } from 'react-router';
 import { routes, PrivateRoute, PublicRoute } from '../routes';
 import { Header } from './header';
 import { Container, Spinner } from './common';
-
-// import Spinner from './common';
+// import { authOps } from '../redux/auth';
 
 const { REGISTER, LOGIN, TASKS, SPRINTS, PROJECTS } = routes;
 
@@ -15,6 +19,14 @@ const SprintsView = lazy(() => import('../views/SprintsView'));
 const ProjectsView = lazy(() => import('../views/ProjectsView'));
 
 export default function App() {
+    // const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch(
+    //         authOps.login({ email: 'eee6@mail.com', password: 'eeeeeee6' }),
+    //     );
+    // }, [dispatch]);
+
     return (
         <>
             <header>
