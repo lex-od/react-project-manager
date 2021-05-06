@@ -1,8 +1,10 @@
 import { lazy, Suspense } from 'react';
 import { Redirect, Switch } from 'react-router';
 import { routes, PrivateRoute, PublicRoute } from '../routes';
-import { AppBar } from './header';
+import { Header } from './header';
 import { Container } from './common';
+
+import Spinner from '../components/spinner/Spinner';
 
 const { REGISTER, LOGIN, TASKS, SPRINTS, PROJECTS } = routes;
 
@@ -17,12 +19,12 @@ export default function App() {
         <>
             <header>
                 <Container>
-                    <AppBar />
+                    <Header />
                 </Container>
             </header>
 
             <main>
-                <Suspense fallback={<p>Загрузка страницы...</p>}>
+                <Suspense fallback={<Spinner />}>
                     <Switch>
                         <PublicRoute
                             restricted

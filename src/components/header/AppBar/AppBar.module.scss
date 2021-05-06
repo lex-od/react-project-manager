@@ -1,0 +1,82 @@
+@import 'styles/shared.scss';
+
+// ========= Header ==============
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px 14px 20px;
+    background-color: #e5e5e5;
+    border-bottom: 1px solid rgba(24, 28, 39, 0.1);
+
+    @include for-size(tablet) {
+        padding: 19px 40px 19px 40px;
+    }
+    @include for-size(descktop) {
+        padding: 19px 55px 19px 55px;
+    }
+}
+
+.logo {
+    width: 100px;
+    height: 30px;
+    @include for-size(tablet) {
+        width: 140px;
+        height: 42px;
+    }
+}
+
+// ========= AppBar ==============
+
+.appBar {
+    display: flex;
+    align-items: center;
+    max-width: 245px;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.21;
+    letter-spacing: 0.04em;
+
+    color: #181c27;
+}
+
+.logoutButton {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: #a6a6a6;
+
+    @include for-size(tablet) {
+        margin-left: 77px;
+        width: 100px;
+        background-color: transparent;
+    }
+}
+
+.logoutSvg {
+    width: 18px;
+    height: 18px;
+    fill: #f1f2f7;
+    @include for-size(tablet) {
+        fill: #181c27;
+        margin-right: 10px;
+    }
+}
+
+.logoutText {
+    display: none;
+    font-size: 14px;
+    line-height: 1.21;
+    letter-spacing: 0.04em;
+    color: #181c27;
+
+    @include for-size(tablet) {
+        display: block;
+    }
+}
