@@ -16,8 +16,8 @@ const ProjectsList = () => {
                         <div className={css.projectsItemContainer}>
                             <h2 className={css.projectsListItemTitle}>{project.title}</h2>
                             <p className={css.projectsListItemDescr}>{project.description}</p>
-                            <button className={css.projectsListItemButton}>
-                                <svg className={css.icon}>
+                            <button className={css.deleteBtn}>
+                                <svg className={css.deleteBtnIcon}>
                                     <use href={deleteBtn + '#icon-trash'}></use>
                                 </svg>
                             </button>
