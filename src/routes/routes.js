@@ -1,8 +1,9 @@
 const routes = {
     REGISTER: '/register',
     LOGIN: '/login',
-    TASKS: '/projects/:projectId/sprints/:sprintId',
-    SPRINTS: '/projects/:projectId/sprints',
+    // TASKS: '/projects/:projectId/sprints/:sprintId',
+    TASKS: '/tasks', //временное решение
+    SPRINTS: '/projects/:projectId',
     PROJECTS: '/projects',
 };
 

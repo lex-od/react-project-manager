@@ -8,7 +8,7 @@ const modalRootRef = document.querySelector('#modal-root');
 // 📌 Необходимо следить за мемоизацией onClose в родительском компоненте
 // Для этого использовать useCallback
 
-export default function NewItemModal({ children, onClose }) {
+export default function NewItemModal({ children, onClose, title }) {
     useEffect(() => {
         const handleKeyDown = e => {
             if (e.code === 'Escape') onClose();
@@ -26,7 +26,11 @@ export default function NewItemModal({ children, onClose }) {
     return createPortal(
         <div className={css.overlay} onClick={handleOverlayClick}>
             <div className={css.content}>
+                <b className={css.title}>{title}</b>
                 {children}
+                <button onClick={onClose} className={css.cancelBtn}>
+                    Отмена
+                </button>
                 <button onClick={onClose} className={css.closeBtn}>
                     <svg className={css.closeIcon}>
                         <use href={`${sprite}#close`}></use>
