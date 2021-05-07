@@ -6,7 +6,7 @@ import {
 // import { useDispatch } from 'react-redux';
 import { Redirect, Switch } from 'react-router';
 import { routes, PrivateRoute, PublicRoute } from '../routes';
-import { Header } from './header';
+import { Header, HeaderWrapper } from './header';
 import { Container, Spinner } from './common';
 // import { authOps } from '../redux/auth';
 
@@ -29,11 +29,11 @@ export default function App() {
 
     return (
         <>
-            <header>
+            <HeaderWrapper>
                 <Container>
                     <Header />
                 </Container>
-            </header>
+            </HeaderWrapper>
 
             <main>
                 <Suspense fallback={<Spinner />}>
