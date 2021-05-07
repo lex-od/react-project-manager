@@ -1,6 +1,6 @@
 import React from 'react';
 import projects from './data';
-import deleteBtn from '../../assets/icons/deleteSprite.svg';
+import deleteBtn from '../../assets/icons/deleteBtnSprite.svg';
 import addBtn from '../../assets/icons/addBtnSprite.svg';
 import css from './Projects.module.scss';
 
