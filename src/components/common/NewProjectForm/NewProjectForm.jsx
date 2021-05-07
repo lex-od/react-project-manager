@@ -7,12 +7,12 @@ const newProjectSchema = Yup.object().shape({
     title: Yup.string()
         // .min(2, 'Too Short!')
         // .max(50, 'Too Long!')
-        .required('Обязательное поле'),
+        .required('Обязательно*'),
 
     description: Yup.string()
         // .min(2, 'Too Short!')
         // .max(50, 'Too Long!')
-        .required('Обязательное поле'),
+        .required('Обязательно*'),
 });
 
 export default function NewProjectForm(onClose) {
@@ -30,7 +30,7 @@ export default function NewProjectForm(onClose) {
             }}
         >
             {({ errors, touched }) => (
-                <Form>
+                <Form autoComplete="off">
                     <label className={css.nameLabel}>
                         <Field
                             name="title"
@@ -40,24 +40,26 @@ export default function NewProjectForm(onClose) {
                         <span className={css.nameLabelText}>
                             Название проекта
                         </span>
+                        {errors.title && touched.title ? (
+                            <span className={css.errorText}>
+                                {errors.title}
+                            </span>
+                        ) : null}
                     </label>
-                    {errors.title && touched.title ? (
-                        <div className={css.nameError}>{errors.title}</div>
-                    ) : null}
 
                     <label className={css.descrLabel}>
-                        <span className={css.descrLabelText}>Описание</span>
                         <Field
                             name="description"
                             placeholder=" "
                             className={css.descrInp}
                         />
+                        <span className={css.descrLabelText}>Описание</span>
+                        {errors.description && touched.description ? (
+                            <span className={css.errorText}>
+                                {errors.description}
+                            </span>
+                        ) : null}
                     </label>
-                    {errors.description && touched.description ? (
-                        <div className={css.descrError}>
-                            {errors.description}
-                        </div>
-                    ) : null}
 
                     <AccentButton type="submit">Готово</AccentButton>
                 </Form>

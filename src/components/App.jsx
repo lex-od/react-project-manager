@@ -7,7 +7,7 @@ import {
 import { Redirect, Switch } from 'react-router';
 import { routes, PrivateRoute, PublicRoute } from '../routes';
 import { Header } from './header';
-import { Container, Spinner, NewItemModal, NewProjectForm } from './common';
+import { Container, Spinner } from './common';
 // import { authOps } from '../redux/auth';
 
 const { REGISTER, LOGIN, TASKS, SPRINTS, PROJECTS } = routes;
@@ -29,9 +29,6 @@ export default function App() {
 
     return (
         <>
-            <NewItemModal title="Создание проекта">
-                <NewProjectForm />
-            </NewItemModal>
             <header>
                 <Container>
                     <Header />

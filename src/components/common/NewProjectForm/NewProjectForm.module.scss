@@ -11,71 +11,7 @@
     }
 }
 
-.nameInp {
-    width: 100%;
-    padding: 8px;
-
-    border-style: none none solid;
-    border-width: 1px;
-    border-color: $secondaryTextLineColor;
-    outline: none;
-
-    line-height: 1.25;
-    letter-spacing: 0.04em;
-    color: $primaryTextColor;
-
-    @include for-size(tablet) {
-        font-size: 18px;
-    }
-}
-
-.nameLabelText {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-
-    line-height: 1.25;
-    letter-spacing: 0.04em;
-    color: $secondaryTextColor;
-
-    transition: all 200ms linear;
-
-    @include for-size(tablet) {
-        font-size: 18px;
-    }
-
-    .nameInp:not(:placeholder-shown) + &,
-    .nameInp:focus + & {
-        top: 0;
-        left: 0;
-        transform: translateY(-100%);
-    }
-}
-
-.descrLabel {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 40px;
-
-    @include for-size(tablet) {
-        margin-bottom: 60px;
-    }
-}
-
-.descrLabelText {
-    margin-bottom: 20px;
-    padding-left: 8px;
-
-    line-height: 1.25;
-    letter-spacing: 0.04em;
-    color: $secondaryTextColor;
-
-    @include for-size(tablet) {
-        font-size: 18px;
-    }
-}
-
+.nameInp,
 .descrInp {
     width: 100%;
     padding: 8px;
@@ -93,3 +29,76 @@
         font-size: 18px;
     }
 }
+
+.nameLabelText,
+.descrLabelText {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: $secondaryTextColor;
+
+    transition: all 200ms linear;
+
+    @include for-size(tablet) {
+        font-size: 18px;
+    }
+}
+
+.nameLabelText {
+    .nameInp:not(:placeholder-shown) + &,
+    .nameInp:focus + & {
+        top: 0;
+        left: 0;
+        transform: translateY(-100%);
+    }
+}
+
+.descrLabelText {
+    .descrInp:not(:placeholder-shown) + &,
+    .descrInp:focus + & {
+        top: 0;
+        left: 0;
+        transform: translateY(-100%);
+    }
+}
+
+.errorText {
+    position: absolute;
+    left: 30px;
+    bottom: -2px;
+    transform: translateY(100%);
+
+    font-size: 14px;
+    color: $primaryAccentColor;
+}
+
+.descrLabel {
+    position: relative;
+
+    display: block;
+    margin-bottom: 40px;
+
+    @include for-size(tablet) {
+        margin-bottom: 60px;
+    }
+
+    // display: flex;
+    // flex-direction: column;
+    // align-items: flex-start;
+}
+
+// .descrLabelText {
+//     margin-bottom: 20px;
+//     padding-left: 8px;
+
+//     line-height: 1.25;
+//     letter-spacing: 0.04em;
+//     color: $secondaryTextColor;
+
+//     @include for-size(tablet) {
+//         font-size: 18px;
+//     }
+// }
