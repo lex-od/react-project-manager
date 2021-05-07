@@ -7,11 +7,22 @@ const setToken = token =>
 
 const unsetToken = () => (axios.defaults.headers.common.Authorization = '');
 
+const formatError = ({ name, message, response: { status } }) => ({
+    name,
+    message,
+    status,
+});
+
 const register = async credentials =>
     (await axios.post('/auth/register', credentials)).data;
 
 const login = async credentials =>
     (await axios.post('/auth/login', credentials)).data;
+
+const logOut = async credentials =>
+    (await axios.post('/auth/logout', credentials)).data;
+
+const refresh = async sid => (await axios.post('/auth/refresh', { sid })).data;
 
 //tasks - необходимо проверять запросы
 
@@ -32,5 +43,8 @@ const api = {
     getTask,
     changeTask,
     deleteTask,
+    formatError,
+  logOut,
+  refresh,
 };
 export default api;

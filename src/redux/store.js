@@ -10,14 +10,11 @@ import {
     REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import {
-    authReducer,
-    // authSls
-} from './auth';
+import { authReducer, authSls } from './auth';
 import { projectsReducer } from './projects';
 import { sprintsReducer } from './sprints';
 import { tasksReducer } from './tasks';
-// import { api } from '../services';
+import { api } from '../services';
 
 const middleware = [
     ...getDefaultMiddleware({
@@ -30,7 +27,7 @@ const middleware = [
 const authPersistConfig = {
     key: 'auth',
     storage,
-    whitelist: [],
+    whitelist: ['user', 'tokens'],
 };
 
 const store = configureStore({
@@ -45,8 +42,8 @@ const store = configureStore({
 });
 
 const persistor = persistStore(store, null, () => {
-    // const token = authSls.getAccessToken(store.getState());
-    // if (token) api.setToken(token);
+    const token = authSls.getAccessToken(store.getState());
+    if (token) api.setToken(token);
 });
 
 export { store, persistor };
