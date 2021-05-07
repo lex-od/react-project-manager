@@ -24,6 +24,27 @@ const logOut = async credentials =>
 
 const refresh = async sid => (await axios.post('/auth/refresh', { sid })).data;
 
-const api = { setToken, unsetToken, formatError, register, login, logOut, refresh };
+//tasks - необходимо проверять запросы
 
+const newTask = async sprintId => (await axios.post(`/task/${sprintId}`)).data;
+
+const getTask = async sprintId => (await axios.get(`/task/${sprintId}`)).data;
+
+const changeTask = async taskId => (await axios.patch(`/task/${taskId}`)).data;
+
+const deleteTask = async taskId => (await axios.delete(`/task/${taskId}`)).data;
+
+const api = {
+    setToken,
+    unsetToken,
+    register,
+    login,
+    newTask,
+    getTask,
+    changeTask,
+    deleteTask,
+    formatError,
+  logOut,
+  refresh,
+};
 export default api;
