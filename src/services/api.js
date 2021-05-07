@@ -44,7 +44,7 @@ const api = {
     changeTask,
     deleteTask,
     formatError,
-  logOut,
-  refresh,
+    logOut,
+    refresh,
 };
 export default api;

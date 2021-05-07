@@ -2,19 +2,13 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authOps } from '../../redux/auth';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { loginSchema } from '../common/Validations/AuthValidInput';
 import css from './Auth.module.scss';
 
-const loginSchema = Yup.object().shape({
-    email: Yup.string()
-        .required('* Обов’язкове поле')
-        .email('Введіть корректну адресу'),
-    password: Yup.string().required('* Обов’язкове поле'),
-});
 export default function Login() {
     const dispatch = useDispatch();
     return (
-        <main>
+        <div className={css.container}>
             <div className={css.RegisterForm}>
                 {' '}
                 <Formik
@@ -26,27 +20,40 @@ export default function Login() {
                     }}
                 >
                     <div>
-                        <Form className={css.RegForm}>
-                            <h2>Вхід</h2>
+                        <Form className={css.registerForm}>
+                            <h2 className={css.registerFormTitle}>Вхід</h2>
                             <Field
-                                className={css.RegInput}
+                                className={css.registerFormInput}
                                 autoComplete="on"
                                 type="email"
                                 name="email"
                                 placeholder="E-mail"
                             />
-                            <ErrorMessage name="email" component="span" />
+                            <ErrorMessage
+                                className={css.errorMessageEmail}
+                                name="email"
+                                component="span"
+                            />
                             <Field
-                                className={css.RegInput}
+                                className={css.registerFormInput}
                                 autoComplete="on"
                                 type="password"
                                 name="password"
                                 placeholder="Пароль"
                             />
-                            <ErrorMessage name="password" component="span" />
+                            <ErrorMessage
+                                className={css.errorMessagePassword}
+                                name="password"
+                                component="span"
+                            />
 
-                            <button type="submit">Увійти</button>
-                            <p>
+                            <button
+                                className={css.registerPageButton}
+                                type="submit"
+                            >
+                                Увійти
+                            </button>
+                            <p className={css.registerFormText}>
                                 Маєте аккаунт?{' '}
                                 <NavLink to="/register">
                                     Зареєструватись
@@ -56,6 +63,6 @@ export default function Login() {
                     </div>
                 </Formik>
             </div>
-        </main>
+        </div>
     );
 }
