@@ -41,7 +41,6 @@ export default function App() {
                         <PublicRoute
                             restricted
                             path={REGISTER}
-                            _
                             redirectTo={PROJECTS}
                         >
                             <RegisterView />
