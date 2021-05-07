@@ -40,7 +40,8 @@ export default function App() {
                     <Switch>
                         <PublicRoute
                             restricted
-                            path={REGISTER}_
+                            path={REGISTER}
+                            _
                             redirectTo={PROJECTS}
                         >
                             <RegisterView />
@@ -68,7 +69,6 @@ export default function App() {
 
                         <Redirect to={LOGIN} />
                     </Switch>
-                    <TasksView />
                 </Suspense>
             </main>
         </>

@@ -14,17 +14,17 @@ const {
     taskDeleteRequest,
     taskDeleteSuccess,
     taskDeleteError,
-    tasksStartDate,
-    tasksEndDate,
+    // tasksStartDate,
+    // tasksEndDate,
 } = tasksActs;
 
-const startDate = createReducer('', {
-    [tasksStartDate]: (_, { payload }) => payload,
-});
+// const startDate = createReducer('', {
+//     [tasksStartDate]: (_, { payload }) => payload,
+// });
 
-const endDate = createReducer('', {
-    [tasksEndDate]: (_, { payload }) => payload,
-});
+// const endDate = createReducer('', {
+//     [tasksEndDate]: (_, { payload }) => payload,
+// });
 
 const tasks = createReducer([], {
     [taskAddSuccess]: (state, { payload }) => [...state, payload],
@@ -69,8 +69,8 @@ const error = createReducer(null, {
 });
 
 export default combineReducers({
-    startDate,
-    endDate,
+    // startDate,
+    // endDate,
     tasks,
     // filter,
     loading,

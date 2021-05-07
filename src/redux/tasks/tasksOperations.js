@@ -2,7 +2,7 @@ import { api } from '../../services';
 import tasksActs from './tasksActions';
 
 const {
-    taskAdDdRequest,
+    taskAddRequest,
     taskAddSuccess,
     taskAddError,
     taskGetRequest,
@@ -17,7 +17,7 @@ const {
 } = tasksActs;
 
 const taskAddOperation = sprintId => async dispatch => {
-    dispatch(taskAdDdRequest());
+    dispatch(taskAddRequest());
 
     try {
         const task = await api.newTask(sprintId);

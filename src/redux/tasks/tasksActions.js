@@ -16,8 +16,8 @@ const taskDeleteRequest = createAction('task/delete/request');
 const taskDeleteSuccess = createAction('task/delete/success');
 const taskDeleteError = createAction('task/delete/error');
 
-const tasksStartDate = createAction('task/date/start');
-const tasksEndDate = createAction('task/date/end');
+// const tasksStartDate = createAction('task/date/start');
+// const tasksEndDate = createAction('task/date/end');
 
 const tasksActs = {
     taskAddRequest,
@@ -32,7 +32,7 @@ const tasksActs = {
     taskDeleteRequest,
     taskDeleteSuccess,
     taskDeleteError,
-    tasksStartDate,
-    tasksEndDate,
+    // tasksStartDate,
+    // tasksEndDate,
 };
 export default tasksActs;
