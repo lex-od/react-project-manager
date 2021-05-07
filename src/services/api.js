@@ -24,6 +24,14 @@ const logOut = async credentials =>
 
 const refresh = async sid => (await axios.post('/auth/refresh', { sid })).data;
 
-const api = { setToken, unsetToken, formatError, register, login, logOut, refresh };
+const api = {
+    setToken,
+    unsetToken,
+    formatError,
+    register,
+    login,
+    logOut,
+    refresh,
+};
 
 export default api;

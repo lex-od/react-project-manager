@@ -8,12 +8,12 @@ const {
     loginRequest,
     loginSuccess,
     loginError,
-    // logoutRequest,
-    // logoutSuccess,
-    // logoutError,
-    // refreshRequest,
-    // refreshSuccess,
-    // refreshError,
+    logoutRequest,
+    logoutSuccess,
+    logoutError,
+    refreshRequest,
+    refreshSuccess,
+    refreshError,
 } = authActs;
 
 const initUser = { id: null, email: null };
@@ -23,6 +23,8 @@ const user = createReducer(initUser, {
         const { id, email } = payload.data;
         return { id, email };
     },
+    [logoutSuccess]: () => initUser,
+    [refreshError]: () => initUser,
 });
 
 const initTokens = { accessToken: null, refreshToken: null, sid: null };
@@ -33,6 +35,16 @@ const tokens = createReducer(initTokens, {
         refreshToken,
         sid,
     }),
+    [logoutSuccess]: () => initTokens,
+    [refreshError]: () => initTokens,
+    [refreshSuccess]: (
+        _,
+        { payload: { newAccessToken, newRefreshToken, newSid } },
+    ) => ({
+        accessToken: newAccessToken,
+        refreshToken: newRefreshToken,
+        sid: newSid,
+    }),
 });
 
 const loading = createReducer(false, {
@@ -41,9 +53,16 @@ const loading = createReducer(false, {
     [registerError]: () => false,
 
     [loginRequest]: () => true,
-
     [loginSuccess]: () => false,
     [loginError]: () => false,
+
+    [logoutRequest]: () => true,
+    [logoutSuccess]: () => false,
+    [logoutError]: () => false,
+
+    [refreshRequest]: () => true,
+    [refreshSuccess]: () => false,
+    [refreshError]: () => false,
 });
 
 const error = createReducer(null, {
@@ -52,6 +71,12 @@ const error = createReducer(null, {
 
     [loginRequest]: () => null,
     [loginError]: (_, { payload }) => payload,
+
+    [logoutRequest]: () => true,
+    [logoutError]: (_, { payload }) => payload,
+
+    [refreshRequest]: () => true,
+    [refreshError]: (_, { payload }) => payload,
 });
 
 export default combineReducers({
