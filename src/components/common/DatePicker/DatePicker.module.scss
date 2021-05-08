@@ -1,9 +1,9 @@
 @import 'styles/shared.scss';
 
-.box {
-    display: flex;
-    flex-direction: column;
-}
+// .box {
+//     display: flex;
+//     flex-direction: column;
+// }
 
 .datePicker {
     width: 280px;
@@ -20,10 +20,11 @@
         width: 200px;
     }
 }
-.pickerTitle {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.25;
-    letter-spacing: 0.04em;
-    color: rgba(24, 28, 39, 0.6);
-}
+
+// .pickerTitle {
+//     font-weight: 400;
+//     font-size: 14px;
+//     line-height: 1.25;
+//     letter-spacing: 0.04em;
+//     color: rgba(24, 28, 39, 0.6);
+// }

@@ -1,8 +1,9 @@
 import { Formik, Form, Field } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+// import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { DatePicker } from '../';
-import { sprintsOps } from '../../../redux/sprints';
+// import { sprintsOps } from '../../../redux/sprints';
 import AccentButton from '../AccentButton/AccentButton';
 import css from './NewSprintForm.module.scss';
 
@@ -10,27 +11,50 @@ const newSprintSchema = Yup.object().shape({
     title: Yup.string()
         .min(3, 'Занадто коротка назва!')
         .required("Обов'язково*"),
+    duration: Yup.number()
+        .typeError('Введіть число')
+        .integer('Введіть ціле число')
+        .min(1, 'Від 1!')
+        .max(8, 'До 8!')
+        .required("Обов'язково*"),
 });
 
 export default function NewSprintForm(onClose) {
-    const dispatch = useDispatch();
+    const [date, setDate] = useState(Date.now());
+    const [isPrevDays, setPrevDays] = useState(false);
+
+    // const dispatch = useDispatch();
+
+    const handlePrevDaysChange = ({ target: { checked } }) => {
+        setPrevDays(checked);
+
+        if (!checked && date < Date.now()) {
+            setDate(Date.now());
+        }
+    };
 
     return (
         <Formik
             initialValues={{
                 title: '',
+                duration: '',
             }}
             validationSchema={newSprintSchema}
-            onSubmit={sprint => {
-                console.log(sprint);
+            onSubmit={values => {
+                console.log(date);
+                console.log(values);
                 // dispatch(sprintsOps.addSprint(sprint));
 
                 onClose();
             }}
         >
             {({ errors, touched }) => (
-                <Form autoComplete="off" className={css.form}>
-                    {/* <label className={css.titleLabel}>
+                <Form
+                    autoComplete="off"
+                    className={css.form}
+                    spellCheck="false"
+                >
+                    <label className={css.titleLabel}>
                         <Field
                             name="title"
                             placeholder=" "
@@ -44,11 +68,24 @@ export default function NewSprintForm(onClose) {
                                 {errors.title}
                             </span>
                         ) : null}
-                    </label> */}
+                    </label>
 
-                    <DatePicker />
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={isPrevDays}
+                            onChange={handlePrevDaysChange}
+                        />
+                        <span>Попередні дні</span>
+                    </label>
 
-                    {/* <label className={css.durationLabel}>
+                    <DatePicker
+                        selected={date}
+                        onChange={setDate}
+                        minDate={isPrevDays ? null : Date.now()}
+                    />
+
+                    <label className={css.durationLabel}>
                         <Field
                             name="duration"
                             placeholder=" "
@@ -62,9 +99,9 @@ export default function NewSprintForm(onClose) {
                                 {errors.duration}
                             </span>
                         ) : null}
-                    </label> */}
+                    </label>
 
-                    {/* <AccentButton type="submit">Готово</AccentButton> */}
+                    <AccentButton type="submit">Готово</AccentButton>
                 </Form>
             )}
         </Formik>
