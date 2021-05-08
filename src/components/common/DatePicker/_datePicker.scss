@@ -39,17 +39,6 @@
         border: none;
         background: transparent;
     }
-    .react-datepicker__day--keyboard-selected,
-    .react-datepicker__month-text--keyboard-selected,
-    .react-datepicker__quarter-text--keyboard-selected,
-    .react-datepicker__year-text--keyboard-selected {
-        background-color: $primaryAccentColor;
-        border-radius: 20px;
-        &:hover {
-            background-color: $primaryAccentColor;
-            border-radius: 20px;
-        }
-    }
 
     .react-datepicker__header {
         text-align: center;
@@ -88,8 +77,7 @@
     .react-datepicker__day-names,
     .react-datepicker__week {
         white-space: nowrap;
-        background: rgba(255, 255, 255, 0.7);
-        // background: yellowgreen;
+        background: transparent;
     }
 
     .react-datepicker__current-month,
@@ -109,6 +97,10 @@
         border-bottom-right-radius: 20px;
     }
 
+    .react-datepicker__day--keyboard-selected,
+    .react-datepicker__month-text--keyboard-selected,
+    .react-datepicker__quarter-text--keyboard-selected,
+    .react-datepicker__year-text--keyboard-selected,
     .react-datepicker__day--selected,
     .react-datepicker__day--in-selecting-range,
     .react-datepicker__day--in-range,

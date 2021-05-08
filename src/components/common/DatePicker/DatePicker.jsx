@@ -9,11 +9,13 @@ const locale = 'uk';
 registerLocale('uk', uk);
 
 setDefaultLocale('uk');
-
+const spell = {
+    spellcheck: 'false',
+};
 const CustomDatePicker = () => {
     const [date, setDate] = useState(new Date());
     return (
-        <div className={css.box}>
+        <div className={css.box} spellcheck="false">
             <label>
                 <span className={css.pickerTitle}>Дата початку</span>
             </label>
@@ -24,6 +26,8 @@ const CustomDatePicker = () => {
                 onChange={date => setDate(date)}
                 dateFormat="dd MMMM"
                 locale={locale}
+                // dateFormatCalendar="MMMM"
+                // shouldCloseOnSelect={false}
             />
         </div>
     );
