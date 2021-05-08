@@ -4,9 +4,7 @@ import deleteBtn from '../../assets/icons/deleteBtnSprite.svg';
 import addBtn from '../../assets/icons/addBtnSprite.svg';
 import css from './Projects.module.scss';
 
-
 const ProjectsList = () => {
-
     return (
         <div className={css.projectsContainer}>
             <h1 className={css.projectsTitle}>Проекти</h1>
@@ -14,8 +12,12 @@ const ProjectsList = () => {
                 {projects.map(project => (
                     <li className={css.projectsListItem} key={project._id}>
                         <div className={css.projectsItemContainer}>
-                            <h2 className={css.projectsListItemTitle}>{project.title}</h2>
-                            <p className={css.projectsListItemDescr}>{project.description}</p>
+                            <h2 className={css.projectsListItemTitle}>
+                                {project.title}
+                            </h2>
+                            <p className={css.projectsListItemDescr}>
+                                {project.description}
+                            </p>
                             <button className={css.deleteBtn}>
                                 <svg className={css.deleteBtnIcon}>
                                     <use href={deleteBtn + '#icon-trash'}></use>
@@ -32,6 +34,6 @@ const ProjectsList = () => {
             </button>
         </div>
     );
-}
+};
 
 export default ProjectsList;

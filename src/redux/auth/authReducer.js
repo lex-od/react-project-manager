@@ -1,5 +1,6 @@
 import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import authActs from './authActions';
+import { projectsActs } from '../projects';
 
 const {
     registerRequest,
@@ -16,6 +17,8 @@ const {
     refreshError,
 } = authActs;
 
+const { addProjectError } = projectsActs;
+
 const initUser = { id: null, email: null };
 
 const user = createReducer(initUser, {
@@ -23,8 +26,15 @@ const user = createReducer(initUser, {
         const { id, email } = payload.data;
         return { id, email };
     },
+
     [logoutSuccess]: () => initUser,
+    [logoutError]: (state, { payload: { status } }) =>
+        status === 404 ? initUser : state,
+
     [refreshError]: () => initUser,
+
+    [addProjectError]: (state, { payload: { status } }) =>
+        status === 404 ? initUser : state,
 });
 
 const initTokens = { accessToken: null, refreshToken: null, sid: null };
@@ -35,7 +45,11 @@ const tokens = createReducer(initTokens, {
         refreshToken,
         sid,
     }),
+
     [logoutSuccess]: () => initTokens,
+    [logoutError]: (state, { payload: { status } }) =>
+        status === 404 ? initTokens : state,
+
     [refreshError]: () => initTokens,
     [refreshSuccess]: (
         _,
@@ -45,6 +59,9 @@ const tokens = createReducer(initTokens, {
         refreshToken: newRefreshToken,
         sid: newSid,
     }),
+
+    [addProjectError]: (state, { payload: { status } }) =>
+        status === 404 ? initTokens : state,
 });
 
 const loading = createReducer(false, {
@@ -82,7 +99,6 @@ const error = createReducer(null, {
 export default combineReducers({
     user,
     tokens,
-
     loading,
     error,
 });
