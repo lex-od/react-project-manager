@@ -1,7 +1,6 @@
 import React from 'react';
 import projects from './data';
 import deleteBtn from '../../assets/icons/deleteBtnSprite.svg';
-import addBtn from '../../assets/icons/addBtnSprite.svg';
 import css from './Projects.module.scss';
 
 const ProjectsList = () => {
@@ -18,7 +17,7 @@ const ProjectsList = () => {
                             <p className={css.projectsListItemDescr}>
                                 {project.description}
                             </p>
-                            <button className={css.deleteBtn}>
+                            <button type='button' className={css.deleteBtn}>
                                 <svg className={css.deleteBtnIcon}>
                                     <use href={deleteBtn + '#icon-trash'}></use>
                                 </svg>
@@ -27,11 +26,6 @@ const ProjectsList = () => {
                     </li>
                 ))}
             </ul>
-            <button className={css.addBtn}>
-                <svg className={css.addBtnIcon}>
-                    <use href={addBtn + '#icon-addBtn'}></use>
-                </svg>
-            </button>
         </div>
     );
 };

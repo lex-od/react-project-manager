@@ -42,7 +42,20 @@ const projects = [
         ],
         "_id": "507f1f77bcf86cd799439014",
         "__v": 0
+    },
+    {
+        "title": "Project 5",
+        "description": "Project 5 description",
+        "members": [
+            "test@email.com"
+        ],
+        "sprints": [
+            "507f1f77bcf86cd799439012"
+        ],
+        "_id": "507f1f77bcf86cd799439015",
+        "__v": 0
     }
+
 ];
 
 export default projects;
