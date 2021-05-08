@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 export const regSchema = Yup.object().shape({
     email: Yup.string()
         .required('* Обов’язкове поле')
-        .email('Введіть корректну адресу'),
+        .email('Введіть коректну адресу'),
     password: Yup.string()
         .min(5, 'Пароль повинен містити щонайменше 5 символів')
         .max(10, 'Пароль повинен містити менше 10 символів')
@@ -16,6 +16,6 @@ export const regSchema = Yup.object().shape({
 export const loginSchema = Yup.object().shape({
     email: Yup.string()
         .required('* Обов’язкове поле')
-        .email('Введіть корректну адресу'),
+        .email('Введіть коректну адресу'),
     password: Yup.string().required('* Обов’язкове поле'),
 });
