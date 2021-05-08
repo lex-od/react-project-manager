@@ -6,5 +6,13 @@ const getRefreshToken = state => state.auth.tokens.refreshToken;
 
 const getSid = state => state.auth.tokens.sid;
 
-const authSelectors = { getAccessToken, getRefreshToken, getSid, getIsAuth };
+const getUserEmail = state => state.auth.user.email;
+
+const authSelectors = {
+    getAccessToken,
+    getRefreshToken,
+    getSid,
+    getIsAuth,
+    getUserEmail,
+};
 export default authSelectors;
