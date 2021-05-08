@@ -1,21 +1,25 @@
 import { Formik, Form, Field } from 'formik';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
+import { projectsOps } from '../../../redux/projects';
 import AccentButton from '../AccentButton/AccentButton';
 import css from './NewProjectForm.module.scss';
 
 const newProjectSchema = Yup.object().shape({
     title: Yup.string()
-        // .min(2, 'Too Short!')
+        .min(2, 'Занадто коротка назва!')
         // .max(50, 'Too Long!')
-        .required('Обязательно*'),
+        .required("Обов'язково*"),
 
     description: Yup.string()
-        // .min(2, 'Too Short!')
+        .min(2, 'Занадто короткий опис!')
         // .max(50, 'Too Long!')
-        .required('Обязательно*'),
+        .required("Обов'язково*"),
 });
 
 export default function NewProjectForm(onClose) {
+    const dispatch = useDispatch();
+
     return (
         <Formik
             initialValues={{
@@ -23,8 +27,8 @@ export default function NewProjectForm(onClose) {
                 description: '',
             }}
             validationSchema={newProjectSchema}
-            onSubmit={values => {
-                // Добавить диспатч операции
+            onSubmit={project => {
+                dispatch(projectsOps.addProject(project));
 
                 onClose();
             }}

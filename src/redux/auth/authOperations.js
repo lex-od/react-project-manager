@@ -53,6 +53,7 @@ const logOut = () => async dispatch => {
         dispatch(logoutSuccess());
     } catch (error) {
         dispatch(logoutError(api.formatError(error)));
+
         if (error.response.status === 401) {
             dispatch(refreshToken(logOut));
         }
@@ -66,7 +67,6 @@ const refreshToken = prevOps => async (dispatch, getState) => {
     dispatch(refreshRequest());
 
     try {
-        console.log(sid);
         const data = await api.refresh(sid);
 
         dispatch(refreshSuccess(data));
