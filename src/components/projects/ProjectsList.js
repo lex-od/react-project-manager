@@ -12,7 +12,7 @@ const ProjectsList = () => {
             <h1 className={css.projectsTitle}>Проекти</h1>
             <ul className={css.projectsList}>
                 {projects.map(project => (
-                    <li className={css.projectsListItem}>
+                    <li className={css.projectsListItem} key={project._id}>
                         <div className={css.projectsItemContainer}>
                             <h2 className={css.projectsListItemTitle}>{project.title}</h2>
                             <p className={css.projectsListItemDescr}>{project.description}</p>
