@@ -12,12 +12,6 @@ const {
     deleteProjectRequest,
     deleteProjectSuccess,
     deleteProjectError,
-    changeProjectRequest,
-    changeProjectSuccess,
-    changeProjectError,
-    addMemberRequest,
-    addMemberSuccess,
-    addMemberError,
 } = projectsActs;
 
 const getProjects = () => async dispatch => {
@@ -59,33 +53,9 @@ const deleteProject = () => async dispatch => {
     }
 };
 
-const changeProject = () => async dispatch => {
-    dispatch(changeProjectRequest());
-
-    try {
-        // const response = await ...
-        dispatch(changeProjectSuccess());
-    } catch (error) {
-        dispatch(changeProjectError());
-    }
-};
-
-const addMember = () => async dispatch => {
-    dispatch(addMemberRequest());
-
-    try {
-        // const response = await ...
-        dispatch(addMemberSuccess());
-    } catch (error) {
-        dispatch(addMemberError());
-    }
-};
-
 const projectsOperations = {
     getProjects,
     addProject,
     deleteProject,
-    changeProject,
-    addMember,
 };
 export default projectsOperations;

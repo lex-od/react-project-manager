@@ -7,12 +7,12 @@ import css from './NewProjectForm.module.scss';
 
 const newProjectSchema = Yup.object().shape({
     title: Yup.string()
-        .min(2, 'Занадто коротка назва!')
+        .min(3, 'Занадто коротка назва!')
         // .max(50, 'Too Long!')
         .required("Обов'язково*"),
 
     description: Yup.string()
-        .min(2, 'Занадто короткий опис!')
+        .min(3, 'Занадто короткий опис!')
         // .max(50, 'Too Long!')
         .required("Обов'язково*"),
 });
