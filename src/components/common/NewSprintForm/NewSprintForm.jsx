@@ -21,7 +21,7 @@ const newSprintSchema = Yup.object().shape({
 });
 
 export default function NewSprintForm(onClose) {
-    const [date, setDate] = useState(Date.now());
+    const [date, setDate] = useState(new Date());
     const [isPrevDays, setPrevDays] = useState(false);
 
     // const dispatch = useDispatch();
@@ -29,8 +29,10 @@ export default function NewSprintForm(onClose) {
     const handlePrevDaysChange = ({ target: { checked } }) => {
         setPrevDays(checked);
 
-        if (!checked && date < Date.now()) {
-            setDate(Date.now());
+        const currDate = new Date();
+
+        if (!checked && date < currDate) {
+            setDate(currDate);
         }
     };
 
@@ -81,36 +83,48 @@ export default function NewSprintForm(onClose) {
                             css.isPrevDaysCb,
                         )}
                     />
-                    <label for="is-prev-days" className={css.isPrevDaysLabel}>
+                    <label
+                        htmlFor="is-prev-days"
+                        className={css.isPrevDaysLabel}
+                    >
                         Попередні дні
                     </label>
 
-                    <label className={css.dateLabel}>
-                        <span className={css.dateLabelText}>Дата початку</span>
-                        <DatePicker
-                            selected={date}
-                            onChange={setDate}
-                            minDate={isPrevDays ? null : Date.now()}
-                        />
-                    </label>
-
-                    {/* <label className={css.durationLabel}>
-                        <Field
-                            name="duration"
-                            placeholder=" "
-                            className={css.durationInp}
-                        />
-                        <span className={css.durationLabelText}>
-                            Тривалість
-                        </span>
-                        {errors.duration && touched.duration ? (
-                            <span className={css.errorText}>
-                                {errors.duration}
+                    <div className={css.bottomWrapper}>
+                        <label
+                            className={css.dateLabel}
+                            onClick={e => e.preventDefault()}
+                        >
+                            <span className={css.dateLabelText}>
+                                Дата початку
                             </span>
-                        ) : null}
-                    </label> */}
+                            <DatePicker
+                                selected={date}
+                                onChange={setDate}
+                                minDate={isPrevDays ? null : new Date()}
+                            />
+                        </label>
 
-                    {/* <AccentButton type="submit">Готово</AccentButton> */}
+                        <label className={css.durationLabel}>
+                            <Field
+                                name="duration"
+                                placeholder=" "
+                                className={css.durationInp}
+                            />
+                            <span className={css.durationLabelText}>
+                                Тривалість
+                            </span>
+                            {errors.duration && touched.duration ? (
+                                <span className={css.errorText}>
+                                    {errors.duration}
+                                </span>
+                            ) : null}
+                        </label>
+                    </div>
+
+                    <div className={css.submitWrapper}>
+                        <AccentButton type="submit">Готово</AccentButton>
+                    </div>
                 </Form>
             )}
         </Formik>

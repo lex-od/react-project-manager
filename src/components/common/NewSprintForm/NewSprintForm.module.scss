@@ -15,7 +15,8 @@
     }
 }
 
-.titleInp {
+.titleInp,
+.durationInp {
     width: 100%;
     padding: 8px;
 
@@ -33,16 +34,18 @@
     }
 }
 
-.titleLabelText {
+.titleLabelText,
+.durationLabelText {
     position: absolute;
     top: 8px;
     left: 8px;
 
+    pointer-events: none;
+    transition: all 200ms linear;
+
     line-height: 1.25;
     letter-spacing: 0.04em;
     color: $secondaryTextColor;
-
-    transition: all 200ms linear;
 
     @include for-size(tablet) {
         font-size: 18px;
@@ -52,6 +55,15 @@
 .titleLabelText {
     .titleInp:not(:placeholder-shown) + &,
     .titleInp:focus + & {
+        top: 0;
+        left: 0;
+        transform: translateY(-100%);
+    }
+}
+
+.durationLabelText {
+    .durationInp:not(:placeholder-shown) + &,
+    .durationInp:focus + & {
         top: 0;
         left: 0;
         transform: translateY(-100%);
@@ -69,9 +81,11 @@
 }
 
 .isPrevDaysLabel {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     margin-bottom: 40px;
+
+    cursor: pointer;
 
     font-size: 18px;
     line-height: 1.25;
@@ -100,10 +114,26 @@
     }
 }
 
+.bottomWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+}
+
 .dateLabel {
-    //
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @include for-size(mobile-only) {
+        margin-bottom: 50px;
+    }
+
     @include for-size(tablet) {
-        //
+        width: calc(50% - 15px);
     }
 }
 
@@ -112,4 +142,18 @@
     line-height: 1.25;
     letter-spacing: 0.04em;
     color: $secondaryTextColor;
+}
+
+.durationLabel {
+    position: relative;
+
+    width: 100%;
+
+    @include for-size(tablet) {
+        width: calc(50% - 15px);
+    }
+}
+
+.submitWrapper {
+    text-align: center;
 }
