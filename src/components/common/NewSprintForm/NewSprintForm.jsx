@@ -70,7 +70,7 @@ export default function NewSprintForm(onClose) {
                         ) : null}
                     </label>
 
-                    <label>
+                    {/* <label>
                         <input
                             type="checkbox"
                             checked={isPrevDays}
@@ -101,7 +101,7 @@ export default function NewSprintForm(onClose) {
                         ) : null}
                     </label>
 
-                    <AccentButton type="submit">Готово</AccentButton>
+                    <AccentButton type="submit">Готово</AccentButton> */}
                 </Form>
             )}
         </Formik>
