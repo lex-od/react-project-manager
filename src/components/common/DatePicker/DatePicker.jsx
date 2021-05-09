@@ -7,11 +7,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import css from './DatePicker.module.scss';
 const locale = 'uk';
 registerLocale('uk', uk);
-
 setDefaultLocale('uk');
-const spell = {
-    spellcheck: 'false',
-};
+
 const CustomDatePicker = () => {
     const [date, setDate] = useState(new Date());
     return (
