@@ -5,15 +5,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 20px 14px 20px;
-    background-color: #e5e5e5;
-    border-bottom: 1px solid rgba(24, 28, 39, 0.1);
+    padding: 14px 0px 14px 0px;
 
     @include for-size(tablet) {
-        padding: 19px 40px 19px 40px;
+        padding: 19px 20px 19px 20px;
     }
     @include for-size(descktop) {
-        padding: 19px 55px 19px 55px;
+        padding: 19px 25px 19px 25px;
     }
 }
 
@@ -38,7 +36,7 @@
     line-height: 1.21;
     letter-spacing: 0.04em;
 
-    color: #181c27;
+    color: $primaryTextColor;
 }
 
 .logoutButton {
@@ -53,6 +51,7 @@
     background-color: #a6a6a6;
 
     @include for-size(tablet) {
+        padding: 0;
         margin-left: 77px;
         width: 100px;
         background-color: transparent;
@@ -62,10 +61,9 @@
 .logoutSvg {
     width: 18px;
     height: 18px;
-    fill: #f1f2f7;
+    fill: $primaryBgColor;
     @include for-size(tablet) {
-        fill: #181c27;
-        margin-right: 10px;
+        fill: rgba(24, 28, 39, 0.6);
     }
 }
 
@@ -74,9 +72,10 @@
     font-size: 14px;
     line-height: 1.21;
     letter-spacing: 0.04em;
-    color: #181c27;
-
+    color: rgba(24, 28, 39, 0.6);
     @include for-size(tablet) {
         display: block;
+        white-space: nowrap;
+        margin-left: 10px;
     }
 }

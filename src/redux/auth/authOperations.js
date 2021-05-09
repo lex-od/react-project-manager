@@ -25,8 +25,8 @@ const register = credentials => async dispatch => {
 
         dispatch(registerSuccess(user));
         dispatch(login(credentials));
-    } catch ({ name, message }) {
-        dispatch(registerError({ name, message }));
+    } catch (error) {
+        dispatch(registerError(api.formatError(error)));
     }
 };
 
@@ -38,8 +38,8 @@ const login = credentials => async dispatch => {
 
         api.setToken(data.accessToken);
         dispatch(loginSuccess(data));
-    } catch ({ name, message }) {
-        dispatch(loginError({ name, message }));
+    } catch (error) {
+        dispatch(loginError(api.formatError(error)));
     }
 };
 
@@ -52,7 +52,8 @@ const logOut = () => async dispatch => {
         api.unsetToken();
         dispatch(logoutSuccess());
     } catch (error) {
-        dispatch(logoutError(error.message));
+        dispatch(logoutError(api.formatError(error)));
+
         if (error.response.status === 401) {
             dispatch(refreshToken(logOut));
         }
@@ -73,7 +74,7 @@ const refreshToken = prevOps => async (dispatch, getState) => {
 
         dispatch(prevOps());
     } catch (error) {
-        dispatch(refreshError(error.message));
+        dispatch(refreshError(api.formatError(error)));
     }
 };
 

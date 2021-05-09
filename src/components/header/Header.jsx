@@ -1,23 +1,27 @@
 import React from 'react';
-// import { useSelector } from 'react-redux';
-// import { routes } from '../../routes';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { authSls } from '../../redux/auth';
 
 import AppBar from './AppBar/AppBar';
 import css from './AppBar/AppBar.module.scss';
 import logo from '../../assets/icons/goit-logo.svg';
+// import { DatePicker } from '../common';
+// import { Chart } from '../common';
 
 const Header = () => {
-    // const isAuth = useSelector(authSelectors.getIsAuthenticated);
-    const isAuth = true;
+    const isAuth = useSelector(authSls.getIsAuth);
+
     return (
         <header>
-            <div className={css.header}>
-                <a href="/">
+            <nav className={css.header}>
+                <NavLink exact to="/projects">
                     <img src={logo} className={css.logo} alt="logo" />
-                </a>
-
+                </NavLink>
+                {/* <DatePicker /> */}
+                {/* <Chart /> */}
                 <nav>{isAuth && <AppBar />}</nav>
-            </div>
+            </nav>
         </header>
     );
 };

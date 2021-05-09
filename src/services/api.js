@@ -24,6 +24,9 @@ const logOut = async credentials =>
 
 const refresh = async sid => (await axios.post('/auth/refresh', { sid })).data;
 
+const addProject = async project =>
+    (await axios.post('/project', project)).data;
+
 //tasks - необходимо проверять запросы
 
 const newTask = async sprintId => (await axios.post(`/task/${sprintId}`)).data;
@@ -47,5 +50,6 @@ const api = {
     formatError,
     logOut,
     refresh,
+    addProject,
 };
 export default api;
