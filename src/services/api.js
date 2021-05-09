@@ -27,21 +27,27 @@ const refresh = async sid => (await axios.post('/auth/refresh', { sid })).data;
 const addProject = async project =>
     (await axios.post('/project', project)).data;
 
-//tasks - необходимо проверять запросы
+//sprints
+
+const getSprint = async projectId => await axios.get(`/sprint/${projectId}`);
+
+//tasks
 
 const newTask = async sprintId => (await axios.post(`/task/${sprintId}`)).data;
 
-const getTask = async sprintId => (await axios.get(`/task/${sprintId}`)).data;
+const getTask = async sprintId => await axios.get(`/task/${sprintId}`);
 
-const changeTask = async taskId => (await axios.patch(`/task/${taskId}`)).data;
+const changeTask = async (newData, taskId) =>
+    await axios.patch(`/task/${taskId}`, newData);
 
-const deleteTask = async taskId => (await axios.delete(`/task/${taskId}`)).data;
+const deleteTask = async taskId => await axios.delete(`/task/${taskId}`);
 
 const api = {
     setToken,
     unsetToken,
     register,
     login,
+    getSprint,
     newTask,
     getTask,
     changeTask,
