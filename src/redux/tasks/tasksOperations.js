@@ -55,7 +55,7 @@ const taskDeletetOperation = taskId => async dispatch => {
     dispatch(taskDeleteRequest());
 
     try {
-        const task = await api.deleteTask(taskId);
+        await api.deleteTask(taskId);
 
         dispatch(taskDeleteSuccess(taskId));
     } catch ({ data, message }) {
