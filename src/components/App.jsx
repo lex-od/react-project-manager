@@ -3,7 +3,7 @@ import { lazy, Suspense } from 'react';
 import { Redirect, Switch } from 'react-router';
 import { routes, PrivateRoute, PublicRoute } from '../routes';
 import { Header, HeaderWrapper } from './header';
-import { Container, NewItemModal, NewSprintForm, Spinner } from './common';
+import { Container, Spinner } from './common';
 
 const { REGISTER, LOGIN, TASKS, SPRINTS, PROJECTS } = routes;
 
@@ -16,9 +16,9 @@ const ProjectsView = lazy(() => import('../views/ProjectsView'));
 export default function App() {
     return (
         <>
-            <NewItemModal title="Створення спринта">
+            {/* <NewItemModal title="Створення спринта">
                 <NewSprintForm />
-            </NewItemModal>
+            </NewItemModal> */}
             <HeaderWrapper>
                 <Container>
                     <Header />
