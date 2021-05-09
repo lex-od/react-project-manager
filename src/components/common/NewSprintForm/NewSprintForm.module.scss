@@ -1,0 +1,159 @@
+@import 'styles/shared.scss';
+
+.form {
+    text-align: left;
+}
+
+.titleLabel {
+    position: relative;
+
+    display: block;
+    margin-bottom: 40px;
+
+    @include for-size(tablet) {
+        margin-bottom: 52px;
+    }
+}
+
+.titleInp,
+.durationInp {
+    width: 100%;
+    padding: 8px;
+
+    border-style: none none solid;
+    border-width: 1px;
+    border-color: $secondaryTextLineColor;
+    outline: none;
+
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: $primaryTextColor;
+
+    @include for-size(tablet) {
+        font-size: 18px;
+    }
+}
+
+.titleLabelText,
+.durationLabelText {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+
+    pointer-events: none;
+    transition: all 200ms linear;
+
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: $secondaryTextColor;
+
+    @include for-size(tablet) {
+        font-size: 18px;
+    }
+}
+
+.titleLabelText {
+    .titleInp:not(:placeholder-shown) + &,
+    .titleInp:focus + & {
+        top: 0;
+        left: 0;
+        transform: translateY(-100%);
+    }
+}
+
+.durationLabelText {
+    .durationInp:not(:placeholder-shown) + &,
+    .durationInp:focus + & {
+        top: 0;
+        left: 0;
+        transform: translateY(-100%);
+    }
+}
+
+.errorText {
+    position: absolute;
+    left: 30px;
+    bottom: -2px;
+    transform: translateY(100%);
+
+    font-size: 14px;
+    color: $primaryAccentColor;
+}
+
+.isPrevDaysLabel {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 40px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: $secondaryTextColor;
+
+    @include for-size(tablet) {
+        margin-bottom: 42px;
+    }
+
+    &::before {
+        display: inline-block;
+        content: '';
+        width: 34px;
+        height: 34px;
+        padding: 9px;
+        margin-right: 10px;
+
+        border-radius: 50%;
+        border: 1px solid #d1d2d4;
+        background-clip: content-box;
+    }
+
+    .isPrevDaysCb:checked + &::before {
+        background-color: $primaryAccentColor;
+    }
+}
+
+.bottomWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+}
+
+.dateLabel {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @include for-size(mobile-only) {
+        margin-bottom: 50px;
+    }
+
+    @include for-size(tablet) {
+        width: calc(50% - 15px);
+    }
+}
+
+.dateLabelText {
+    font-size: 14px;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: $secondaryTextColor;
+}
+
+.durationLabel {
+    position: relative;
+
+    width: 100%;
+
+    @include for-size(tablet) {
+        width: calc(50% - 15px);
+    }
+}
+
+.submitWrapper {
+    text-align: center;
+}

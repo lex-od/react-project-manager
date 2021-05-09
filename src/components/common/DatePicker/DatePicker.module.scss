@@ -1,10 +1,5 @@
 @import 'styles/shared.scss';
 
-.box {
-    display: flex;
-    flex-direction: column;
-}
-
 .datePicker {
     width: 280px;
     padding: 7px;
@@ -17,13 +12,6 @@
     border-bottom: 1px solid rgba(24, 28, 39, 0.2);
 
     @include for-size(tablet) {
-        width: 200px;
+        width: 100%;
     }
-}
-.pickerTitle {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.25;
-    letter-spacing: 0.04em;
-    color: rgba(24, 28, 39, 0.6);
 }
