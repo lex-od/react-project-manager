@@ -32,18 +32,20 @@ const taskGetOperation = sprintId => async dispatch => {
 
     try {
         const tasks = await api.getTask(sprintId);
-        dispatch(taskGetSuccess(tasks));
+        dispatch(taskGetSuccess(tasks.data));
     } catch ({ data, message }) {
         dispatch(taskGetError({ data, message }));
     }
 };
 
-const taskChangetOperation = taskId => async dispatch => {
+const taskChangetOperation = (newData, taskId) => async dispatch => {
     dispatch(taskChangeRequest());
 
     try {
-        const task = await api.changeTask(taskId);
-        dispatch(taskChangeSuccess(task));
+        const changedHours = await api.changeTask(newData, taskId);
+
+        const changedHoursToState = changedHours.data;
+        dispatch(taskChangeSuccess({ changedHoursToState, taskId }));
     } catch ({ data, message }) {
         dispatch(taskChangeError({ data, message }));
     }
@@ -54,7 +56,8 @@ const taskDeletetOperation = taskId => async dispatch => {
 
     try {
         const task = await api.deleteTask(taskId);
-        dispatch(taskDeleteSuccess(task));
+
+        dispatch(taskDeleteSuccess(taskId));
     } catch ({ data, message }) {
         dispatch(taskDeleteError({ data, message }));
     }

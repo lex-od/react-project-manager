@@ -1,4 +1,4 @@
-const getAllTasks = state => state.tasks.tasks;
+const getAllTasks = state => state.tasks.tasksList;
 
 const tasksSls = { getAllTasks };
 
