@@ -28,11 +28,12 @@ const refresh = async sid => (await axios.post('/auth/refresh', { sid })).data;
 
 const newTask = async sprintId => (await axios.post(`/task/${sprintId}`)).data;
 
-const getTask = async sprintId => (await axios.get(`/task/${sprintId}`)).data;
+const getTask = async sprintId => await axios.get(`/task/${sprintId}`);
 
-const changeTask = async taskId => (await axios.patch(`/task/${taskId}`)).data;
+const changeTask = async (newData, taskId) =>
+    await axios.patch(`/task/${taskId}`, newData);
 
-const deleteTask = async taskId => (await axios.delete(`/task/${taskId}`)).data;
+const deleteTask = async taskId => await axios.delete(`/task/${taskId}`);
 
 const api = {
     setToken,
@@ -44,7 +45,7 @@ const api = {
     changeTask,
     deleteTask,
     formatError,
-  logOut,
-  refresh,
+    logOut,
+    refresh,
 };
 export default api;

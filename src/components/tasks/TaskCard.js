@@ -1,55 +1,48 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { tasksOps } from '../../redux/tasks';
 
-const { taskChangetOperation } = tasksOps;
+const { taskChangetOperation, taskDeletetOperation } = tasksOps;
 
-export default function TaskCard({
-    date,
-    title,
-    hoursPlanned,
-    hoursWastedPerDay,
-    hoursWasted,
-}) {
-    const actualHoursWastedOnDay = hoursWastedPerDay.map(
-        ({ currentDay, singleHoursWasted }) => {
-            if (currentDay === date) return singleHoursWasted;
-        },
-    );
+export default function TaskCard({ date = '2020-12-25', task }) {
+    console.log(task);
 
-    const [hours, setHours] = useState(actualHoursWastedOnDay);
+    const actualDay = task.hoursWastedPerDay.find(day => {
+        if (day.currentDay === date) return day;
+    });
 
-    const [currentTitle, setTitle] = useState(title);
+    const [hours, setHours] = useState(actualDay.singleHoursWasted);
 
-       const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    
     const changeData = e => {
-        const { name, value } = e.target;
-        if (name === 'currentHours') {
-            setHours(value);
-            dispatch(taskChangetOperation(value));
-        }
-        if (name === 'title') {
-            setTitle(value);
-            dispatch(taskChangetOperation(value))
-            // Одинаково с предыдущим. проверить, что передаем
-        }
+        const { value } = e.target;
+
+        setHours(value);
+    };
+
+    const setchangeData = e => {
+        const newData = {
+            date,
+            hours: e.target.value,
+        };
+
+        dispatch(taskChangetOperation(newData, task._id));
+    };
+
+    const deleteTask = () => {
+        dispatch(taskDeletetOperation(task._id));
     };
 
     return (
         <div>
-            <input
-                type="text"
-                name="title"
-                value={currentTitle}
-                onChange={changeData}
-            />
+            <span>{task.title}</span>
 
             <ul>
                 <li>
                     <span>Заплановано годин</span>
-                    <span>{hoursPlanned}</span>
+                    <span>{task.hoursPlanned}</span>
                 </li>
                 <li>
                     <span>Витрачено год / день</span>
@@ -58,15 +51,16 @@ export default function TaskCard({
                         name="currentHours"
                         value={hours}
                         onChange={changeData}
+                        onBlur={setchangeData}
                     />
                 </li>
                 <li>
                     <span>Витрачено годин</span>
-                    <span>{hoursWasted}</span>
+                    <span>{task.hoursWasted}</span>
                 </li>
             </ul>
-
-            <svg></svg>
+            <button onClick={deleteTask}>delete</button>
+            {/* <svg></svg> */}
         </div>
     );
 }
