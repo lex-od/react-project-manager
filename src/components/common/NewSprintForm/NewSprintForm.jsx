@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { Formik, Form, Field } from 'formik';
 import { useState } from 'react';
 // import { useDispatch } from 'react-redux';
@@ -70,22 +71,29 @@ export default function NewSprintForm(onClose) {
                         ) : null}
                     </label>
 
-                    {/* <label>
-                        <input
-                            type="checkbox"
-                            checked={isPrevDays}
-                            onChange={handlePrevDaysChange}
-                        />
-                        <span>Попередні дні</span>
+                    {/* <div className={css.isPrevDaysWrapper}> */}
+                    <input
+                        id="is-prev-days"
+                        type="checkbox"
+                        checked={isPrevDays}
+                        onChange={handlePrevDaysChange}
+                        className={classNames(
+                            'visually-hidden',
+                            css.isPrevDaysCb,
+                        )}
+                    />
+                    <label for="is-prev-days" className={css.isPrevDaysText}>
+                        Попередні дні
                     </label>
+                    {/* </div> */}
 
-                    <DatePicker
+                    {/* <DatePicker
                         selected={date}
                         onChange={setDate}
                         minDate={isPrevDays ? null : Date.now()}
-                    />
+                    /> */}
 
-                    <label className={css.durationLabel}>
+                    {/* <label className={css.durationLabel}>
                         <Field
                             name="duration"
                             placeholder=" "
@@ -99,9 +107,9 @@ export default function NewSprintForm(onClose) {
                                 {errors.duration}
                             </span>
                         ) : null}
-                    </label>
+                    </label> */}
 
-                    <AccentButton type="submit">Готово</AccentButton> */}
+                    {/* <AccentButton type="submit">Готово</AccentButton> */}
                 </Form>
             )}
         </Formik>

@@ -67,3 +67,30 @@
     font-size: 14px;
     color: $primaryAccentColor;
 }
+
+.isPrevDaysWrapper {
+    //
+}
+
+.isPrevDaysText {
+    display: flex;
+    align-items: center;
+
+    &::before {
+        display: inline-block;
+        content: '';
+        width: 34px;
+        height: 34px;
+        padding: 9px;
+
+        border-radius: 50%;
+        border: 1px solid #d1d2d4;
+        background-clip: content-box;
+    }
+}
+
+.isPrevDaysCb {
+    &:checked + .isPrevDaysText::before {
+        background-color: aqua;
+    }
+}
