@@ -71,6 +71,16 @@
 .isPrevDaysLabel {
     display: flex;
     align-items: center;
+    margin-bottom: 40px;
+
+    font-size: 18px;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: $secondaryTextColor;
+
+    @include for-size(tablet) {
+        margin-bottom: 42px;
+    }
 
     &::before {
         display: inline-block;

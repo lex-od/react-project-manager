@@ -71,7 +71,6 @@ export default function NewSprintForm(onClose) {
                         ) : null}
                     </label>
 
-                    {/* <div className={css.isPrevDaysWrapper}> */}
                     <input
                         id="is-prev-days"
                         type="checkbox"
@@ -85,13 +84,12 @@ export default function NewSprintForm(onClose) {
                     <label for="is-prev-days" className={css.isPrevDaysLabel}>
                         Попередні дні
                     </label>
-                    {/* </div> */}
 
-                    {/* <DatePicker
+                    <DatePicker
                         selected={date}
                         onChange={setDate}
                         minDate={isPrevDays ? null : Date.now()}
-                    /> */}
+                    />
 
                     {/* <label className={css.durationLabel}>
                         <Field
