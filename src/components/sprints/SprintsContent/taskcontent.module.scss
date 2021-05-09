@@ -9,8 +9,6 @@ ul {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    padding-top: 30px;
-    padding-left: 20px;
 }
 
 .section {
@@ -28,6 +26,42 @@ ul {
     margin-bottom: 22px;
 }
 
+.date {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.04em;
+    color: rgba(24, 28, 39, 0.6);
+
+    @include for-size(tablet) {
+        margin-right: 14px;
+        margin-left: 39px;
+    }
+}
+
+.form {
+    position: relative;
+    margin-bottom: 19px;
+}
+
+.input {
+    width: 280px;
+    padding: 10px;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(24, 28, 39, 0.1);
+}
+
+.inputSvg {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
 .title {
     font-style: normal;
     font-weight: 500;
@@ -35,20 +69,12 @@ ul {
     line-height: 1.23;
     letter-spacing: 0.04em;
     color: #181c27;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-right: 20px;
-
-    @include for-size(tablet) {
-        font-size: 36px;
-        line-height: 44px;
-    }
+    margin: 0;
 }
 
 .sprintHead {
     display: flex;
     align-items: baseline;
-    // margin-bottom: 30px;
 }
 
 .textSvg {
@@ -56,60 +82,9 @@ ul {
     height: 20px;
 }
 
-.sprintDescription {
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
-
-.sprintDescriptionText {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-    letter-spacing: 0.04em;
-    color: #181c27;
-
-    @include for-size(tablet) {
-        font-size: 18px;
-        line-height: 22px;
-    }
-
-    @include for-size(desktop) {
-        width: 400px;
-    }
-}
-
-.addPeopleWrap {
-    display: flex;
-    align-items: center;
-    @include for-size(tablet) {
-        margin-bottom: 30px;
-    }
-}
-
-.addPeopleSvg {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-}
-
-.addPeopleBtn {
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 22px;
-    letter-spacing: 0.04em;
-    color: #181c27;
-    background: none;
-    border: none;
-    border-bottom: 1px solid #181c27;
-    // text-decoration: underline;
-}
-
 .sprintsList {
     list-style: none;
     padding: 0;
-    margin-top: 30px;
     @include for-size(tablet) {
         display: flex;
         flex-wrap: wrap;
@@ -126,35 +101,23 @@ ul {
     background: #ffffff;
     box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
     border-radius: 5px;
-    padding: 20px 20px 10px 20px;
-
+    padding: 20px 20px 16px 20px;
+    margin-top: 30px;
     // position: relative;
     @include for-size(tablet) {
         margin-top: 20px;
         margin-left: 20px;
         flex-basis: calc(100% / 2 - 20px);
     }
-    @include for-size(desktop) {
-        flex-basis: calc(100% / 3 - 20px);
-    }
-}
-
-.sprintCard:not(:last-child) {
-    margin-bottom: 10px;
-
-    @include for-size(tablet) {
-        margin-bottom: 0;
-    }
 }
 
 .sprintCardHead {
-    margin-top: 0;
     margin-bottom: 20px;
-    // padding-bottom: 8px;
-    // border-bottom: 1px solid rgba(24, 28, 39, 0.2);
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(24, 28, 39, 0.2);
     font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 22px;
     letter-spacing: 0.04em;
     color: #181c27;
 }
@@ -165,11 +128,7 @@ ul {
 }
 
 .sprintItem:not(:last-child) {
-    margin-bottom: 10px;
-}
-
-.sprintItem:last-child {
-    margin-bottom: 6px;
+    margin-bottom: 20px;
 }
 
 .sprintItemText {
