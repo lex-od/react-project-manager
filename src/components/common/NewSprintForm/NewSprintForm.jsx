@@ -85,11 +85,14 @@ export default function NewSprintForm(onClose) {
                         Попередні дні
                     </label>
 
-                    <DatePicker
-                        selected={date}
-                        onChange={setDate}
-                        minDate={isPrevDays ? null : Date.now()}
-                    />
+                    <label className={css.dateLabel}>
+                        <span className={css.dateLabelText}>Дата початку</span>
+                        <DatePicker
+                            selected={date}
+                            onChange={setDate}
+                            minDate={isPrevDays ? null : Date.now()}
+                        />
+                    </label>
 
                     {/* <label className={css.durationLabel}>
                         <Field

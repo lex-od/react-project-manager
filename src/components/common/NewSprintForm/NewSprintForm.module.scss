@@ -99,3 +99,17 @@
         background-color: $primaryAccentColor;
     }
 }
+
+.dateLabel {
+    //
+    @include for-size(tablet) {
+        //
+    }
+}
+
+.dateLabelText {
+    font-size: 14px;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: $secondaryTextColor;
+}
