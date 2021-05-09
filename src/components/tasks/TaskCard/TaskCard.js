@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { tasksOps } from '../../redux/tasks';
+import { tasksOps } from '../../../redux/tasks';
 
 const { taskChangetOperation, taskDeletetOperation } = tasksOps;
 
 export default function TaskCard({ date = '2020-12-25', task }) {
-    console.log(task);
 
     const actualDay = task.hoursWastedPerDay.find(day => {
         if (day.currentDay === date) return day;

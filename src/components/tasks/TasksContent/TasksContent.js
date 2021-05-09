@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { tasksSls, tasksOps } from '../../redux/tasks';
-import TaskCard from './TaskCard';
+import { tasksSls, tasksOps } from '../../../redux/tasks';
+import TaskCard from '../TaskCard/TaskCard';
 
 import axios from 'axios';
 
@@ -21,17 +21,13 @@ export default function TasksContent() {
     const tasks = useSelector(getAllTasks);
 
     const testAction = async () => {
-
         // const newTask = {
         //     title: 'Task 4',
         //     hoursPlanned: 3,
         // };
-
         // const qqq = await axios.post('/task/6096504733a36061e804ed8f', newTask);
         // console.log(qqq.data);
-
-//localhost:3000/projects/609639ea33a36061e804ec19/sprints/6096504733a36061e804ed8f
-    
+        //localhost:3000/projects/609639ea33a36061e804ec19/sprints/6096504733a36061e804ed8f
     };
 
     return (
