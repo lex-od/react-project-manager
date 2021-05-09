@@ -82,7 +82,7 @@ export default function NewSprintForm(onClose) {
                             css.isPrevDaysCb,
                         )}
                     />
-                    <label for="is-prev-days" className={css.isPrevDaysText}>
+                    <label for="is-prev-days" className={css.isPrevDaysLabel}>
                         Попередні дні
                     </label>
                     {/* </div> */}

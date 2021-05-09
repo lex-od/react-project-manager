@@ -68,11 +68,7 @@
     color: $primaryAccentColor;
 }
 
-.isPrevDaysWrapper {
-    //
-}
-
-.isPrevDaysText {
+.isPrevDaysLabel {
     display: flex;
     align-items: center;
 
@@ -82,15 +78,14 @@
         width: 34px;
         height: 34px;
         padding: 9px;
+        margin-right: 10px;
 
         border-radius: 50%;
         border: 1px solid #d1d2d4;
         background-clip: content-box;
     }
-}
 
-.isPrevDaysCb {
-    &:checked + .isPrevDaysText::before {
-        background-color: aqua;
+    .isPrevDaysCb:checked + &::before {
+        background-color: $primaryAccentColor;
     }
 }
