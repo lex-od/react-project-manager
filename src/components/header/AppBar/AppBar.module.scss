@@ -10,9 +10,17 @@
     @include for-size(tablet) {
         padding: 19px 20px 19px 20px;
     }
-    @include for-size(descktop) {
+    @include for-size(desktop) {
         padding: 19px 25px 19px 25px;
     }
+    // .iconAnalytics {
+    //     padding: 0;
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    //     width: 30px;
+    //     height: 30px;
+    // }
 }
 
 .logo {
