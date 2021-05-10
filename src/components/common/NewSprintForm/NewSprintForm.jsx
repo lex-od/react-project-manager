@@ -1,6 +1,8 @@
 import classNames from 'classnames';
 import { Formik, Form, Field } from 'formik';
+import moment from 'moment';
 import { useState } from 'react';
+import { useParams } from 'react-router';
 // import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { DatePicker } from '../';
@@ -24,6 +26,7 @@ export default function NewSprintForm(onClose) {
     const [date, setDate] = useState(new Date());
     const [isPrevDays, setPrevDays] = useState(false);
 
+    const { projectId } = useParams();
     // const dispatch = useDispatch();
 
     const handlePrevDaysChange = ({ target: { checked } }) => {
@@ -44,8 +47,10 @@ export default function NewSprintForm(onClose) {
             }}
             validationSchema={newSprintSchema}
             onSubmit={values => {
-                console.log(date);
-                console.log(values);
+                // console.log(values);
+                // console.log(projectId);
+                // console.log(moment(date).format('YYYY-M-D'));
+
                 // dispatch(sprintsOps.addSprint(sprint));
 
                 onClose();
