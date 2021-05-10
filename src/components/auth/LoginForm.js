@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { loginSchema } from '../common/Validations/AuthValidInput';
 import css from './Auth.module.scss';
-import AuthBackgroundDesktop from './AuthBackground/BackgroundDesktop/BackgroundDesktop';
+import BackgroundDesktop from './AuthBackground/BackgroundDesktop/BackgroundDesktop';
 import BackgroundTablet from './AuthBackground/BackgroundTablet/BackgroundTablet';
 import AccentButton from '../common/AccentButton/AccentButton';
 import useWindowSize from '../common/utils/useWindouSize';
@@ -14,7 +14,7 @@ export default function Login() {
     const { width } = useWindowSize();
     return (
         <div className={css.formWraper}>
-            {width > 1199 && <AuthBackgroundDesktop />}
+            {width > 1199 && <BackgroundDesktop />}
             {width > 767 && width < 1198 && <BackgroundTablet />}
             <Formik
                 initialValues={{ email: '', password: '' }}
