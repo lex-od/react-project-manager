@@ -17,12 +17,13 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function NewMemberForm() {
+    // 📌 Заменить на селектор !!!
+    const projects = useSelector(state => state.projects.items);
+    const userEmail = useSelector(authSls.getUserEmail);
+
     const { projectId } = useParams();
 
     const dispatch = useDispatch();
-    const userEmail = useSelector(authSls.getUserEmail);
-    // 📌 Заменить на селектор !!!
-    const projects = useSelector(state => state.projects.items);
 
     // 📌 Удалить !!!
     useEffect(() => {
@@ -49,7 +50,7 @@ export default function NewMemberForm() {
             }}
         >
             {({ errors, touched }) => (
-                <Form autoComplete="off">
+                <Form autoComplete="off" className={css.form}>
                     <label className={css.emailLabel}>
                         <Field
                             name="email"
@@ -64,10 +65,11 @@ export default function NewMemberForm() {
                         ) : null}
                     </label>
 
+                    <p className={css.membersTitle}>Додані користувачі:</p>
                     {members.length ? (
                         <ul className={css.membersList}>
                             {members.map(email => (
-                                <li key={email} className={css.memberItem}>
+                                <li key={email} className={css.membersItem}>
                                     {email}
                                 </li>
                             ))}
@@ -78,7 +80,9 @@ export default function NewMemberForm() {
                         </p>
                     )}
 
-                    <AccentButton type="submit">Готово</AccentButton>
+                    <div className={css.submitWrapper}>
+                        <AccentButton type="submit">Готово</AccentButton>
+                    </div>
                 </Form>
             )}
         </Formik>

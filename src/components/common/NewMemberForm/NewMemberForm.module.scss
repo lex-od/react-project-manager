@@ -1,5 +1,9 @@
 @import 'styles/shared.scss';
 
+.form {
+    text-align: left;
+}
+
 .emailLabel {
     position: relative;
 
@@ -58,4 +62,46 @@
 
     font-size: 14px;
     color: $primaryAccentColor;
+}
+
+.membersTitle {
+    margin: 0 0 20px;
+
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: $secondaryTextColor;
+}
+
+.membersList {
+    @extend %list;
+
+    margin-bottom: 60px;
+}
+
+.membersItem {
+    letter-spacing: 0.04em;
+    color: $primaryTextColor;
+
+    @include for-size(tablet) {
+        font-size: 18px;
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 10px;
+    }
+}
+
+.membersEmpty {
+    margin: 0 0 60px;
+
+    letter-spacing: 0.04em;
+    color: $primaryTextColor;
+
+    @include for-size(tablet) {
+        font-size: 18px;
+    }
+}
+
+.submitWrapper {
+    text-align: center;
 }
