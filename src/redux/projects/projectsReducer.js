@@ -3,7 +3,7 @@ import projectsActs from './projectsActions';
 
 const {
     // getProjectsRequest,
-    // getProjectsSuccess,
+    getProjectsSuccess,
     // getProjectsError,
     addProjectRequest,
     addProjectSuccess,
@@ -19,7 +19,7 @@ const items = createReducer([], {
         { _id: id, ...payloadRest },
     ],
 
-    // [getProjectsSuccess]: (_, { payload }) => payload,
+    [getProjectsSuccess]: (_, { payload }) => payload,
 });
 
 const loading = createReducer(false, {
