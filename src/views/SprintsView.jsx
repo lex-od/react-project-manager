@@ -1,7 +1,7 @@
 import {
     Container,
-    NewItemModal,
-    NewSprintForm,
+    // NewItemModal,
+    // NewSprintForm,
     Sidebar,
     ViewWrapper,
 } from '../components/common';
@@ -11,9 +11,9 @@ import SprintsSideContent from '../components/sprints/SprintsSideContent/Sprints
 export default function SprintsView() {
     return (
         <Container>
-            <NewItemModal title="Створення спринта">
+            {/* <NewItemModal title="Створення спринта">
                 <NewSprintForm />
-            </NewItemModal>
+            </NewItemModal> */}
 
             <ViewWrapper>
                 <Sidebar>
