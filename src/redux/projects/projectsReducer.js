@@ -18,6 +18,8 @@ const items = createReducer([], {
         ...state,
         { _id: id, ...payloadRest },
     ],
+
+    // [getProjectsSuccess]: (_, { payload }) => payload,
 });
 
 const loading = createReducer(false, {
