@@ -18,6 +18,10 @@
     outline: none;
 }
 
+.registerFormInput.error {
+    border-color: red;
+}
+
 .registerFormTitle {
     font-family: Montserrat;
     font-weight: 500;
@@ -61,33 +65,43 @@
 }
 .errorMessageEmail {
     position: absolute;
-    top: 225px;
+    top: 241px;
     color: red;
 }
 
 .errorMessagePassword {
     position: absolute;
-    top: 325px;
+    top: 342px;
     color: red;
 }
 .errorMessageConfirmPassword {
     position: absolute;
     color: red;
-    top: 425px;
+    top: 440px;
 }
 @media (min-width: 768px) {
-    .registerForm {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -52%);
+    .formWraper {
+        position: relative;
         width: 570px;
         height: 540px;
-        margin-top: 10px;
+        margin-top: 114px;
+        margin-bottom: 292px;
+        margin-left: auto;
+        margin-right: auto;
         background: #fafafa;
         box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
         border-radius: 5px;
-        z-index: 2;
+    }
+    .registerForm {
+        width: 570px;
+        height: 540px;
+        margin-top: 114px;
+        margin-bottom: 292px;
+        margin-left: auto;
+        margin-right: auto;
+        background: #fafafa;
+        box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
+        border-radius: 5px;
     }
 
     .registerFormTitle {
@@ -109,29 +123,13 @@
     }
 }
 
-// @media (min-width: 768px) and (max-width: 1279px) {
-//     .container {
-//         background-image: url('./authImages/EllipseTablet/Ellipse 2.svg'),
-//             url('./authImages/EllipseTablet/Ellipse 1.svg'),
-//             url('./authImages/EllipseTablet/Ellipse 4.svg'),
-//             url('./authImages/EllipseTablet/Ellipse 5.svg'),
-//             url('./authImages/EllipseTablet/Union1.svg');
-
-//         background-position: top 446px left 0, top 437px left 0,
-//             left 0 top 170px, right 70px top 33px, top 154px right 0;
-//         background-repeat: no-repeat, no-repeat, no-repeat;
-//     }
-// }
-
-// @media (min-width: 1200px) {
-//     .container {
-//         background-image: url('./authImages/EllipseDesktop/Group.svg'),
-//             url('./authImages/EllipseDesktop/EllipseBig.svg'),
-//             url('./authImages/EllipseDesktop/EllipseSmol.svg'),
-//             url('./authImages/EllipseDesktop/Union-orange.svg'),
-//             url('./authImages/EllipseDesktop/Union-white.svg');
-//         background-position: bottom 0 left 111px, top 67px right 278px,
-//             top 85px right 164px, bottom 33px right 0, bottom 5px right 0;
-//         background-repeat: no-repeat;
-//     }
-// }
+@media (min-width: 1200px) {
+    .registerForm {
+        margin-top: 56px;
+        margin-bottom: 0px;
+    }
+    .formWraper {
+        margin-top: 56px;
+        margin-bottom: 0px;
+    }
+}
