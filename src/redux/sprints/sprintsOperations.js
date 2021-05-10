@@ -75,8 +75,8 @@ const sprintDeletetOperation = sprintId => async dispatch => {
     dispatch(sprintDeleteRequest());
 
     try {
-        // const sprint = await api.deleteSprint(sprintId);
-        // dispatch(sprintDeleteSuccess(sprintId));
+        const sprint = await api.deleteSprint(sprintId);
+        dispatch(sprintDeleteSuccess(sprintId));
     } catch ({ data, message }) {
         dispatch(sprintDeleteError({ data, message }));
     }
