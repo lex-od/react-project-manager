@@ -7,10 +7,11 @@ const setToken = token =>
 
 const unsetToken = () => (axios.defaults.headers.common.Authorization = '');
 
-const formatError = ({ name, message, response: { status } }) => ({
+const formatError = ({ name, message, response }) => ({
     name,
     message,
-    status,
+    status: response?.status,
+    respMsg: response?.data?.message,
 });
 
 // 📌 Авторизация

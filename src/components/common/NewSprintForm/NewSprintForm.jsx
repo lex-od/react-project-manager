@@ -3,10 +3,10 @@ import { Formik, Form, Field } from 'formik';
 import moment from 'moment';
 import { useState } from 'react';
 import { useParams } from 'react-router';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { DatePicker } from '../';
-// import { sprintsOps } from '../../../redux/sprints';
+import { sprintsOps } from '../../../redux/sprints';
 import AccentButton from '../AccentButton/AccentButton';
 import css from './NewSprintForm.module.scss';
 
@@ -27,7 +27,7 @@ export default function NewSprintForm(onClose) {
     const [isPrevDays, setPrevDays] = useState(false);
 
     const { projectId } = useParams();
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const handlePrevDaysChange = ({ target: { checked } }) => {
         setPrevDays(checked);
@@ -46,15 +46,16 @@ export default function NewSprintForm(onClose) {
                 duration: '',
             }}
             validationSchema={newSprintSchema}
-            onSubmit={values => {
-                // console.log(values);
-                // console.log(projectId);
+            onSubmit={({ title, duration }) => {
+                const sprint = {
+                    title,
+                    duration: Number(duration),
+                    endDate: moment(date)
+                        .add(Number(duration) - 1, 'd')
+                        .format('YYYY-M-D'),
+                };
 
-                // const newDate = moment(date);
-                // newDate.add(7, 'days');
-                // console.log(newDate.format('YYYY-M-D'));
-
-                // dispatch(sprintsOps.addSprint(sprint));
+                dispatch(sprintsOps.addSprint(sprint, projectId));
 
                 onClose();
             }}

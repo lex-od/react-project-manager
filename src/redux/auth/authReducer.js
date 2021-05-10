@@ -22,6 +22,23 @@ const { sprintAddError } = sprintsActs;
 
 const initUser = { id: null, email: null };
 
+const resetUserWhenInvalidSession = (
+    state,
+    { payload: { status, respMsg } },
+) => {
+    if (typeof respMsg !== 'string') return state;
+
+    const normRespMsg = respMsg.toLowerCase();
+    const isIncludesSessionOrUser =
+        normRespMsg.includes('session') || normRespMsg.includes('user');
+
+    if (status === 404 && isIncludesSessionOrUser) {
+        return initUser;
+    }
+
+    return state;
+};
+
 const user = createReducer(initUser, {
     [loginSuccess]: (_, { payload }) => {
         const { id, email } = payload.data;
@@ -29,19 +46,33 @@ const user = createReducer(initUser, {
     },
 
     [logoutSuccess]: () => initUser,
-    [logoutError]: (state, { payload: { status } }) =>
-        status === 404 ? initUser : state,
+    [logoutError]: resetUserWhenInvalidSession,
 
     [refreshError]: () => initUser,
 
-    [addProjectError]: (state, { payload: { status } }) =>
-        status === 404 ? initUser : state,
+    [addProjectError]: resetUserWhenInvalidSession,
 
-    [sprintAddError]: (state, { payload: { status } }) =>
-        status === 404 ? initUser : state,
+    [sprintAddError]: resetUserWhenInvalidSession,
 });
 
 const initTokens = { accessToken: null, refreshToken: null, sid: null };
+
+const resetTokensWhenInvalidSession = (
+    state,
+    { payload: { status, respMsg } },
+) => {
+    if (typeof respMsg !== 'string') return state;
+
+    const normRespMsg = respMsg.toLowerCase();
+    const isIncludesSessionOrUser =
+        normRespMsg.includes('session') || normRespMsg.includes('user');
+
+    if (status === 404 && isIncludesSessionOrUser) {
+        return initTokens;
+    }
+
+    return state;
+};
 
 const tokens = createReducer(initTokens, {
     [loginSuccess]: (_, { payload: { accessToken, refreshToken, sid } }) => ({
@@ -51,8 +82,7 @@ const tokens = createReducer(initTokens, {
     }),
 
     [logoutSuccess]: () => initTokens,
-    [logoutError]: (state, { payload: { status } }) =>
-        status === 404 ? initTokens : state,
+    [logoutError]: resetTokensWhenInvalidSession,
 
     [refreshError]: () => initTokens,
     [refreshSuccess]: (
@@ -64,11 +94,9 @@ const tokens = createReducer(initTokens, {
         sid: newSid,
     }),
 
-    [addProjectError]: (state, { payload: { status } }) =>
-        status === 404 ? initTokens : state,
+    [addProjectError]: resetTokensWhenInvalidSession,
 
-    [sprintAddError]: (state, { payload: { status } }) =>
-        status === 404 ? initTokens : state,
+    [sprintAddError]: resetTokensWhenInvalidSession,
 });
 
 const loading = createReducer(false, {
