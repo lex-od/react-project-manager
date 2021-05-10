@@ -16,9 +16,6 @@ const ProjectsView = lazy(() => import('../views/ProjectsView'));
 export default function App() {
     return (
         <>
-            {/* <NewItemModal title="Створення спринта">
-                <NewSprintForm />
-            </NewItemModal> */}
             <HeaderWrapper>
                 <Container>
                     <Header />
