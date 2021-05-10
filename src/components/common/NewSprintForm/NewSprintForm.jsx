@@ -18,7 +18,7 @@ const newSprintSchema = Yup.object().shape({
         .typeError('Введіть число')
         .integer('Введіть ціле число')
         .min(1, 'Від 1!')
-        .max(8, 'До 8!')
+        .max(21, 'До 21!')
         .required("Обов'язково*"),
 });
 
@@ -49,7 +49,10 @@ export default function NewSprintForm(onClose) {
             onSubmit={values => {
                 // console.log(values);
                 // console.log(projectId);
-                // console.log(moment(date).format('YYYY-M-D'));
+
+                // const newDate = moment(date);
+                // newDate.add(7, 'days');
+                // console.log(newDate.format('YYYY-M-D'));
 
                 // dispatch(sprintsOps.addSprint(sprint));
 

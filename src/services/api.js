@@ -13,6 +13,8 @@ const formatError = ({ name, message, response: { status } }) => ({
     status,
 });
 
+// 📌 Авторизация
+
 const register = async credentials =>
     (await axios.post('/auth/register', credentials)).data;
 
@@ -24,14 +26,19 @@ const logOut = async credentials =>
 
 const refresh = async sid => (await axios.post('/auth/refresh', { sid })).data;
 
+// 📌 Проекты
+
 const addProject = async project =>
     (await axios.post('/project', project)).data;
 
-//sprints
+// 📌 Спринты
 
 const getSprint = async projectId => await axios.get(`/sprint/${projectId}`);
 
-//tasks
+const addSprint = async (sprint, projectId) =>
+    (await axios.post(`/sprint/${projectId}`, sprint)).data;
+
+// 📌 Таски
 
 const newTask = async sprintId => (await axios.post(`/task/${sprintId}`)).data;
 
@@ -48,6 +55,7 @@ const api = {
     register,
     login,
     getSprint,
+    addSprint,
     newTask,
     getTask,
     changeTask,
