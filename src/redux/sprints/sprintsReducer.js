@@ -8,9 +8,9 @@ const {
     sprintGetRequest,
     sprintGetSuccess,
     sprintGetError,
-    // sprintChangeRequest,
-    // sprintChangeSuccess,
-    // sprintChangeError,
+    sprintChangeRequest,
+    sprintChangeSuccess,
+    sprintChangeError,
     sprintDeleteRequest,
     sprintDeleteSuccess,
     sprintDeleteError,
@@ -24,6 +24,15 @@ const sprintsList = createReducer([], {
 
     [sprintGetRequest]: () => [],
     [sprintGetSuccess]: (_, { payload }) => payload,
+    [sprintChangeSuccess]: (state, { payload }) =>
+        state.map(sprint =>
+            sprint._id === payload.sprintId
+                ? {
+                      ...sprint,
+                      title: payload.changedTitle.newTitle,
+                  }
+                : sprint,
+        ),
 });
 
 const loading = createReducer(false, {
@@ -34,11 +43,19 @@ const loading = createReducer(false, {
     [sprintGetRequest]: () => true,
     [sprintGetSuccess]: () => false,
     [sprintGetError]: () => false,
+
+    [sprintChangeRequest]: () => true,
+    [sprintChangeSuccess]: () => false,
+    [sprintChangeError]: () => false,
 });
 
 const error = createReducer(null, {
     [sprintAddRequest]: () => null,
     [sprintAddError]: (_, { payload }) => payload,
+    [sprintGetRequest]: () => null,
+    [sprintGetError]: (_, { payload }) => payload,
+    [sprintChangeRequest]: () => null,
+    [sprintChangeError]: (_, { payload }) => payload,
 });
 
 export default combineReducers({

@@ -9,9 +9,9 @@ const {
     sprintGetRequest,
     sprintGetSuccess,
     sprintGetError,
-    // sprintChangeRequest,
-    // sprintChangeSuccess,
-    // sprintChangeError,
+    sprintChangeRequest,
+    sprintChangeSuccess,
+    sprintChangeError,
     sprintDeleteRequest,
     sprintDeleteSuccess,
     sprintDeleteError,
@@ -45,17 +45,19 @@ const sprintGetOperation = projectId => async dispatch => {
     }
 };
 
-// const sprintChangetOperation = (newTitle, sprintId) => async dispatch => {
-//     dispatch(sprintChangeRequest());
+const sprintChangetOperation = (newTitle, sprintId) => async dispatch => {
+    dispatch(sprintChangeRequest());
 
-//     try {
-//         // const changedTitle = await api.changeSprint(newTitle, sprintId);
-//         // const changedTitleToState = changedTitle.data;
-//         // dispatch(sprintChangeSuccess({ changedTitleToState, sprintId }));
-//     } catch ({ data, message }) {
-//         dispatch(sprintChangeError({ data, message }));
-//     }
-// };
+    try {
+        const changedTitle = await api.changeSprint(newTitle, sprintId);
+
+        console.log(changedTitle);
+
+        dispatch(sprintChangeSuccess({ changedTitle, sprintId }));
+    } catch ({ data, message }) {
+        dispatch(sprintChangeError({ data, message }));
+    }
+};
 
 const sprintDeletetOperation = sprintId => async dispatch => {
     dispatch(sprintDeleteRequest());
@@ -71,7 +73,7 @@ const sprintDeletetOperation = sprintId => async dispatch => {
 const sprintsOperations = {
     addSprint,
     sprintGetOperation,
-    // sprintChangetOperation,
+    sprintChangetOperation,
     sprintDeletetOperation,
 };
 export default sprintsOperations;
