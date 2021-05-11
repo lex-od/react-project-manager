@@ -3,6 +3,9 @@ import projectsActs from './projectsActions';
 import { authOps } from '../auth';
 
 const {
+    addMemberRequest,
+    addMemberSuccess,
+    addMemberError,
     getProjectsRequest,
     getProjectsSuccess,
     getProjectsError,
@@ -14,14 +17,32 @@ const {
     deleteProjectError,
 } = projectsActs;
 
+const addMember = (member, projectId) => async dispatch => {
+    dispatch(addMemberRequest());
+
+    try {
+        const data = await api.addMember(member, projectId);
+
+        dispatch(addMemberSuccess({ data, projectId }));
+    } catch (error) {
+        dispatch(addMemberError(api.formatError(error)));
+
+        if (error.response?.status === 401) {
+            const withParams = () => addMember(member, projectId);
+            dispatch(authOps.refreshToken(withParams));
+        }
+    }
+};
+
 const getProjects = () => async dispatch => {
     dispatch(getProjectsRequest());
 
     try {
-        // const response = await ...
-        dispatch(getProjectsSuccess());
-    } catch (error) {
-        dispatch(getProjectsError());
+        const projects = await api.getProject();
+
+        dispatch(getProjectsSuccess(projects));
+    } catch ({ data, message }) {
+        dispatch(getProjectsError({ data, message }));
     }
 };
 
@@ -35,7 +56,7 @@ const addProject = project => async dispatch => {
     } catch (error) {
         dispatch(addProjectError(api.formatError(error)));
 
-        if (error.response.status === 401) {
+        if (error.response?.status === 401) {
             const withParams = () => addProject(project);
             dispatch(authOps.refreshToken(withParams));
         }
@@ -54,6 +75,7 @@ const deleteProject = () => async dispatch => {
 };
 
 const projectsOperations = {
+    addMember,
     getProjects,
     addProject,
     deleteProject,

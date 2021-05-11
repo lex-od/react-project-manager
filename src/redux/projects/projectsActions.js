@@ -1,5 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
 
+const addMemberRequest = createAction('projects/addMember/request');
+const addMemberSuccess = createAction('projects/addMember/success');
+const addMemberError = createAction('projects/addMember/error');
+
 // get projects
 
 const getProjectsRequest = createAction('projects/getProjects/request');
@@ -19,6 +23,9 @@ const deleteProjectSuccess = createAction('projects/deleteProject/success');
 const deleteProjectError = createAction('projects/deleteProject/error');
 
 const projectsActions = {
+    addMemberRequest,
+    addMemberSuccess,
+    addMemberError,
     getProjectsRequest,
     getProjectsSuccess,
     getProjectsError,

@@ -7,11 +7,14 @@ const setToken = token =>
 
 const unsetToken = () => (axios.defaults.headers.common.Authorization = '');
 
-const formatError = ({ name, message, response: { status } }) => ({
+const formatError = ({ name, message, response }) => ({
     name,
     message,
-    status,
+    status: response?.status,
+    respMsg: response?.data?.message,
 });
+
+// 📌 Авторизация
 
 const register = async credentials =>
     (await axios.post('/auth/register', credentials)).data;
@@ -24,16 +27,27 @@ const logOut = async credentials =>
 
 const refresh = async sid => (await axios.post('/auth/refresh', { sid })).data;
 
+// 📌 Проекты
+
+const addMember = async (member, projectId) =>
+    (await axios.patch(`/project/contributor/${projectId}`, member)).data;
+
 const addProject = async project =>
     (await axios.post('/project', project)).data;
 
-//sprints
+const getProject = async () => (await axios.get('/project')).data;
+
+// 📌 Спринты
 
 const getSprint = async projectId => await axios.get(`/sprint/${projectId}`);
 
-//tasks
+const addSprint = async (sprint, projectId) =>
+    (await axios.post(`/sprint/${projectId}`, sprint)).data;
 
-const newTask = async sprintId => (await axios.post(`/task/${sprintId}`)).data;
+// 📌 Таски
+
+const newTask = async (newTask, sprintId) =>
+    (await axios.post(`/task/${sprintId}`, newTask)).data;
 
 const getTask = async sprintId => await axios.get(`/task/${sprintId}`);
 
@@ -48,6 +62,8 @@ const api = {
     register,
     login,
     getSprint,
+    addMember,
+    addSprint,
     newTask,
     getTask,
     changeTask,
@@ -56,5 +72,6 @@ const api = {
     logOut,
     refresh,
     addProject,
+    getProject,
 };
 export default api;

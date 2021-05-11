@@ -1,0 +1,88 @@
+@import 'styles/shared.scss';
+
+.titleLabel {
+    position: relative;
+
+    display: block;
+    margin-bottom: 58px;
+
+    @include for-size(tablet) {
+        margin-bottom: 50px;
+    }
+}
+
+.titleInp,
+.hoursInp {
+    width: 100%;
+    padding: 8px;
+
+    border-style: none none solid;
+    border-width: 1px;
+    border-color: $secondaryTextLineColor;
+    outline: none;
+
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: $primaryTextColor;
+
+    @include for-size(tablet) {
+        font-size: 18px;
+    }
+}
+
+.titleLabelText,
+.hoursLabelText {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: $secondaryTextColor;
+
+    transition: all 200ms linear;
+
+    @include for-size(tablet) {
+        font-size: 18px;
+    }
+}
+
+.titleLabelText {
+    .titleInp:not(:placeholder-shown) + &,
+    .titleInp:focus + & {
+        top: 0;
+        left: 0;
+        transform: translateY(-100%);
+    }
+}
+
+.hoursLabelText {
+    .hoursInp:not(:placeholder-shown) + &,
+    .hoursInp:focus + & {
+        top: 0;
+        left: 0;
+        transform: translateY(-100%);
+    }
+}
+
+.error {
+    position: absolute;
+    left: 30px;
+    bottom: -2px;
+    transform: translateY(100%);
+
+    font-size: 14px;
+    color: $primaryAccentColor;
+}
+
+.hoursLabel {
+    position: relative;
+
+    display: block;
+    margin-bottom: 40px;
+
+    @include for-size(tablet) {
+        margin-bottom: 60px;
+        width: 220px;
+    }
+}
