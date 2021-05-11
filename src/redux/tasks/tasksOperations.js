@@ -16,11 +16,11 @@ const {
     taskDeleteError,
 } = tasksActs;
 
-const taskAddOperation = sprintId => async dispatch => {
+const taskAddOperation = (newTask, sprintId) => async dispatch => {
     dispatch(taskAddRequest());
 
     try {
-        const task = await api.newTask(sprintId);
+        const task = await api.newTask(newTask, sprintId);
         dispatch(taskAddSuccess(task));
     } catch ({ data, message }) {
         dispatch(taskAddError({ data, message }));

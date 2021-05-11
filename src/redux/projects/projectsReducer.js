@@ -2,12 +2,12 @@ import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import projectsActs from './projectsActions';
 
 const {
+    getProjectsRequest,
+    getProjectsSuccess,
+    getProjectsError,
     addMemberRequest,
     addMemberSuccess,
     addMemberError,
-    // getProjectsRequest,
-    // getProjectsSuccess,
-    // getProjectsError,
     addProjectRequest,
     addProjectSuccess,
     addProjectError,
@@ -16,7 +16,7 @@ const {
     // deleteProjectError,
 } = projectsActs;
 
-const items = createReducer([], {
+const projectsList = createReducer([], {
     [addMemberSuccess]: (state, { payload: { data, projectId } }) =>
         state.map(project =>
             project._id === projectId
@@ -28,6 +28,7 @@ const items = createReducer([], {
         ...state,
         { _id: id, ...payloadRest },
     ],
+    [getProjectsSuccess]: (_, { payload }) => payload,
 });
 
 const loading = createReducer(false, {
@@ -38,6 +39,9 @@ const loading = createReducer(false, {
     [addProjectRequest]: () => true,
     [addProjectSuccess]: () => false,
     [addProjectError]: () => false,
+    [getProjectsRequest]: () => true,
+    [getProjectsSuccess]: () => false,
+    [getProjectsError]: () => false,
 });
 
 const error = createReducer(null, {
@@ -45,11 +49,13 @@ const error = createReducer(null, {
     [addMemberError]: (_, { payload }) => payload,
 
     [addProjectRequest]: () => null,
+    [getProjectsRequest]: () => null,
     [addProjectError]: (_, { payload }) => payload,
+    [getProjectsError]: (_, { payload }) => payload,
 });
 
 export default combineReducers({
-    items,
+    projectsList,
     loading,
     error,
 });

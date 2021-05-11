@@ -9,6 +9,8 @@ import spriteSearch from '../../../assets/icons/searchIcon.svg';
 import spriteText from '../../../assets/icons/sprintsText.svg';
 import spriteDelete from '../../../assets/icons/sprintsDelete.svg';
 import spriteAddPeople from '../../../assets/icons/addPeople.svg';
+import AddButton from '../../common/addButton/AddButton';
+const { sprintAddOperation } = sprintsOps; // временно
 
 const { getAllSprints } = sprintsSls;
 const { sprintGetOperation } = sprintsOps;
@@ -29,6 +31,19 @@ export default function SprintsContent() {
 
     const sprints = useSelector(getAllSprints);
     console.log(sprints);
+
+    //временное решение. удалить при создании модалки
+    const newSprint = {
+        title: 'Sprint 1',
+        endDate: '2021-10-20',
+        duration: 5,
+    };
+
+    //временное решение. заменить на модалку
+    const addNewSprint = () => {
+        dispatch(sprintAddOperation(newSprint, projectId));
+    };
+
 
     return (
         <div className={styles.wrap}>
@@ -51,6 +66,7 @@ export default function SprintsContent() {
                 <button type="button" className={styles.addPeopleBtn}>
                     Додати людей
                 </button>
+                <AddButton onClick={addNewSprint} />
             </div>
             <ul className={styles.sprintsList}>
                 {sprints.length &&
