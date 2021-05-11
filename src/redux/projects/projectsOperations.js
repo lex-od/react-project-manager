@@ -3,6 +3,9 @@ import projectsActs from './projectsActions';
 import { authOps } from '../auth';
 
 const {
+    addMemberRequest,
+    addMemberSuccess,
+    addMemberError,
     getProjectsRequest,
     getProjectsSuccess,
     getProjectsError,
@@ -13,6 +16,23 @@ const {
     deleteProjectSuccess,
     deleteProjectError,
 } = projectsActs;
+
+const addMember = (member, projectId) => async dispatch => {
+    dispatch(addMemberRequest());
+
+    try {
+        const data = await api.addMember(member, projectId);
+
+        dispatch(addMemberSuccess({ data, projectId }));
+    } catch (error) {
+        dispatch(addMemberError(api.formatError(error)));
+
+        if (error.response?.status === 401) {
+            const withParams = () => addMember(member, projectId);
+            dispatch(authOps.refreshToken(withParams));
+        }
+    }
+};
 
 const getProjects = () => async dispatch => {
     dispatch(getProjectsRequest());
@@ -35,7 +55,7 @@ const addProject = project => async dispatch => {
     } catch (error) {
         dispatch(addProjectError(api.formatError(error)));
 
-        if (error.response.status === 401) {
+        if (error.response?.status === 401) {
             const withParams = () => addProject(project);
             dispatch(authOps.refreshToken(withParams));
         }
@@ -54,6 +74,7 @@ const deleteProject = () => async dispatch => {
 };
 
 const projectsOperations = {
+    addMember,
     getProjects,
     addProject,
     deleteProject,

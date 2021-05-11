@@ -2,9 +2,6 @@ import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import sprintsActions from './sprintsActions';
 
 const {
-    addMemberRequest,
-    addMemberSuccess,
-    addMemberError,
     sprintAddRequest,
     sprintAddSuccess,
     sprintAddError,

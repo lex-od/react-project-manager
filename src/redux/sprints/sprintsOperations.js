@@ -3,9 +3,6 @@ import { authOps } from '../auth';
 import sprintsActs from './sprintsActions';
 
 const {
-    addMemberRequest,
-    addMemberSuccess,
-    addMemberError,
     sprintAddRequest,
     sprintAddSuccess,
     sprintAddError,
@@ -20,17 +17,6 @@ const {
     sprintDeleteError,
 } = sprintsActs;
 
-const addMember = () => async dispatch => {
-    dispatch(addMemberRequest());
-
-    try {
-        // const response = await ...
-        dispatch(addMemberSuccess());
-    } catch (error) {
-        dispatch(addMemberError());
-    }
-};
-
 const addSprint = (sprint, projectId) => async dispatch => {
     dispatch(sprintAddRequest());
 
@@ -41,7 +27,7 @@ const addSprint = (sprint, projectId) => async dispatch => {
     } catch (error) {
         dispatch(sprintAddError(api.formatError(error)));
 
-        if (error.response.status === 401) {
+        if (error.response?.status === 401) {
             const withParams = () => addSprint(sprint, projectId);
             dispatch(authOps.refreshToken(withParams));
         }
@@ -75,15 +61,14 @@ const sprintDeletetOperation = sprintId => async dispatch => {
     dispatch(sprintDeleteRequest());
 
     try {
-        // const sprint = await api.deleteSprint(sprintId);
-        // dispatch(sprintDeleteSuccess(sprintId));
+        const sprint = await api.deleteSprint(sprintId);
+        dispatch(sprintDeleteSuccess(sprintId));
     } catch ({ data, message }) {
         dispatch(sprintDeleteError({ data, message }));
     }
 };
 
 const sprintsOperations = {
-    addMember,
     addSprint,
     sprintGetOperation,
     // sprintChangetOperation,
