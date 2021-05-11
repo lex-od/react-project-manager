@@ -7,7 +7,7 @@ import css from './Auth.module.scss';
 import AuthBackgroundDesktop from './AuthBackground/BackgroundDesktop/BackgroundDesktop';
 import BackgroundTablet from './AuthBackground/BackgroundTablet/BackgroundTablet';
 import AccentButton from '../common/AccentButton/AccentButton';
-import useWindowSize from '../common/utils/useWindouSize';
+import useWindowSize from '../../services/utils/useWindouSize';
 
 export default function Register() {
     const dispatch = useDispatch();
@@ -29,43 +29,55 @@ export default function Register() {
                     dispatch(authOps.register({ email, password }));
                 }}
             >
-                {({ isSubmitting }) => (
+                {({ touched, errors, isSubmitting }) => (
                     <Form className={css.registerForm}>
                         <h2 className={css.registerFormTitle}>Реєстрація</h2>
                         <Field
-                            className={css.registerFormInput}
                             type="email"
                             name="email"
                             placeholder="E-mail"
+                            className={`${css.registerFormInput} ${
+                                touched.email && errors.email
+                                    ? ` ${css.isinvalid}`
+                                    : ''
+                            }`}
                         />
                         <ErrorMessage
                             className={css.errorMessageEmail}
                             name="email"
-                            component="span"
+                            component="div"
                         />
                         <Field
                             autoComplete="on"
-                            className={css.registerFormInput}
                             type="password"
                             name="password"
                             placeholder="Пароль"
+                            className={`${css.registerFormInput} ${
+                                touched.password && errors.password
+                                    ? ` ${css.isinvalid}`
+                                    : ''
+                            }`}
                         />
                         <ErrorMessage
                             className={css.errorMessagePassword}
                             name="password"
-                            component="span"
+                            component="div"
                         />
                         <Field
                             autoComplete="on"
-                            className={css.registerFormInput}
                             type="password"
                             name="confirmPassword"
                             placeholder="Повторіть пароль"
+                            className={`${css.registerFormInput} ${
+                                touched.password && errors.password
+                                    ? ` ${css.isinvalid}`
+                                    : ''
+                            }`}
                         />
                         <ErrorMessage
                             className={css.errorMessageConfirmPassword}
                             name="confirmPassword"
-                            component="span"
+                            component="div"
                         />
 
                         <AccentButton
@@ -78,7 +90,11 @@ export default function Register() {
 
                         <p className={css.registerFormText}>
                             Маєте акаунт? {'  '}
-                            <NavLink to="/login" exact>
+                            <NavLink
+                                className={css.registerFormText}
+                                to="/login"
+                                exact
+                            >
                                 Увійти
                             </NavLink>
                         </p>
