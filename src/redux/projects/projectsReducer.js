@@ -2,6 +2,9 @@ import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import projectsActs from './projectsActions';
 
 const {
+    addMemberRequest,
+    addMemberSuccess,
+    addMemberError,
     // getProjectsRequest,
     getProjectsSuccess,
     // getProjectsError,

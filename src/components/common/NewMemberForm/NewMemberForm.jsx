@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import * as Yup from 'yup';
 import { authSls } from '../../../redux/auth';
-import { projectsActs } from '../../../redux/projects';
-import { sprintsOps } from '../../../redux/sprints';
+import { projectsActs, projectsOps } from '../../../redux/projects';
 import AccentButton from '../AccentButton/AccentButton';
 import css from './NewMemberForm.module.scss';
 
@@ -46,7 +45,7 @@ export default function NewMemberForm() {
             }}
             validationSchema={validationSchema}
             onSubmit={member => {
-                dispatch(sprintsOps.addMember(member, projectId));
+                dispatch(projectsOps.addMember(member, projectId));
             }}
         >
             {({ errors, touched }) => (
