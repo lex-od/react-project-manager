@@ -11,9 +11,9 @@ const {
     addProjectRequest,
     addProjectSuccess,
     addProjectError,
-    // deleteProjectRequest,
-    // deleteProjectSuccess,
-    // deleteProjectError,
+    deleteProjectRequest,
+    deleteProjectSuccess,
+    deleteProjectError,
 } = projectsActs;
 
 const projectsList = createReducer([], {
@@ -30,6 +30,9 @@ const projectsList = createReducer([], {
     ],
 
     [getProjectsSuccess]: (_, { payload }) => payload,
+
+    [deleteProjectSuccess]: (state, { payload }) =>
+        state.filter(project => project._id !== payload),
 });
 
 const loading = createReducer(false, {
@@ -44,6 +47,10 @@ const loading = createReducer(false, {
     [getProjectsRequest]: () => true,
     [getProjectsSuccess]: () => false,
     [getProjectsError]: () => false,
+
+    [deleteProjectRequest]: () => true,
+    [deleteProjectSuccess]: () => false,
+    [deleteProjectError]: () => false,
 });
 
 const error = createReducer(null, {
@@ -55,6 +62,9 @@ const error = createReducer(null, {
 
     [getProjectsRequest]: () => null,
     [getProjectsError]: (_, { payload }) => payload,
+
+    [deleteProjectRequest]: () => null,
+    [deleteProjectError]: (_, { payload }) => payload,
 });
 
 export default combineReducers({

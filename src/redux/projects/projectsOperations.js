@@ -1,6 +1,6 @@
 import { api } from '../../services';
-import projectsActs from './projectsActions';
 import { authOps } from '../auth';
+import projectsActs from './projectsActions';
 
 const {
     addMemberRequest,
@@ -63,14 +63,15 @@ const addProject = project => async dispatch => {
     }
 };
 
-const deleteProject = () => async dispatch => {
+const deleteProject = (projectId) => async dispatch => {
     dispatch(deleteProjectRequest());
 
     try {
-        // const response = await ...
-        dispatch(deleteProjectSuccess());
-    } catch (error) {
-        dispatch(deleteProjectError());
+        await api.deleteProject(projectId);
+
+        dispatch(deleteProjectSuccess(projectId));
+    } catch ({ data, message }) {
+        dispatch(deleteProjectError({ data, message }));
     }
 };
 
