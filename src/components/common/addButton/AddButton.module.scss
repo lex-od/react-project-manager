@@ -1,7 +1,11 @@
 @import 'styles/shared.scss';
 
+.addBtnContainer {
+    position: relative;
+}
+
 .addBtn {
-    // position: absolute;
+    position: absolute;
     margin: 0;
     padding: 0;
     display: flex;
@@ -13,6 +17,7 @@
     background-color: #ff6b08;
     border: none;
     outline: none;
+    cursor: pointer;
     box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
     // right: 20px;
     // bottom: 20px;
