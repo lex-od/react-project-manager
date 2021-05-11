@@ -40,7 +40,7 @@ const ProjectsList = () => {
                                     {project.description}
                                 </p>
                                 <button type="button" className={css.deleteBtn}>
-                                    <svg className={css.deleteBtnIcon}>
+                                    <svg className={css.deleteBtnIcon} style={{ fill: colors[index % 3] }}>
                                         <use
                                             href={deleteBtn + '#icon-trash'}
                                         ></use>
