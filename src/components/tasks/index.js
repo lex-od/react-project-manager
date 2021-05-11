@@ -1,5 +1,5 @@
 import Chart from './Chart/Chart';
-import ChartModal from './Chart/ChartModal';
+import ChartModal from './ChartModal/ChartModal';
 
 import TasksContent from './TasksContent/TasksContent';
 import TaskCard from './TaskCard/TaskCard';
