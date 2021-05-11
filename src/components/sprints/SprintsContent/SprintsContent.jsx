@@ -17,7 +17,7 @@ const { sprintGetOperation } = sprintsOps;
 
 export default function SprintsContent() {
     const { projectId } = useParams();
-    console.log(projectId);
+    // console.log(projectId);
 
     const dispatch = useDispatch();
 
@@ -30,7 +30,7 @@ export default function SprintsContent() {
     );
 
     const sprints = useSelector(getAllSprints);
-    console.log(sprints);
+    // console.log(sprints);
 
     //временное решение. удалить при создании модалки
     const newSprint = {
@@ -43,7 +43,6 @@ export default function SprintsContent() {
     const addNewSprint = () => {
         dispatch(sprintAddOperation(newSprint, projectId));
     };
-
 
     return (
         <div className={styles.wrap}>
@@ -71,8 +70,8 @@ export default function SprintsContent() {
             <ul className={styles.sprintsList}>
                 {sprints.length &&
                     sprints.map(sprint => (
-                        <li className={styles.sprintCard}>
-                            <SprintCard key={sprint._id} sprint={sprint} />
+                        <li className={styles.sprintCard} key={sprint._id}>
+                            <SprintCard sprint={sprint} />
                         </li>
                     ))}
 
