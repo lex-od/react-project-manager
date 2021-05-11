@@ -39,7 +39,7 @@ const getProjects = () => async dispatch => {
 
     try {
         const projects = await api.getProject();
-        console.log(projects);
+
         dispatch(getProjectsSuccess(projects));
     } catch ({ data, message }) {
         dispatch(getProjectsError({ data, message }));

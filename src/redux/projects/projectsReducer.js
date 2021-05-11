@@ -28,6 +28,7 @@ const projectsList = createReducer([], {
         ...state,
         { _id: id, ...payloadRest },
     ],
+
     [getProjectsSuccess]: (_, { payload }) => payload,
 });
 
@@ -39,6 +40,7 @@ const loading = createReducer(false, {
     [addProjectRequest]: () => true,
     [addProjectSuccess]: () => false,
     [addProjectError]: () => false,
+
     [getProjectsRequest]: () => true,
     [getProjectsSuccess]: () => false,
     [getProjectsError]: () => false,
@@ -49,8 +51,9 @@ const error = createReducer(null, {
     [addMemberError]: (_, { payload }) => payload,
 
     [addProjectRequest]: () => null,
-    [getProjectsRequest]: () => null,
     [addProjectError]: (_, { payload }) => payload,
+
+    [getProjectsRequest]: () => null,
     [getProjectsError]: (_, { payload }) => payload,
 });
 

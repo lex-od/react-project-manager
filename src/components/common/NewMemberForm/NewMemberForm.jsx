@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import * as Yup from 'yup';
 import { authSls } from '../../../redux/auth';
-import { projectsOps } from '../../../redux/projects';
+import { projectsOps, projectsSls } from '../../../redux/projects';
 import AccentButton from '../AccentButton/AccentButton';
 import css from './NewMemberForm.module.scss';
 
@@ -16,8 +16,7 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function NewMemberForm() {
-    // 📌 Заменить на селектор !!!
-    const projects = useSelector(state => state.projects.items);
+    const projects = useSelector(projectsSls.getAllProjects);
     const userEmail = useSelector(authSls.getUserEmail);
 
     const { projectId } = useParams();

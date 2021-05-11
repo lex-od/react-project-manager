@@ -29,6 +29,9 @@ const refresh = async sid => (await axios.post('/auth/refresh', { sid })).data;
 
 // 📌 Проекты
 
+const addMember = async (member, projectId) =>
+    (await axios.patch(`/project/contributor/${projectId}`, member)).data;
+
 const addProject = async project =>
     (await axios.post('/project', project)).data;
 
@@ -36,13 +39,7 @@ const getProject = async () => (await axios.get('/project')).data;
 
 // 📌 Спринты
 
-const newSprint = async (newSprint, projectId) =>
-    (await axios.post(`/sprint/${projectId}`, newSprint)).data;
-
 const getSprint = async projectId => await axios.get(`/sprint/${projectId}`);
-
-const addMember = async (member, projectId) =>
-    (await axios.patch(`/project/contributor/${projectId}`, member)).data;
 
 const addSprint = async (sprint, projectId) =>
     (await axios.post(`/sprint/${projectId}`, sprint)).data;
@@ -64,7 +61,6 @@ const api = {
     unsetToken,
     register,
     login,
-    newSprint,
     getSprint,
     addMember,
     addSprint,
