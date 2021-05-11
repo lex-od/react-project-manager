@@ -2,6 +2,7 @@ import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import authActs from './authActions';
 import { projectsActs } from '../projects';
 import { sprintsActs } from '../sprints';
+import { tasksActs } from '../tasks';
 
 const {
     registerRequest,
@@ -19,6 +20,7 @@ const {
 } = authActs;
 const { addProjectError, addMemberError } = projectsActs;
 const { sprintAddError } = sprintsActs;
+const { taskAddError } = tasksActs;
 
 const initUser = { id: null, email: null };
 
@@ -55,6 +57,8 @@ const user = createReducer(initUser, {
     [addMemberError]: resetUserWhenInvalidSession,
 
     [sprintAddError]: resetUserWhenInvalidSession,
+
+    [taskAddError]: resetUserWhenInvalidSession,
 });
 
 const initTokens = { accessToken: null, refreshToken: null, sid: null };
@@ -101,6 +105,8 @@ const tokens = createReducer(initTokens, {
     [addMemberError]: resetTokensWhenInvalidSession,
 
     [sprintAddError]: resetTokensWhenInvalidSession,
+
+    [taskAddError]: resetTokensWhenInvalidSession,
 });
 
 const loading = createReducer(false, {

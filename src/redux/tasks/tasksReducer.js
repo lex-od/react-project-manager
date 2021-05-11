@@ -27,7 +27,11 @@ const {
 // });
 
 const tasksList = createReducer([], {
-    [taskAddSuccess]: (state, { payload }) => [...state, payload],
+    [taskAddSuccess]: (state, { payload: { id, ...rest } }) => [
+        ...state,
+        { _id: id, ...rest },
+    ],
+
     [taskGetRequest]: () => [],
     [taskGetSuccess]: (_, { payload }) => payload,
 

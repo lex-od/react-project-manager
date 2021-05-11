@@ -1,4 +1,5 @@
 import { api } from '../../services';
+import { authOps } from '../auth';
 import tasksActs from './tasksActions';
 
 const {
@@ -21,9 +22,15 @@ const taskAddOperation = (newTask, sprintId) => async dispatch => {
 
     try {
         const task = await api.newTask(newTask, sprintId);
+
         dispatch(taskAddSuccess(task));
-    } catch ({ data, message }) {
-        dispatch(taskAddError({ data, message }));
+    } catch (error) {
+        dispatch(taskAddError(api.formatError(error)));
+
+        if (error.response?.status === 401) {
+            const withParams = () => taskAddOperation(newTask, sprintId);
+            dispatch(authOps.refreshToken(withParams));
+        }
     }
 };
 
