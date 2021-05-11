@@ -1,10 +1,12 @@
 import classNames from 'classnames';
 import { Formik, Form, Field } from 'formik';
+import moment from 'moment';
 import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { DatePicker } from '../';
-// import { sprintsOps } from '../../../redux/sprints';
+import { sprintsOps } from '../../../redux/sprints';
 import AccentButton from '../AccentButton/AccentButton';
 import css from './NewSprintForm.module.scss';
 
@@ -16,15 +18,16 @@ const newSprintSchema = Yup.object().shape({
         .typeError('Введіть число')
         .integer('Введіть ціле число')
         .min(1, 'Від 1!')
-        .max(8, 'До 8!')
+        .max(21, 'До 21!')
         .required("Обов'язково*"),
 });
 
-export default function NewSprintForm(onClose) {
+export default function NewSprintForm({ onClose }) {
     const [date, setDate] = useState(new Date());
     const [isPrevDays, setPrevDays] = useState(false);
 
-    // const dispatch = useDispatch();
+    const { projectId } = useParams();
+    const dispatch = useDispatch();
 
     const handlePrevDaysChange = ({ target: { checked } }) => {
         setPrevDays(checked);
@@ -43,10 +46,16 @@ export default function NewSprintForm(onClose) {
                 duration: '',
             }}
             validationSchema={newSprintSchema}
-            onSubmit={values => {
-                console.log(date);
-                console.log(values);
-                // dispatch(sprintsOps.addSprint(sprint));
+            onSubmit={({ title, duration }) => {
+                const sprint = {
+                    title,
+                    duration: Number(duration),
+                    endDate: moment(date)
+                        .add(Number(duration) - 1, 'd')
+                        .format('YYYY-M-D'),
+                };
+
+                dispatch(sprintsOps.addSprint(sprint, projectId));
 
                 onClose();
             }}

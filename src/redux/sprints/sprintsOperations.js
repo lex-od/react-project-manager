@@ -1,43 +1,36 @@
 import { api } from '../../services';
+import { authOps } from '../auth';
 import sprintsActs from './sprintsActions';
 
 const {
-    addMemberRequest,
-    addMemberSuccess,
-    addMemberError,
     sprintAddRequest,
     sprintAddSuccess,
     sprintAddError,
     sprintGetRequest,
     sprintGetSuccess,
     sprintGetError,
-    sprintChangeRequest,
-    sprintChangeSuccess,
-    sprintChangeError,
+    // sprintChangeRequest,
+    // sprintChangeSuccess,
+    // sprintChangeError,
     sprintDeleteRequest,
     sprintDeleteSuccess,
     sprintDeleteError,
 } = sprintsActs;
 
-const addMember = () => async dispatch => {
-    dispatch(addMemberRequest());
-
-    try {
-        // const response = await ...
-        dispatch(addMemberSuccess());
-    } catch (error) {
-        dispatch(addMemberError());
-    }
-};
-
-const sprintAddOperation = (newSprint, projectId) => async dispatch => {
+const addSprint = (sprint, projectId) => async dispatch => {
     dispatch(sprintAddRequest());
 
     try {
-        const sprint = await api.newSprint(newSprint, projectId);
-        dispatch(sprintAddSuccess(sprint));
-    } catch ({ data, message }) {
-        dispatch(sprintAddError({ data, message }));
+        const data = await api.addSprint(sprint, projectId);
+
+        dispatch(sprintAddSuccess({ ...data, projectId }));
+    } catch (error) {
+        dispatch(sprintAddError(api.formatError(error)));
+
+        if (error.response?.status === 401) {
+            const withParams = () => addSprint(sprint, projectId);
+            dispatch(authOps.refreshToken(withParams));
+        }
     }
 };
 
@@ -52,34 +45,33 @@ const sprintGetOperation = projectId => async dispatch => {
     }
 };
 
-const sprintChangetOperation = (newTitle, sprintId) => async dispatch => {
-    dispatch(sprintChangeRequest());
+// const sprintChangetOperation = (newTitle, sprintId) => async dispatch => {
+//     dispatch(sprintChangeRequest());
 
-    try {
-        // const changedTitle = await api.changeSprint(newTitle, sprintId);
-        // const changedTitleToState = changedTitle.data;
-        // dispatch(sprintChangeSuccess({ changedTitleToState, sprintId }));
-    } catch ({ data, message }) {
-        dispatch(sprintChangeError({ data, message }));
-    }
-};
+//     try {
+//         // const changedTitle = await api.changeSprint(newTitle, sprintId);
+//         // const changedTitleToState = changedTitle.data;
+//         // dispatch(sprintChangeSuccess({ changedTitleToState, sprintId }));
+//     } catch ({ data, message }) {
+//         dispatch(sprintChangeError({ data, message }));
+//     }
+// };
 
 const sprintDeletetOperation = sprintId => async dispatch => {
     dispatch(sprintDeleteRequest());
 
     try {
-        // const sprint = await api.deleteSprint(sprintId);
-        // dispatch(sprintDeleteSuccess(sprintId));
+        const sprint = await api.deleteSprint(sprintId);
+        dispatch(sprintDeleteSuccess(sprintId));
     } catch ({ data, message }) {
         dispatch(sprintDeleteError({ data, message }));
     }
 };
 
 const sprintsOperations = {
-    addMember,
-    sprintAddOperation,
+    addSprint,
     sprintGetOperation,
-    sprintChangetOperation,
+    // sprintChangetOperation,
     sprintDeletetOperation,
 };
 export default sprintsOperations;

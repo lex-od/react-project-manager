@@ -12,6 +12,12 @@ import css from './Projects.module.scss';
 const { getProjects } = projectsOps;
 const { getAllProjects } = projectsSls;
 
+const colors = [
+    '#8C72DF',
+    '#FF765F',
+    '#71DF87'
+];
+
 const ProjectsList = () => {
     const dispatch = useDispatch();
     const projects = useSelector(getAllProjects);
@@ -23,8 +29,8 @@ const ProjectsList = () => {
         <div className={css.projectsContainer}>
             <h1 className={css.projectsTitle}>Проекти</h1>
             <ul className={css.projectsList}>
-                {projects.map(project => (
-                    <li className={css.projectsListItem} key={project._id}>
+                {projects.map((project, index) => (
+                    <li className={css.projectsListItem} key={project._id} style={{ backgroundColor: colors[index % 3] }}>
                         <Link to={`/projects/${project._id}`}>
                             <div className={css.projectsItemContainer}>
                                 <h2 className={css.projectsListItemTitle}>
