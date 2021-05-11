@@ -1,29 +1,24 @@
 @import 'styles/shared.scss';
 
 .addBtn {
-    // position: absolute;
-    margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
     width: 44px;
     height: 44px;
+
+    border-radius: 50%;
     background-color: #ff6b08;
-    border: none;
+    border-style: none;
     outline: none;
+    cursor: pointer;
     box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
-    // right: 20px;
-    // bottom: 20px;
 }
 
-// .addBtn:hover,
-// .addBtn:focus {
-// }
-
 .addBtnIcon {
+    width: 25px;
+    height: 25px;
+
     fill: #ffffff;
-    // width: 18px;
-    // height: 18px;
 }
