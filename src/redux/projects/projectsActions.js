@@ -1,8 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const addMemberRequest = createAction('sprints/addMember/request');
-const addMemberSuccess = createAction('sprints/addMember/success');
-const addMemberError = createAction('sprints/addMember/error');
+const addMemberRequest = createAction('projects/addMember/request');
+const addMemberSuccess = createAction('projects/addMember/success');
+const addMemberError = createAction('projects/addMember/error');
 
 // get projects
 

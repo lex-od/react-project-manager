@@ -16,7 +16,8 @@
 
     width: 320px;
     height: 100%;
-    padding: 63px 20px;
+    padding: 63px 20px 20px;
+    overflow-y: scroll;
 
     background-color: #ffffff;
 
@@ -30,11 +31,11 @@
         right: 0;
 
         width: 512px;
-        padding: 121px 32px;
+        padding: 121px 32px 32px;
     }
     @include for-size(desktop) {
         width: 530px;
-        padding: 121px 50px;
+        padding: 121px 50px 50px;
     }
 }
 

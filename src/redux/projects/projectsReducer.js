@@ -6,7 +6,7 @@ const {
     addMemberSuccess,
     addMemberError,
     // getProjectsRequest,
-    getProjectsSuccess,
+    // getProjectsSuccess,
     // getProjectsError,
     addProjectRequest,
     addProjectSuccess,
@@ -17,21 +17,33 @@ const {
 } = projectsActs;
 
 const items = createReducer([], {
+    [addMemberSuccess]: (state, { payload: { data, projectId } }) =>
+        state.map(project =>
+            project._id === projectId
+                ? { ...project, members: data.newMembers }
+                : project,
+        ),
+
     [addProjectSuccess]: (state, { payload: { id, ...payloadRest } }) => [
         ...state,
         { _id: id, ...payloadRest },
     ],
-
-    [getProjectsSuccess]: (_, { payload }) => payload,
 });
 
 const loading = createReducer(false, {
+    [addMemberRequest]: () => true,
+    [addMemberSuccess]: () => false,
+    [addMemberError]: () => false,
+
     [addProjectRequest]: () => true,
     [addProjectSuccess]: () => false,
     [addProjectError]: () => false,
 });
 
 const error = createReducer(null, {
+    [addMemberRequest]: () => null,
+    [addMemberError]: (_, { payload }) => payload,
+
     [addProjectRequest]: () => null,
     [addProjectError]: (_, { payload }) => payload,
 });

@@ -1,11 +1,11 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { Formik, Form, Field } from 'formik';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import * as Yup from 'yup';
 import { authSls } from '../../../redux/auth';
-import { projectsActs, projectsOps } from '../../../redux/projects';
+import { projectsOps } from '../../../redux/projects';
 import AccentButton from '../AccentButton/AccentButton';
 import css from './NewMemberForm.module.scss';
 
@@ -25,13 +25,13 @@ export default function NewMemberForm() {
     const dispatch = useDispatch();
 
     // 📌 Удалить !!!
-    useEffect(() => {
-        axios
-            .get('/project')
-            .then(({ data }) =>
-                dispatch(projectsActs.getProjectsSuccess(data)),
-            );
-    }, []);
+    // useEffect(() => {
+    //     axios
+    //         .get('/project')
+    //         .then(({ data }) =>
+    //             dispatch(projectsActs.getProjectsSuccess(data)),
+    //         );
+    // }, []);
 
     const members =
         projects
@@ -44,8 +44,10 @@ export default function NewMemberForm() {
                 email: '',
             }}
             validationSchema={validationSchema}
-            onSubmit={member => {
+            onSubmit={(member, { resetForm }) => {
                 dispatch(projectsOps.addMember(member, projectId));
+
+                resetForm();
             }}
         >
             {({ errors, touched }) => (
