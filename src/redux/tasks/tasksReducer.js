@@ -35,13 +35,6 @@ const tasksList = createReducer([], {
     [taskGetRequest]: () => [],
     [taskGetSuccess]: (_, { payload }) => payload,
 
-    // [taskChangeSuccess]: (state, { payload }) => {
-    //     state.map(task => {
-    //         if (task._id === payload.taskId)
-    //             task.hoursWasted = payload.changedHoursToState.newWastedHours;
-    //     });
-    // },
-
     [taskChangeSuccess]: (state, { payload }) =>
         state.map(task =>
             task._id === payload.taskId

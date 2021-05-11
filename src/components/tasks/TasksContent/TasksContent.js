@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { tasksSls, tasksOps } from '../../../redux/tasks';
@@ -8,9 +8,9 @@ import TaskCard from '../TaskCard/TaskCard';
 
 import AddButton from '../../common/addButton/AddButton';
 
-import spriteText from '../../../assets/icons/sprintsText.svg';
-
 import styles from './TasksContent.module.scss';
+import TaskSprintTitle from '../TaskSprintTitle/TaskSprintTitle';
+import TaskActiveDate from '../TaskActiveDate/TaskActiveDate';
 
 const { getAllTasks } = tasksSls;
 const { taskGetOperation, taskAddOperation } = tasksOps;
@@ -22,26 +22,27 @@ export default function TasksContent() {
     const toggleTaskModal = () => setIsShowTaskModal(state => !state);
 
     const { sprintId } = useParams();
+    const sprints = useSelector(getAllSprints);
+    const [actualSprint, setactualSprint] = useState(null);
+    const [activeDate, setactiveDate] = useState(null);
 
     const dispatch = useDispatch();
 
     const tasks = useSelector(getAllTasks);
-    const sprints = useSelector(getAllSprints);
-    const actualSprint = () => sprints.find(sprint => sprint._id === sprintId);
-    const activeDate = '';
+
+    // const activeDate = '';
 
     useEffect(() => {
         dispatch(taskGetOperation(sprintId));
-        // const actualSprint = sprints.find(sprint => sprint._id === sprintId);
-        // activeDate = actualSprint.startDate;
-    }, [dispatch, sprintId]);
+        sprintId &&
+            sprints.length > 0 &&
+            setactualSprint(sprints.find(sprint => sprint._id === sprintId));
 
-    const incrDate = () => {
-        activeDate = Date.parse(actualSprint().startDate) + 1000 * 60 * 60 * 24;
-    };
+        // setactiveDate();
+    }, [dispatch, sprintId, sprints]);
 
-    const decrDate = () => {
-        activeDate = Date.parse(actualSprint().startDate) - 1000 * 60 * 60 * 24;
+    const changeActiveDate = activeDate => {
+        setactiveDate(activeDate);
     };
 
     //временное решение. удалить при создании модалки
@@ -58,38 +59,13 @@ export default function TasksContent() {
     return (
         <div className={styles.wrap}>
             <AddButton onClick={toggleTaskModal} />
-            {sprints.length && (
+            {sprints?.length && (
                 <div>
-                    <button onClick={incrDate}>+ день</button>
-                    <button onClick={decrDate}>- день</button>
-                    <div>
-                        День проекта
-                        {(Date.parse(actualSprint().startDate) -
-                            Date.parse(actualSprint().startDate)) /
-                            1000 /
-                            60 /
-                            60 /
-                            24 +
-                            1}
-                    </div>
-                    <div>
-                        Длительность проекта
-                        {(Date.parse(actualSprint().endDate) -
-                            Date.parse(actualSprint().startDate)) /
-                            1000 /
-                            60 /
-                            60 /
-                            24 +
-                            1}
-                    </div>
-
-                    <span>Дата {actualSprint().startDate} </span>
-                    <div className={styles.sprintHead}>
-                        <h1 className={styles.title}>{actualSprint().title}</h1>
-                        <svg className={styles.textSvg}>
-                            <use href={spriteText + '#icon-text'}></use>
-                        </svg>
-                    </div>
+                    <TaskActiveDate
+                        sprint={actualSprint}
+                        changeActiveDate={changeActiveDate}
+                    />
+                    <TaskSprintTitle sprint={actualSprint} />
                 </div>
             )}
 
@@ -102,11 +78,11 @@ export default function TasksContent() {
                     <svg></svg>
                 </div>
                 <ul className={styles.sprintsList}>
-                    {tasks.length &&
+                    {tasks.length > 0 &&
                         tasks.map(task => (
                             <TaskCard
                                 key={task._id}
-                                date={actualSprint().startDate}
+                                date={actualSprint?.startDate}
                                 task={task}
                             />
                         ))}

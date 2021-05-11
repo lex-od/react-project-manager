@@ -8,9 +8,9 @@ const sprintGetRequest = createAction('sprint/get/request');
 const sprintGetSuccess = createAction('sprint/get/success');
 const sprintGetError = createAction('sprint/get/error');
 
-// const sprintChangeRequest = createAction('sprint/change/request');
-// const sprintChangeSuccess = createAction('sprint/change/success');
-// const sprintChangeError = createAction('sprint/change/error');
+const sprintChangeRequest = createAction('sprint/change/request');
+const sprintChangeSuccess = createAction('sprint/change/success');
+const sprintChangeError = createAction('sprint/change/error');
 
 const sprintDeleteRequest = createAction('sprint/delete/request');
 const sprintDeleteSuccess = createAction('sprint/delete/success');
@@ -23,9 +23,9 @@ const sprintsActions = {
     sprintGetRequest,
     sprintGetSuccess,
     sprintGetError,
-    // sprintChangeRequest,
-    // sprintChangeSuccess,
-    // sprintChangeError,
+    sprintChangeRequest,
+    sprintChangeSuccess,
+    sprintChangeError,
     sprintDeleteRequest,
     sprintDeleteSuccess,
     sprintDeleteError,

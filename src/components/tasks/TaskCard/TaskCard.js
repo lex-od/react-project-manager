@@ -11,7 +11,6 @@ import styles from './TasksCard.module.scss';
 const { taskChangetOperation, taskDeletetOperation } = tasksOps;
 
 export default function TaskCard({ date, task }) {
-    console.log(date);
     const { sprintId } = useParams();
 
     const actualDay = task.hoursWastedPerDay.find(day => {
@@ -19,15 +18,24 @@ export default function TaskCard({ date, task }) {
     });
 
     console.log(actualDay);
+    console.log(actualDay.singleHoursWasted);
 
-    const [hours, setHours] = useState(actualDay.singleHoursWasted);
-
+    const [hours, setHours] = useState(actualDay?.singleHoursWasted || 0);
+    const [walidHours, setwalidHours] = useState(true);
     const dispatch = useDispatch();
 
     const changeData = e => {
         const { value } = e.target;
-
         setHours(value);
+    };
+
+    const checkDate = newData => {
+        if (hours > 0) {
+            dispatch(taskChangetOperation(newData, task._id));
+            setwalidHours(true);
+        } else {
+            setwalidHours(false);
+        }
     };
 
     const setchangeData = e => {
@@ -35,8 +43,7 @@ export default function TaskCard({ date, task }) {
             date,
             hours: e.target.value,
         };
-
-        dispatch(taskChangetOperation(newData, task._id));
+        checkDate(newData);
     };
 
     const deleteTask = () => {
@@ -68,6 +75,7 @@ export default function TaskCard({ date, task }) {
                         onBlur={setchangeData}
                         className={styles.sprintItemText}
                     />
+                    {!walidHours && <span>число должно быть больше 0</span>}
                 </li>
                 <li className={styles.sprintItem}>
                     <span className={styles.sprintItemText}>
@@ -83,7 +91,6 @@ export default function TaskCard({ date, task }) {
                     <use href={spriteDelete + '#icon-delete'}></use>
                 </svg>
             </button>
-            {/* <svg></svg> */}
         </li>
     );
 }
