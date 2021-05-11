@@ -1,7 +1,6 @@
 import {
     Container,
-    NewItemModal,
-    NewMemberForm,
+    // NewItemModal,
     // NewSprintForm,
     Sidebar,
     ViewWrapper,
@@ -22,10 +21,6 @@ export default function SprintsView() {
                 </Sidebar>
                 <SprintsContent /> {/*(поставить flex-grow: 1) */}
             </ViewWrapper>
-
-            <NewItemModal title="Додати людей">
-                <NewMemberForm />
-            </NewItemModal>
         </Container>
     );
 }
