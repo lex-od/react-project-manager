@@ -22,7 +22,7 @@ const newSprintSchema = Yup.object().shape({
         .required("Обов'язково*"),
 });
 
-export default function NewSprintForm(onClose) {
+export default function NewSprintForm({ onClose }) {
     const [date, setDate] = useState(new Date());
     const [isPrevDays, setPrevDays] = useState(false);
 

@@ -17,7 +17,7 @@ const newProjectSchema = Yup.object().shape({
         .required("Обов'язково*"),
 });
 
-export default function NewProjectForm(onClose) {
+export default function NewProjectForm({ onClose }) {
     const dispatch = useDispatch();
 
     return (

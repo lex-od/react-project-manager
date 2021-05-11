@@ -36,6 +36,9 @@ const addProject = async project =>
 
 const getSprint = async projectId => await axios.get(`/sprint/${projectId}`);
 
+const addMember = async (member, projectId) =>
+    (await axios.patch(`/project/contributor/${projectId}`, member)).data;
+
 const addSprint = async (sprint, projectId) =>
     (await axios.post(`/sprint/${projectId}`, sprint)).data;
 
@@ -56,6 +59,7 @@ const api = {
     register,
     login,
     getSprint,
+    addMember,
     addSprint,
     newTask,
     getTask,

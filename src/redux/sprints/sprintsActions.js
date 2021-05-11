@@ -1,9 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const addMemberRequest = createAction('sprints/addMember/request');
-const addMemberSuccess = createAction('sprints/addMember/success');
-const addMemberError = createAction('sprints/addMember/error');
-
 const sprintAddRequest = createAction('sprints/add/request');
 const sprintAddSuccess = createAction('sprints/add/success');
 const sprintAddError = createAction('sprints/add/error');
@@ -21,9 +17,6 @@ const sprintDeleteSuccess = createAction('sprint/delete/success');
 const sprintDeleteError = createAction('sprint/delete/error');
 
 const sprintsActions = {
-    addMemberRequest,
-    addMemberSuccess,
-    addMemberError,
     sprintAddRequest,
     sprintAddSuccess,
     sprintAddError,

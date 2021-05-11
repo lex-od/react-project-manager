@@ -1,0 +1,107 @@
+@import 'styles/shared.scss';
+
+.form {
+    text-align: left;
+}
+
+.emailLabel {
+    position: relative;
+
+    display: block;
+    margin-bottom: 30px;
+}
+
+.emailInp {
+    width: 100%;
+    padding: 8px;
+
+    border-style: none none solid;
+    border-width: 1px;
+    border-color: $secondaryTextLineColor;
+    outline: none;
+
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: $primaryTextColor;
+
+    @include for-size(tablet) {
+        font-size: 18px;
+    }
+}
+
+.emailLabelText {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: $secondaryTextColor;
+
+    transition: all 200ms linear;
+
+    @include for-size(tablet) {
+        font-size: 18px;
+    }
+}
+
+.emailLabelText {
+    .emailInp:not(:placeholder-shown) + &,
+    .emailInp:focus + & {
+        top: 0;
+        left: 0;
+        transform: translateY(-100%);
+    }
+}
+
+.error {
+    position: absolute;
+    left: 30px;
+    bottom: -2px;
+    transform: translateY(100%);
+
+    font-size: 14px;
+    color: $primaryAccentColor;
+}
+
+.membersTitle {
+    margin: 0 0 20px;
+
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: $secondaryTextColor;
+}
+
+.membersList {
+    @extend %list;
+
+    margin-bottom: 60px;
+}
+
+.membersItem {
+    letter-spacing: 0.04em;
+    color: $primaryTextColor;
+
+    @include for-size(tablet) {
+        font-size: 18px;
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 10px;
+    }
+}
+
+.membersEmpty {
+    margin: 0 0 60px;
+
+    letter-spacing: 0.04em;
+    color: $primaryTextColor;
+
+    @include for-size(tablet) {
+        font-size: 18px;
+    }
+}
+
+.submitWrapper {
+    text-align: center;
+}

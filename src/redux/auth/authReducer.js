@@ -17,7 +17,7 @@ const {
     refreshSuccess,
     refreshError,
 } = authActs;
-const { addProjectError } = projectsActs;
+const { addProjectError, addMemberError } = projectsActs;
 const { sprintAddError } = sprintsActs;
 
 const initUser = { id: null, email: null };
@@ -52,6 +52,8 @@ const user = createReducer(initUser, {
 
     [addProjectError]: resetUserWhenInvalidSession,
 
+    [addMemberError]: resetUserWhenInvalidSession,
+
     [sprintAddError]: resetUserWhenInvalidSession,
 });
 
@@ -84,7 +86,6 @@ const tokens = createReducer(initTokens, {
     [logoutSuccess]: () => initTokens,
     [logoutError]: resetTokensWhenInvalidSession,
 
-    [refreshError]: () => initTokens,
     [refreshSuccess]: (
         _,
         { payload: { newAccessToken, newRefreshToken, newSid } },
@@ -93,8 +94,11 @@ const tokens = createReducer(initTokens, {
         refreshToken: newRefreshToken,
         sid: newSid,
     }),
+    [refreshError]: () => initTokens,
 
     [addProjectError]: resetTokensWhenInvalidSession,
+
+    [addMemberError]: resetTokensWhenInvalidSession,
 
     [sprintAddError]: resetTokensWhenInvalidSession,
 });
