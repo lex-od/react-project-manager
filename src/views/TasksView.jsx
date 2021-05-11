@@ -9,7 +9,7 @@ export default function TasksView() {
                 <Sidebar>
                     <TasksSideContent />
                 </Sidebar>
-                {/* Компонент TasksContent (поставить flex-grow: 1) */}
+
                 <TasksContent />
             </ViewWrapper>
         </Container>
