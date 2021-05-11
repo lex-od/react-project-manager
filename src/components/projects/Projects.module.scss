@@ -153,6 +153,7 @@
     outline: none;
     right: 10px;
     bottom: 10px;
+    cursor: pointer;
 
     @include for-size(tablet) {
         width: 34px;
