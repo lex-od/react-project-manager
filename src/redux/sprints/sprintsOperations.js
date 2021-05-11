@@ -30,12 +30,12 @@ const addMember = () => async dispatch => {
     }
 };
 
-const sprintAddOperation = projectId => async dispatch => {
+const sprintAddOperation = (newSprint, projectId) => async dispatch => {
     dispatch(sprintAddRequest());
 
     try {
-        // const sprint = await api.newSprint(projectId); //прописать апи
-        // dispatch(sprintAddSuccess(sprint));
+        const sprint = await api.newSprint(newSprint, projectId);
+        dispatch(sprintAddSuccess(sprint));
     } catch ({ data, message }) {
         dispatch(sprintAddError({ data, message }));
     }

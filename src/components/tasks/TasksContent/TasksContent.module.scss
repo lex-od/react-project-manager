@@ -1,0 +1,47 @@
+@import 'styles/shared.scss';
+
+ul {
+    padding: 0;
+}
+
+.wrap {
+    // width: 768px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.sprintHead {
+    display: flex;
+    align-items: baseline;
+}
+
+.title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.23;
+    letter-spacing: 0.04em;
+    color: #181c27;
+    margin: 0;
+}
+
+.textSvg {
+    width: 20px;
+    height: 20px;
+}
+
+.sprintsList {
+    list-style: none;
+    padding: 0;
+    @include for-size(tablet) {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: -20px;
+        margin-top: -20px;
+    }
+
+    @include for-size(descktop) {
+        flex-direction: column;
+    }
+}

@@ -20,11 +20,15 @@ const {
 } = sprintsActions;
 
 const sprintsList = createReducer([], {
+    [sprintAddSuccess]: (state, { payload }) => [...state, payload],
     [sprintGetRequest]: () => [],
     [sprintGetSuccess]: (_, { payload }) => payload,
 });
 
 const loading = createReducer(false, {
+    [sprintAddRequest]: () => true,
+    [sprintAddSuccess]: () => false,
+    [sprintAddError]: () => false,
     [sprintGetRequest]: () => true,
     [sprintGetSuccess]: () => false,
     [sprintGetError]: () => false,

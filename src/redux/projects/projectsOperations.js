@@ -18,10 +18,11 @@ const getProjects = () => async dispatch => {
     dispatch(getProjectsRequest());
 
     try {
-        // const response = await ...
-        dispatch(getProjectsSuccess());
-    } catch (error) {
-        dispatch(getProjectsError());
+        const projects = await api.getProject();
+        console.log(projects);
+        dispatch(getProjectsSuccess(projects));
+    } catch ({ data, message }) {
+        dispatch(getProjectsError({ data, message }));
     }
 };
 
