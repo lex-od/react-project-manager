@@ -37,6 +37,9 @@ const addProject = async project =>
 
 const getProject = async () => (await axios.get('/project')).data;
 
+const deleteProject = async projectId => await axios.delete(`/project/${projectId}`);
+
+
 // 📌 Спринты
 
 const getSprint = async projectId => await axios.get(`/sprint/${projectId}`);
@@ -77,5 +80,6 @@ const api = {
     refresh,
     addProject,
     getProject,
+    deleteProject
 };
 export default api;
