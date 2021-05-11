@@ -32,7 +32,12 @@ const refresh = async sid => (await axios.post('/auth/refresh', { sid })).data;
 const addProject = async project =>
     (await axios.post('/project', project)).data;
 
+const getProject = async () => (await axios.get('/project')).data;
+
 // 📌 Спринты
+
+const newSprint = async (newSprint, projectId) =>
+    (await axios.post(`/sprint/${projectId}`, newSprint)).data;
 
 const getSprint = async projectId => await axios.get(`/sprint/${projectId}`);
 
@@ -44,7 +49,8 @@ const addSprint = async (sprint, projectId) =>
 
 // 📌 Таски
 
-const newTask = async sprintId => (await axios.post(`/task/${sprintId}`)).data;
+const newTask = async (newTask, sprintId) =>
+    (await axios.post(`/task/${sprintId}`, newTask)).data;
 
 const getTask = async sprintId => await axios.get(`/task/${sprintId}`);
 
@@ -58,6 +64,7 @@ const api = {
     unsetToken,
     register,
     login,
+    newSprint,
     getSprint,
     addMember,
     addSprint,
@@ -69,5 +76,6 @@ const api = {
     logOut,
     refresh,
     addProject,
+    getProject,
 };
 export default api;
