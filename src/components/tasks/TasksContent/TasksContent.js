@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { tasksSls, tasksOps } from '../../../redux/tasks';
 import { sprintsSls } from '../../../redux/sprints';
+import { NewItemModal, NewTaskForm } from '../../common';
 import TaskCard from '../TaskCard/TaskCard';
 
 import AddButton from '../../common/addButton/AddButton';
@@ -16,6 +17,10 @@ const { taskGetOperation, taskAddOperation } = tasksOps;
 const { getAllSprints } = sprintsSls;
 
 export default function TasksContent() {
+    const [isShowTaskModal, setIsShowTaskModal] = useState(false);
+
+    const toggleTaskModal = () => setIsShowTaskModal(state => !state);
+
     const { sprintId } = useParams();
 
     const dispatch = useDispatch();
@@ -52,7 +57,7 @@ export default function TasksContent() {
 
     return (
         <div className={styles.wrap}>
-            <AddButton onClick={addNewTask} />
+            <AddButton onClick={toggleTaskModal} />
             {sprints.length && (
                 <div>
                     <button onClick={incrDate}>+ день</button>
@@ -107,6 +112,15 @@ export default function TasksContent() {
                         ))}
                 </ul>
             </div>
+
+            {isShowTaskModal && (
+                <NewItemModal
+                    title="Створення задачі"
+                    onClose={toggleTaskModal}
+                >
+                    <NewTaskForm onClose={toggleTaskModal} />
+                </NewItemModal>
+            )}
         </div>
     );
 }

@@ -10,3 +10,4 @@ export { default as AccentButton } from './AccentButton/AccentButton';
 export { default as ChartButton } from './ChartButton/ChartButton';
 export { default as NewMemberForm } from './NewMemberForm/NewMemberForm';
 export { default as NewTaskForm } from './NewTaskForm/NewTaskForm';
+export { default as AddButton } from './addButton/AddButton';
