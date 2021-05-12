@@ -12,6 +12,9 @@ const {
     addProjectRequest,
     addProjectSuccess,
     addProjectError,
+    changedProjectRequest,
+    changedProjectSucess,
+    changedProjectError,
     deleteProjectRequest,
     deleteProjectSuccess,
     deleteProjectError,
@@ -63,7 +66,18 @@ const addProject = project => async dispatch => {
     }
 };
 
-const deleteProject = (projectId) => async dispatch => {
+const changeProject = (newTitle, projectId) => async dispatch => {
+    dispatch(changedProjectRequest());
+
+    try {
+        const changedTitle = await api.changeProject(newTitle, projectId);
+        dispatch(changedProjectSucess({ changedTitle, projectId }));
+    } catch ({ data, message }) {
+        dispatch(changedProjectError({ data, message }));
+    }
+};
+
+const deleteProject = projectId => async dispatch => {
     dispatch(deleteProjectRequest());
 
     try {
@@ -81,4 +95,5 @@ const projectsOperations = {
     addProject,
     deleteProject,
 };
+
 export default projectsOperations;

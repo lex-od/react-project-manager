@@ -16,6 +16,12 @@ const addProjectRequest = createAction('projects/addProject/request');
 const addProjectSuccess = createAction('projects/addProject/success');
 const addProjectError = createAction('projects/addProject/error');
 
+// change project title
+
+const changedProjectRequest = createAction('projects/changedProject/request');
+const changedProjectSucess = createAction('projects/changedProject/success');
+const changedProjectError = createAction('projects/changedProject/error');
+
 // delete project
 
 const deleteProjectRequest = createAction('projects/deleteProject/request');
