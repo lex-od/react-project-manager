@@ -1,0 +1,77 @@
+@import 'styles/shared.scss';
+
+.modalBox {
+    position: relative;
+    width: 859px;
+    height: 90vh;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    margin-bottom: 30px;
+
+    @include for-size(tablet) {
+        border-radius: 5px;
+        width: 688px;
+        height: 340px;
+        overflow: hidden;
+    }
+    @include for-size(desktop) {
+        width: 933px;
+        height: 461px;
+    }
+}
+
+.closeButton {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    fill: $baseTextColor;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+
+    top: 10px;
+    right: 10px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+        background-color: $primaryAccentColor;
+        fill: $accentTextColor;
+    }
+}
+
+.closeSvg {
+    width: 18px;
+    height: 18px;
+}
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(24, 28, 39, 0.25);
+    z-index: 120;
+}
+
+.modalBox::-webkit-scrollbar {
+    // width: 80px; /* ширина для вертикального скролла */
+    height: 4px; /* высота для горизонтального скролла */
+    // background-color: #ff6b08;
+}
+
+/* ползунок скроллбара */
+.modalBox::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    box-shadow: 0px 1px 4px rgba(255, 107, 8, 0.3);
+    background-color: #ff6b08;
+    cursor: pointer;
+}

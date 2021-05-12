@@ -11,15 +11,17 @@ export default function ChartButton({ children, ...rest }) {
         </button>
     );
 }
-// =======================================
+// ====== INSTRUCTION ==================
 // 1:
 // import { ChartButton } from '../common';
 // import { ChartModal } from '../tasks';
+
 // 2:
 // const [openModal, setOpenModal] = useState(false);
 //     const onOpenModal = () => {
 //         setOpenModal(state => !state);
 //     };
+
 // 3:
 // {openModal && <ChartModal onClose={onOpenModal} />}
 // <ChartButton onClick={onOpenModal}></ChartButton>

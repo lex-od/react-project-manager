@@ -5,22 +5,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 0px 14px 0px;
+
+    position: sticky;
+    top: 0;
+    top: 2em;
+
+    margin-top: 14px;
+    padding-bottom: 16px;
 
     @include for-size(tablet) {
-        padding: 19px 20px 19px 20px;
+        margin-top: 19px;
+        padding-bottom: 19px;
     }
-    @include for-size(desktop) {
-        padding: 19px 25px 19px 25px;
-    }
-    // .iconAnalytics {
-    //     padding: 0;
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: center;
-    //     width: 30px;
-    //     height: 30px;
-    // }
 }
 
 .logo {
@@ -37,7 +33,6 @@
 .appBar {
     display: flex;
     align-items: center;
-    max-width: 245px;
 
     font-size: 14px;
     font-weight: 600;
@@ -81,6 +76,7 @@
     line-height: 1.21;
     letter-spacing: 0.04em;
     color: rgba(24, 28, 39, 0.6);
+    transition: none;
     @include for-size(tablet) {
         display: block;
         white-space: nowrap;

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Chart } from '../';
 import { createPortal } from 'react-dom';
-import css from './Chart.module.scss';
+import css from './ChartModal.module.scss';
 import sprite from '../../../assets/icons/sprite-chart.svg';
 
 const modalRootRef = document.querySelector('#modal-root');
