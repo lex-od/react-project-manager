@@ -62,10 +62,10 @@ const deleteSprint = async sprintId =>
 const newTask = async (newTask, sprintId) =>
     (await axios.post(`/task/${sprintId}`, newTask)).data;
 
-const getTask = async sprintId => await axios.get(`/task/${sprintId}`);
+const getTask = async sprintId => (await axios.get(`/task/${sprintId}`)).data;
 
 const changeTask = async (newData, taskId) =>
-    await axios.patch(`/task/${taskId}`, newData);
+    (await axios.patch(`/task/${taskId}`, newData)).data;
 
 const deleteTask = async taskId => await axios.delete(`/task/${taskId}`);
 

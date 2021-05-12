@@ -39,9 +39,15 @@ const taskGetOperation = sprintId => async dispatch => {
 
     try {
         const tasks = await api.getTask(sprintId);
-        dispatch(taskGetSuccess(tasks.data));
-    } catch ({ data, message }) {
-        dispatch(taskGetError({ data, message }));
+
+        dispatch(taskGetSuccess(Array.isArray(tasks) ? tasks : []));
+    } catch (error) {
+        dispatch(taskGetError(api.formatError(error)));
+
+        if (error.response?.status === 401) {
+            const withParams = () => taskGetOperation(sprintId);
+            dispatch(authOps.refreshToken(withParams));
+        }
     }
 };
 
@@ -49,12 +55,16 @@ const taskChangetOperation = (newData, taskId) => async dispatch => {
     dispatch(taskChangeRequest());
 
     try {
-        const changedHours = await api.changeTask(newData, taskId);
+        const data = await api.changeTask(newData, taskId);
 
-        const changedHoursToState = changedHours.data;
-        dispatch(taskChangeSuccess({ changedHoursToState, taskId }));
-    } catch ({ data, message }) {
-        dispatch(taskChangeError({ data, message }));
+        dispatch(taskChangeSuccess({ data, taskId }));
+    } catch (error) {
+        dispatch(taskChangeError(api.formatError(error)));
+
+        if (error.response?.status === 401) {
+            const withParams = () => taskChangetOperation(newData, taskId);
+            dispatch(authOps.refreshToken(withParams));
+        }
     }
 };
 

@@ -14,17 +14,7 @@ const {
     taskDeleteRequest,
     taskDeleteSuccess,
     taskDeleteError,
-    // tasksStartDate,
-    // tasksEndDate,
 } = tasksActs;
-
-// const startDate = createReducer('', {
-//     [tasksStartDate]: (_, { payload }) => payload,
-// });
-
-// const endDate = createReducer('', {
-//     [tasksEndDate]: (_, { payload }) => payload,
-// });
 
 const tasksList = createReducer([], {
     [taskAddSuccess]: (state, { payload: { id, ...rest } }) => [
@@ -35,23 +25,11 @@ const tasksList = createReducer([], {
     [taskGetRequest]: () => [],
     [taskGetSuccess]: (_, { payload }) => payload,
 
-    [taskChangeSuccess]: (state, { payload }) =>
-        state.map(task =>
-            task._id === payload.taskId
-                ? {
-                      ...task,
-                      hoursWasted: payload.changedHoursToState.newWastedHours,
-                  }
-                : task,
-        ),
+    [taskChangeSuccess]: (state, { payload: { data, taskId } }) => state,
 
     [taskDeleteSuccess]: (state, { payload }) =>
         state.filter(({ _id }) => _id !== payload),
 });
-
-// const filter = createReducer('', {
-//     //
-// });
 
 const loading = createReducer(false, {
     [taskAddRequest]: () => true,
@@ -83,10 +61,17 @@ const error = createReducer(null, {
 });
 
 export default combineReducers({
-    // startDate,
-    // endDate,
     tasksList,
-    // filter,
     loading,
     error,
 });
+
+// [taskChangeSuccess]: (state, { payload }) =>
+//     state.map(task =>
+//         task._id === payload.taskId
+//             ? {
+//                   ...task,
+//                   hoursWasted: payload.changedHoursToState.newWastedHours,
+//               }
+//             : task,
+//     ),
