@@ -1,79 +1,3 @@
-// import React, { useEffect, useState } from 'react';
-// import deleteBtn from '../../assets/icons/deleteBtnSprite.svg';
-
-// import { Link } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
-
-// import { AddButton, NewItemModal, NewProjectForm } from '../common';
-// import { projectsOps } from '../../redux/projects';
-// import { projectsSls } from '../../redux/projects';
-
-// import css from './Projects.module.scss';
-
-// const { getProjects } = projectsOps;
-// const { getAllProjects } = projectsSls;
-
-// const colors = ['#8C72DF', '#FF765F', '#71DF87'];
-
-// const ProjectsList = () => {
-//     const [isShowModal, setIsShowModal] = useState(false);
-
-//     const toggleModal = () => setIsShowModal(state => !state);
-
-//     const dispatch = useDispatch();
-//     const projects = useSelector(getAllProjects);
-//     useEffect(() => {
-//         dispatch(getProjects());
-//     }, [dispatch]);
-
-//     return (
-//         <div className={css.projectsContainer}>
-//             <h1 className={css.projectsTitle}>Проекти</h1>
-
-//             <AddButton onClick={toggleModal} />
-//             {/*
-//             <ul className={css.projectsList}>
-//                 {projects.map((project, index) => (
-//                     <li
-//                         className={css.projectsListItem}
-//                         key={project._id}
-//                         style={{ backgroundColor: colors[index % 3] }}
-//                     >
-//                         <Link to={`/projects/${project._id}`}>
-//                             <div className={css.projectsItemContainer}>
-//                                 <h2 className={css.projectsListItemTitle}>
-//                                     {project.title}
-//                                 </h2>
-//                                 <p className={css.projectsListItemDescr}>
-//                                     {project.description}
-//                                 </p>
-//                                 <button type="button" className={css.deleteBtn}>
-//                                     <svg
-//                                         className={css.deleteBtnIcon}
-//                                         style={{ fill: colors[index % 3] }}
-//                                     >
-//                                         <use
-//                                             href={deleteBtn + '#icon-trash'}
-//                                         ></use>
-//                                     </svg>
-//                                 </button>
-//                             </div>
-//                         </Link>
-//                     </li>
-//                 ))}
-//             </ul> */}
-
-//             {isShowModal && (
-//                 <NewItemModal title="Створення проекту" onClose={toggleModal}>
-//                     <NewProjectForm onClose={toggleModal} />
-//                 </NewItemModal>
-//             )}
-//         </div>
-//     );
-// };
-
-// export default ProjectsList;
-
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useRouteMatch } from 'react-router-dom';
@@ -81,14 +5,9 @@ import { useHistory, useRouteMatch } from 'react-router-dom';
 import ProjectsListItem from '../ProjectsListItem/ProjectsListItem';
 
 import { AddButton, NewItemModal, NewProjectForm } from '../../common';
-import {
-    projectsOps,
-    projectsSls,
-    projectsReducer,
-} from '../../../redux/projects';
+import { projectsOps, projectsSls } from '../../../redux/projects';
 
 import styles from './Projects.module.scss';
-import Loader from '../../common/Spinner/Spinner';
 
 const { getProjects } = projectsOps;
 const { getAllProjects } = projectsSls;
@@ -103,20 +22,6 @@ const colors = [
     '#4394f1',
     '#d45535',
 ];
-let currentColor = colors[0];
-let idx = 0;
-
-const getCurrentColor = () => {
-    if (idx < colors.length) {
-        currentColor = colors[idx];
-        idx += 1;
-        return currentColor;
-    } else {
-        currentColor = colors[0];
-        idx = 0;
-        return currentColor;
-    }
-};
 
 export default function ProjectsPage() {
     const [isShowModal, setIsShowModal] = useState(false);
@@ -144,31 +49,27 @@ export default function ProjectsPage() {
             <div className={styles.projectsContainer}>
                 <h2 className={styles.title}>Проекти</h2>
 
-                {!projects.length && !projectsReducer.loading ? (
+                {!projects.length && !projectsSls.getLoading ? (
                     <p className={styles.projectsNone}>
                         Ваша колекція проектів порожня, скористайтесь кнопкою
                         "Створити проект"
                     </p>
                 ) : (
                     <div component="ul" className={styles.projectsList}>
-                        {projects.map(project => (
-                            <div
-                                key={project._id}
-                                timeout={200}
-                                // classNames={popTransition}
-                            >
+                        {projects.map((project, index) => (
+                            <div key={project._id} timeout={200}>
                                 <li
                                     className={styles.projectsListItem}
                                     id={project._id ? project._id : project.id}
                                     key={project._id}
                                     style={{
-                                        backgroundColor: getCurrentColor(),
+                                        backgroundColor: colors[index % 8],
                                     }}
                                     onClick={onHandleClick}
                                 >
                                     <ProjectsListItem
                                         {...project}
-                                        color={currentColor}
+                                        color={colors[index % 8]}
                                     >
                                         <span
                                             className={
@@ -183,7 +84,7 @@ export default function ProjectsPage() {
                         ))}
                     </div>
                 )}
-                <div className="addProjectSection">
+                <div>
                     <AddButton
                         type="button"
                         className={styles.btnAdd}
@@ -203,8 +104,6 @@ export default function ProjectsPage() {
                     </NewItemModal>
                 )}
             </div>
-
-            {projectsReducer.loading && <Loader />}
         </>
     );
 }
