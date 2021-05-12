@@ -1,0 +1,103 @@
+.projectInfo {
+    position: relative;
+}
+
+.projectTitle {
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    margin-bottom: 6px;
+    width: 116px;
+    max-height: 62px;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.projectDescription {
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: #ffffff;
+    max-height: 68px;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.btnDelete {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: all 200ms ease;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    z-index: 1;
+    position: absolute;
+    top: 66px;
+    left: 86px;
+    transition: all 0.25s linear;
+}
+
+.btnDeleteIcon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    fill: #8c72df;
+    margin-top: 4px;
+    transition: all 0.25s linear;
+}
+
+.btnDelete:hover .btnDeleteIcon,
+.btnDelete:focus .btnDeleteIcon {
+    transform: scale(1.15);
+    box-shadow: 0 0 25px #fff;
+}
+
+.btnDelete:hover,
+.btnDelete:focus {
+    border: 1px solid #ff6b08;
+}
+
+/* !  ------------------TABLET ver.------------------ */
+@media screen and (min-width: 768px) {
+    .projectTitle {
+        font-size: 26px;
+        line-height: 32px;
+
+        width: 176px;
+        margin-bottom: 10px;
+    }
+    .projectDescription {
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .btnDelete {
+        width: 34px;
+        height: 34px;
+
+        position: absolute;
+        top: 114px;
+        left: 152px;
+    }
+    .btnDeleteIcon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* ! ------------------DESKTOP ver.------------------ */
+@media screen and (min-width: 1200px) {
+    .projectTitle {
+        max-width: 210px;
+        margin-bottom: 20px;
+    }
+    .btnDelete {
+        position: absolute;
+        top: 167px;
+        left: 194px;
+    }
+}
