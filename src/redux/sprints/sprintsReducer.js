@@ -2,18 +2,18 @@ import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import sprintsActions from './sprintsActions';
 
 const {
-    sprintAddRequest,
-    sprintAddSuccess,
-    sprintAddError,
     sprintGetRequest,
     sprintGetSuccess,
     sprintGetError,
-    sprintChangeRequest,
-    sprintChangeSuccess,
-    sprintChangeError,
+    sprintAddRequest,
+    sprintAddSuccess,
+    sprintAddError,
     sprintDeleteRequest,
     sprintDeleteSuccess,
     sprintDeleteError,
+    sprintChangeRequest,
+    sprintChangeSuccess,
+    sprintChangeError,
 } = sprintsActions;
 
 const sprintsList = createReducer([], {
@@ -24,6 +24,9 @@ const sprintsList = createReducer([], {
         ...state,
         { _id: id, ...payloadRest },
     ],
+
+    [sprintDeleteSuccess]: (state, { payload }) =>
+        state.filter(sprint => sprint._id !== payload),
 
     [sprintChangeSuccess]: (state, { payload: { data, sprintId } }) =>
         state.map(sprint =>
@@ -45,6 +48,10 @@ const loading = createReducer(false, {
     [sprintAddSuccess]: () => false,
     [sprintAddError]: () => false,
 
+    [sprintDeleteRequest]: () => true,
+    [sprintDeleteSuccess]: () => false,
+    [sprintDeleteError]: () => false,
+
     [sprintChangeRequest]: () => true,
     [sprintChangeSuccess]: () => false,
     [sprintChangeError]: () => false,
@@ -56,6 +63,9 @@ const error = createReducer(null, {
 
     [sprintAddRequest]: () => null,
     [sprintAddError]: (_, { payload }) => payload,
+
+    [sprintDeleteRequest]: () => null,
+    [sprintDeleteError]: (_, { payload }) => payload,
 
     [sprintChangeRequest]: () => null,
     [sprintChangeError]: (_, { payload }) => payload,

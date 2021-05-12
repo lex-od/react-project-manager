@@ -72,10 +72,16 @@ const sprintDeletetOperation = sprintId => async dispatch => {
     dispatch(sprintDeleteRequest());
 
     try {
-        const sprint = await api.deleteSprint(sprintId);
+        await api.deleteSprint(sprintId);
+
         dispatch(sprintDeleteSuccess(sprintId));
-    } catch ({ data, message }) {
-        dispatch(sprintDeleteError({ data, message }));
+    } catch (error) {
+        dispatch(sprintDeleteError(api.formatError(error)));
+
+        if (error.response?.status === 401) {
+            const withParams = () => sprintDeletetOperation(sprintId);
+            dispatch(authOps.refreshToken(withParams));
+        }
     }
 };
 

@@ -54,6 +54,9 @@ const addSprint = async (sprint, projectId) =>
 const changeSprint = async (title, sprintId) =>
     (await axios.patch(`/sprint/title/${sprintId}`, { title })).data;
 
+const deleteSprint = async sprintId =>
+    await axios.delete(`/sprint/${sprintId}`);
+
 // 📌 Таски
 
 const newTask = async (newTask, sprintId) =>
@@ -75,6 +78,7 @@ const api = {
     addMember,
     addSprint,
     changeSprint,
+    deleteSprint,
     newTask,
     getTask,
     changeTask,

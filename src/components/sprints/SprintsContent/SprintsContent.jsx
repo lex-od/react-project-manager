@@ -49,17 +49,7 @@ export default function SprintsContent() {
             <AddButton onClick={toggleSprintModal} />
             <SprintProjectTitle project={actualProject} />
             <div className={styles.sprintDescription}>
-                <p
-                    className={styles.sprintDescriptionText}
-                    onClick={() =>
-                        dispatch(
-                            sprintsOps.sprintChangetOperation(
-                                'some elem',
-                                '609bd0e333a36061e804f36f',
-                            ),
-                        )
-                    }
-                >
+                <p className={styles.sprintDescriptionText}>
                     Короткий опис проекту, якщо він є, розміщуєтсья тут. Ширина
                     тектового блоку
                 </p>
