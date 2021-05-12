@@ -33,7 +33,7 @@ export default function TaskSprintTitle({ sprint }) {
         <div className={styles.sprintHead}>
             {activeInput ? (
                 <form onSubmit={sendnewTitle}>
-                    <input
+                    <textarea
                         type="text"
                         name="currentTitle"
                         onChange={changeData}
@@ -44,7 +44,7 @@ export default function TaskSprintTitle({ sprint }) {
             ) : (
                 <h1 className={styles.title}>{sprint?.title}</h1>
             )}
-            <button onClick={sendnewTitle}>
+            <button onClick={sendnewTitle} className={styles.btnNone}>
                 <svg className={styles.textSvg}>
                     <use href={spriteText + '#icon-text'}></use>
                 </svg>

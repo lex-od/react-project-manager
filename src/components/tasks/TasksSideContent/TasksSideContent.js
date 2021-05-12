@@ -7,6 +7,9 @@ import { NewItemModal, NewSprintForm } from '../../common';
 import AddButton from '../../common/addButton/AddButton';
 import TaskSprintCard from '../TaskSprintCard/TaskSprintCard';
 
+import styles from './TasksSideContent.module.scss';
+import TaskLinkToSprint from '../TaskLinkToSprint/TaskLinkToSprint';
+
 const { sprintGetOperation } = sprintsOps;
 const { getAllSprints } = sprintsSls;
 
@@ -26,19 +29,19 @@ export default function TasksSideContent() {
     const sprints = useSelector(getAllSprints);
 
     return (
-        <>
-            <div>
-                <svg></svg>
-                <span>Показати спринти</span>
-            </div>
-            <ul>
+        <div className={styles.asideWrap}>
+            <TaskLinkToSprint />
+
+            <ul className={styles.asideSprintsList}>
                 {sprints.length &&
                     sprints.map(sprint => (
                         <TaskSprintCard key={sprint._id} sprint={sprint} />
                     ))}
             </ul>
-
-            <AddButton onClick={toggleSprintModal} />
+            <div className={styles.newSprintBlock}>
+                <AddButton onClick={toggleSprintModal} />
+                <span className={styles.newSprintText}>Створити спринт</span>
+            </div>
 
             {isShowSprintModal && (
                 <NewItemModal
@@ -48,6 +51,6 @@ export default function TasksSideContent() {
                     <NewSprintForm onClose={toggleSprintModal} />
                 </NewItemModal>
             )}
-        </>
+        </div>
     );
 }

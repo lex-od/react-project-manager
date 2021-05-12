@@ -5,9 +5,6 @@
         display: none;
     }
     @include for-size(tablet) {
-        width: 216px;
-    }
-    @include for-size(desktop) {
-        width: 200px;
+        min-width: 215px;
     }
 }

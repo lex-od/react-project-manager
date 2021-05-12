@@ -1,14 +1,20 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
+
+import styles from './TaskSprintCard.module.scss';
 
 export default function TaskSprintCard({ sprint }) {
     const { projectId } = useParams();
     return (
-        <li>
-            <Link to={`/projects/${projectId}/sprints/${sprint._id}`}>
-                {/* <svg></svg> */}
-                <span>{sprint.title}</span>
-            </Link>
+        <li className={styles.asideSprintsItem}>
+            <NavLink
+                to={`/projects/${projectId}/sprints/${sprint._id}`}
+                className={styles.asideLink}
+                activeClassName={styles.asideActiveLink}
+            >
+                <div className={styles.asideSprintsIcon}></div>
+                <span className={styles.asideSprintsName}>{sprint.title}</span>
+            </NavLink>
         </li>
     );
 }

@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
+
+import btnRight from '../../../assets/icons/tasksArrowRight.svg';
+import btnLeft from '../../../assets/icons/tasksArrowLeft.svg';
+
 import moment from 'moment';
+
+import styles from './TaskActiveDate.module.scss';
 
 export default function TaskActiveDate({ sprint, changeActiveDate }) {
     const [activeDate, setActiveDate] = useState(sprint?.startDate || '');
@@ -13,30 +19,61 @@ export default function TaskActiveDate({ sprint, changeActiveDate }) {
         1;
 
     const incrDate = () => {
-        setActiveDate(moment(activeDate).add(1, 'days').format('YYYY-MM-DD'));
+        const newDate = moment(activeDate).add(1, 'days').format('YYYY-MM-DD');
+        setActiveDate(newDate);
+        changeActiveDate(newDate);
     };
 
     const decrDate = () => {
-        setActiveDate(
-            moment(activeDate).subtract(1, 'days').format('YYYY-MM-DD'),
-        );
+        const newDate = moment(activeDate)
+            .subtract(1, 'days')
+            .format('YYYY-MM-DD');
+
+        setActiveDate(newDate);
+        changeActiveDate(newDate);
     };
 
     return (
-        <div>
-            {activeDate > sprint?.startDate && (
-                <button onClick={decrDate}>-</button>
-            )}
-            {sprint?.startDate && (
-                <span>
-                    {timeInterval}/{sprint.duration}
-                </span>
-            )}
-            {activeDate < sprint?.endDate && (
-                <button onClick={incrDate}>+</button>
-            )}
+        <div className={styles.dateBlock}>
+            <div>
+                <button
+                    type="button"
+                    onClick={decrDate}
+                    className={styles.btnBaze}
+                >
+                    {activeDate > sprint?.startDate && (
+                        <svg className={styles.nextDate}>
+                            <use href={btnLeft + '#Capa_1'}></use>
+                        </svg>
+                    )}
+                </button>
 
-            {sprint?.startDate && <span>{activeDate}</span>}
+                {sprint?.startDate && (
+                    <span className={styles.dateText}>
+                        <span className={styles.dateTextActive}>
+                            {timeInterval}
+                        </span>
+
+                        <span className={styles.dateTextDuration}>
+                            {' '}
+                            / {sprint.duration}
+                        </span>
+                    </span>
+                )}
+
+                <button onClick={incrDate} className={styles.btnBaze}>
+                    {activeDate < sprint?.endDate && (
+                        <svg className={styles.nextDate}>
+                            <use href={btnRight + '#Capa_1'}></use>
+                        </svg>
+                    )}
+                </button>
+            </div>
+            <div>
+                {sprint?.startDate && (
+                    <span className={styles.dateTextDate}>{activeDate}</span>
+                )}
+            </div>
         </div>
     );
 }

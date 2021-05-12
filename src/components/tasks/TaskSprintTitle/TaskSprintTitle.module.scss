@@ -2,20 +2,44 @@
 
 .sprintHead {
     display: flex;
-    align-items: baseline;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    @include for-size(tablet) {
+        margin-bottom: 30px;
+    }
 }
 
 .title {
+    min-height: 88px;
     font-style: normal;
     font-weight: 500;
     font-size: 26px;
     line-height: 1.23;
     letter-spacing: 0.04em;
-    color: #181c27;
+    color: $primaryTextColor;
     margin: 0;
+    width: 260px;
+    background-color: inherit;
+    outline: none;
+
+    @include for-size(tablet) {
+        font-size: 36px;
+        width: 337px;
+        margin: 0 20px 0 0;
+    }
+    @include for-size(desktop) {
+        margin: 0 43px 0 0;
+    }
 }
 
 .textSvg {
     width: 20px;
     height: 20px;
+}
+
+.btnNone {
+    border: 0;
+    padding: 0;
+    background-color: inherit;
+    margin-top: 8px;
 }
