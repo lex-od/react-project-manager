@@ -73,8 +73,8 @@ export default function SprintsContent() {
             <ul className={styles.sprintsList}>
                 {sprints.length &&
                     sprints.map(sprint => (
-                        <Link to={`/sprints/${sprint._id}`}>
-                            <li className={styles.sprintCard} key={sprint._id}>
+                        <Link to={`/sprints/${sprint._id}`} key={sprint._id}>
+                            <li className={styles.sprintCard}>
                                 <SprintCard sprint={sprint} />
                             </li>
                         </Link>
