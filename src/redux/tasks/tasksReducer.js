@@ -46,7 +46,7 @@ const tasksList = createReducer([], {
         ),
 
     [taskDeleteSuccess]: (state, { payload }) =>
-        state.filter(({ _id }) => _id !== payload.taskId),
+        state.filter(({ _id }) => _id !== payload),
 });
 
 // const filter = createReducer('', {
