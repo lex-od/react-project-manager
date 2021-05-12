@@ -72,23 +72,27 @@ const deleteTask = async taskId => await axios.delete(`/task/${taskId}`);
 const api = {
     setToken,
     unsetToken,
+    formatError,
+
     register,
     login,
-    getSprints,
+    logOut,
+    refresh,
+
+    getProject,
+    addProject,
+    changeProject,
+    deleteProject,
     addMember,
+
+    getSprints,
     addSprint,
     changeSprint,
     deleteSprint,
+
     newTask,
     getTask,
     changeTask,
     deleteTask,
-    formatError,
-    logOut,
-    refresh,
-    addProject,
-    getProject,
-    changeProject,
-    deleteProject,
 };
 export default api;
