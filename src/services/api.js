@@ -45,13 +45,14 @@ const deleteProject = async projectId =>
 
 // 📌 Спринты
 
-const getSprint = async projectId => await axios.get(`/sprint/${projectId}`);
+const getSprints = async projectId =>
+    (await axios.get(`/sprint/${projectId}`)).data;
 
 const addSprint = async (sprint, projectId) =>
     (await axios.post(`/sprint/${projectId}`, sprint)).data;
 
 const changeSprint = async (title, sprintId) =>
-    (await axios.patch(`/sprint/title/${sprintId}`, title)).data;
+    (await axios.patch(`/sprint/title/${sprintId}`, { title })).data;
 
 // 📌 Таски
 
@@ -70,7 +71,7 @@ const api = {
     unsetToken,
     register,
     login,
-    getSprint,
+    getSprints,
     addMember,
     addSprint,
     changeSprint,

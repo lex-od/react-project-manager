@@ -17,32 +17,33 @@ const {
 } = sprintsActions;
 
 const sprintsList = createReducer([], {
+    [sprintGetRequest]: () => [],
+    [sprintGetSuccess]: (_, { payload }) => payload,
+
     [sprintAddSuccess]: (state, { payload: { id, ...payloadRest } }) => [
         ...state,
         { _id: id, ...payloadRest },
     ],
 
-    [sprintGetRequest]: () => [],
-    [sprintGetSuccess]: (_, { payload }) => payload,
-    [sprintChangeSuccess]: (state, { payload }) =>
+    [sprintChangeSuccess]: (state, { payload: { data, sprintId } }) =>
         state.map(sprint =>
-            sprint._id === payload.sprintId
+            sprint._id === sprintId
                 ? {
                       ...sprint,
-                      title: payload.changedTitle.newTitle,
+                      title: data.newTitle,
                   }
                 : sprint,
         ),
 });
 
 const loading = createReducer(false, {
-    [sprintAddRequest]: () => true,
-    [sprintAddSuccess]: () => false,
-    [sprintAddError]: () => false,
-
     [sprintGetRequest]: () => true,
     [sprintGetSuccess]: () => false,
     [sprintGetError]: () => false,
+
+    [sprintAddRequest]: () => true,
+    [sprintAddSuccess]: () => false,
+    [sprintAddError]: () => false,
 
     [sprintChangeRequest]: () => true,
     [sprintChangeSuccess]: () => false,
@@ -50,10 +51,12 @@ const loading = createReducer(false, {
 });
 
 const error = createReducer(null, {
-    [sprintAddRequest]: () => null,
-    [sprintAddError]: (_, { payload }) => payload,
     [sprintGetRequest]: () => null,
     [sprintGetError]: (_, { payload }) => payload,
+
+    [sprintAddRequest]: () => null,
+    [sprintAddError]: (_, { payload }) => payload,
+
     [sprintChangeRequest]: () => null,
     [sprintChangeError]: (_, { payload }) => payload,
 });
