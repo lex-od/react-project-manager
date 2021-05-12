@@ -1,13 +1,29 @@
-import styles from './SprintsSideContent.module.scss';
-import spriteGoBack from '../../../assets/icons/goBackArrow.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { projectsSls, projectsOps } from '../../../redux/projects';
 import AddButton from '../../common/addButton/AddButton';
 import { NewItemModal, NewProjectForm } from '../../common';
+import spriteGoBack from '../../../assets/icons/goBackArrow.svg';
+import styles from './SprintsSideContent.module.scss';
+import SprintSideCard from '../SprintsSideCard/SprintsSideCard';
+
+const { getAllProjects } = projectsSls;
+const { getProjects } = projectsOps;
 
 export default function SprintsContent() {
     const [isShowProjectModal, setIsShowProjectModal] = useState(false);
 
     const toggleProjectModal = () => setIsShowProjectModal(state => !state);
+
+    const dispatch = useDispatch();
+    const { projectId } = useParams();
+
+    useEffect(() => {
+        dispatch(getProjects(projectId));
+    }, [dispatch, projectId]);
+
+    const projects = useSelector(getAllProjects);
 
     return (
         <div className={styles.asideWrap}>
@@ -20,10 +36,14 @@ export default function SprintsContent() {
                 <span className={styles.asideBackText}>Показати проекти</span>
             </div>
             <ul className={styles.asideSprintsList}>
-                <li className={styles.asideSprintsItem}>
-                    <div className={styles.asideSprintsIcon}></div>
-                    <span className={styles.asideSprintsName}>Project 1</span>
-                </li>
+                {projects.length &&
+                    projects.map((project, index) => (
+                        <SprintSideCard
+                            key={project._id}
+                            project={project}
+                            index={index}
+                        />
+                    ))}
             </ul>
 
             {isShowProjectModal && (
