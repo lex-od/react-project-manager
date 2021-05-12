@@ -15,18 +15,20 @@ export default function SprintCard({ sprint }) {
     };
     return (
         <>
-            <h2 className={styles.sprintCardHead}>Sprint Burndown Chart 1</h2>
+            <h2 className={styles.sprintCardHead}>{sprint.title}</h2>
             <div className={styles.sprintItem}>
                 <span className={styles.sprintItemText}>Дата початку</span>
-                <span className={styles.sprintItemText}>10 Лип</span>
+                <span className={styles.sprintItemText}>
+                    {sprint.startDate}
+                </span>
             </div>
             <div className={styles.sprintItem}>
                 <span className={styles.sprintItemText}>Дата закінченя</span>
-                <span className={styles.sprintItemText}>22 Лип</span>
+                <span className={styles.sprintItemText}>{sprint.endDate}</span>
             </div>
             <div className={styles.sprintItem}>
                 <span className={styles.sprintItemText}>Тривалість</span>
-                <span className={styles.sprintItemText}>226</span>
+                <span className={styles.sprintItemText}>{sprint.duration}</span>
             </div>
             <button onClick={deleteSprint}>delete</button>
             <svg className={styles.deleteSvg}>
