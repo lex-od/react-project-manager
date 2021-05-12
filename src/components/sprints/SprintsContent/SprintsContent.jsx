@@ -46,7 +46,10 @@ export default function SprintsContent() {
 
     return (
         <div className={styles.wrap}>
-            <AddButton onClick={toggleSprintModal} />
+            <div className={styles.addButtonWrap}>
+                <AddButton onClick={toggleSprintModal} />
+                <span className={styles.addButtonText}>Створити спринт</span>
+            </div>
             <SprintProjectTitle project={actualProject} />
             <div className={styles.sprintDescription}>
                 <p className={styles.sprintDescriptionText}>
@@ -70,11 +73,11 @@ export default function SprintsContent() {
             <ul className={styles.sprintsList}>
                 {sprints.length &&
                     sprints.map(sprint => (
-                        <li className={styles.sprintCard} key={sprint._id}>
-                            <Link to={`/sprints/${sprint._id}`}>
+                        <Link to={`/sprints/${sprint._id}`}>
+                            <li className={styles.sprintCard} key={sprint._id}>
                                 <SprintCard sprint={sprint} />
-                            </Link>
-                        </li>
+                            </li>
+                        </Link>
                     ))}
             </ul>
 
