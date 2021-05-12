@@ -37,45 +37,62 @@ const addProject = async project =>
 
 const getProject = async () => (await axios.get('/project')).data;
 
+const changeProject = async (title, projectId) =>
+    (await axios.patch(`/project/title/${projectId}`, { title })).data;
+
+const deleteProject = async projectId =>
+    await axios.delete(`/project/${projectId}`);
+
 // 📌 Спринты
 
-const getSprint = async projectId => await axios.get(`/sprint/${projectId}`);
+const getSprints = async projectId =>
+    (await axios.get(`/sprint/${projectId}`)).data;
 
 const addSprint = async (sprint, projectId) =>
     (await axios.post(`/sprint/${projectId}`, sprint)).data;
 
 const changeSprint = async (title, sprintId) =>
-    (await axios.patch(`/sprint/title/${sprintId}`, title)).data;
+    (await axios.patch(`/sprint/title/${sprintId}`, { title })).data;
+
+const deleteSprint = async sprintId =>
+    await axios.delete(`/sprint/${sprintId}`);
 
 // 📌 Таски
 
 const newTask = async (newTask, sprintId) =>
     (await axios.post(`/task/${sprintId}`, newTask)).data;
 
-const getTask = async sprintId => await axios.get(`/task/${sprintId}`);
+const getTask = async sprintId => (await axios.get(`/task/${sprintId}`)).data;
 
 const changeTask = async (newData, taskId) =>
-    await axios.patch(`/task/${taskId}`, newData);
+    (await axios.patch(`/task/${taskId}`, newData)).data;
 
 const deleteTask = async taskId => await axios.delete(`/task/${taskId}`);
 
 const api = {
     setToken,
     unsetToken,
+    formatError,
+
     register,
     login,
-    getSprint,
+    logOut,
+    refresh,
+
+    getProject,
+    addProject,
+    changeProject,
+    deleteProject,
     addMember,
+
+    getSprints,
     addSprint,
     changeSprint,
+    deleteSprint,
+
     newTask,
     getTask,
     changeTask,
     deleteTask,
-    formatError,
-    logOut,
-    refresh,
-    addProject,
-    getProject,
 };
 export default api;

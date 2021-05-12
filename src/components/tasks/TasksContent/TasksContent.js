@@ -11,6 +11,7 @@ import AddButton from '../../common/addButton/AddButton';
 import styles from './TasksContent.module.scss';
 import TaskSprintTitle from '../TaskSprintTitle/TaskSprintTitle';
 import TaskActiveDate from '../TaskActiveDate/TaskActiveDate';
+import { ChartModal, ChartButton } from '../../tasks';
 
 const { getAllTasks } = tasksSls;
 const { taskGetOperation } = tasksOps;
@@ -43,6 +44,12 @@ export default function TasksContent() {
     };
 
     const toggleTaskModal = () => setIsShowTaskModal(state => !state);
+
+    // открытие модалки с графиком
+    const [openModal, setOpenModal] = useState(false);
+    const onOpenModal = () => {
+        setOpenModal(state => !state);
+    };
 
     return (
         <div>
@@ -108,6 +115,13 @@ export default function TasksContent() {
                 >
                     <NewTaskForm onClose={toggleTaskModal} />
                 </NewItemModal>
+            )}
+
+            {tasks.length > 2 && (
+                <div className={styles.chartBox}>
+                    {openModal && <ChartModal onClose={onOpenModal} />}
+                    <ChartButton onClick={onOpenModal}></ChartButton>
+                </div>
             )}
         </div>
     );

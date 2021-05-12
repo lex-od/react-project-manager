@@ -13,6 +13,7 @@ export default function AppBar() {
     return (
         <div className={css.appBar}>
             <span>{email}</span>
+
             <button
                 type="button"
                 className={css.logoutButton}

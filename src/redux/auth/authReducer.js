@@ -18,9 +18,25 @@ const {
     refreshSuccess,
     refreshError,
 } = authActs;
-const { addProjectError, addMemberError } = projectsActs;
-const { sprintAddError } = sprintsActs;
-const { taskAddError } = tasksActs;
+const {
+    getProjectsError,
+    addProjectError,
+    deleteProjectError,
+    changeProjectError,
+    addMemberError,
+} = projectsActs;
+const {
+    sprintGetError,
+    sprintAddError,
+    sprintDeleteError,
+    sprintChangeError,
+} = sprintsActs;
+const {
+    taskGetError,
+    taskAddError,
+    taskDeleteError,
+    taskChangeError,
+} = tasksActs;
 
 const initUser = { id: null, email: null };
 
@@ -52,13 +68,21 @@ const user = createReducer(initUser, {
 
     [refreshError]: () => initUser,
 
+    [getProjectsError]: resetUserWhenInvalidSession,
     [addProjectError]: resetUserWhenInvalidSession,
-
+    [deleteProjectError]: resetUserWhenInvalidSession,
+    [changeProjectError]: resetUserWhenInvalidSession,
     [addMemberError]: resetUserWhenInvalidSession,
 
+    [sprintGetError]: resetUserWhenInvalidSession,
     [sprintAddError]: resetUserWhenInvalidSession,
+    [sprintDeleteError]: resetUserWhenInvalidSession,
+    [sprintChangeError]: resetUserWhenInvalidSession,
 
+    [taskGetError]: resetUserWhenInvalidSession,
     [taskAddError]: resetUserWhenInvalidSession,
+    [taskDeleteError]: resetUserWhenInvalidSession,
+    [taskChangeError]: resetUserWhenInvalidSession,
 });
 
 const initTokens = { accessToken: null, refreshToken: null, sid: null };
@@ -100,13 +124,21 @@ const tokens = createReducer(initTokens, {
     }),
     [refreshError]: () => initTokens,
 
+    [getProjectsError]: resetTokensWhenInvalidSession,
     [addProjectError]: resetTokensWhenInvalidSession,
-
+    [deleteProjectError]: resetTokensWhenInvalidSession,
+    [changeProjectError]: resetTokensWhenInvalidSession,
     [addMemberError]: resetTokensWhenInvalidSession,
 
+    [sprintGetError]: resetTokensWhenInvalidSession,
     [sprintAddError]: resetTokensWhenInvalidSession,
+    [sprintDeleteError]: resetTokensWhenInvalidSession,
+    [sprintChangeError]: resetTokensWhenInvalidSession,
 
+    [taskGetError]: resetTokensWhenInvalidSession,
     [taskAddError]: resetTokensWhenInvalidSession,
+    [taskDeleteError]: resetTokensWhenInvalidSession,
+    [taskChangeError]: resetTokensWhenInvalidSession,
 });
 
 const loading = createReducer(false, {

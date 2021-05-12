@@ -8,30 +8,57 @@ import spriteDelete from '../../../assets/icons/sprintsDelete.svg';
 
 const { sprintChangedOperation, sprintDeletedOperation } = sprintsOps;
 
+const monthes = [
+    'Січ',
+    'Лют',
+    'Бер',
+    'Кві',
+    'Тра',
+    'Чер',
+    'Лип',
+    'Сер',
+    'Вер',
+    'Жов',
+    'Лис',
+    'Гру',
+];
+
 export default function SprintCard({ sprint }) {
     const dispatch = useDispatch();
     const deleteSprint = () => {
         dispatch(sprintDeletedOperation(sprint._id));
     };
+
+    // const moment = moment(sprint.endDate);
+
     return (
         <>
-            <h2 className={styles.sprintCardHead}>Sprint Burndown Chart 1</h2>
+            <h2 className={styles.sprintCardHead}>{sprint.title}</h2>
             <div className={styles.sprintItem}>
                 <span className={styles.sprintItemText}>Дата початку</span>
-                <span className={styles.sprintItemText}>10 Лип</span>
+                <span className={styles.sprintItemDate}>
+                    {new Date(sprint.startDate).getDate() +
+                        ' ' +
+                        monthes[new Date(sprint.startDate).getMonth()]}
+                </span>
             </div>
             <div className={styles.sprintItem}>
                 <span className={styles.sprintItemText}>Дата закінченя</span>
-                <span className={styles.sprintItemText}>22 Лип</span>
+                <span className={styles.sprintItemDate}>
+                    {new Date(sprint.endDate).getDate() +
+                        ' ' +
+                        monthes[new Date(sprint.endDate).getMonth()]}
+                </span>
             </div>
             <div className={styles.sprintItem}>
                 <span className={styles.sprintItemText}>Тривалість</span>
-                <span className={styles.sprintItemText}>226</span>
+                <span className={styles.sprintItemDate}>{sprint.duration}</span>
             </div>
-            <button onClick={deleteSprint}>delete</button>
-            <svg className={styles.deleteSvg}>
-                <use href={spriteDelete + '#icon-delete'}></use>
-            </svg>
+            <button className={styles.deleteBtn} onClick={deleteSprint}>
+                <svg className={styles.deleteSvg}>
+                    <use href={spriteDelete + '#icon-delete'}></use>
+                </svg>
+            </button>
         </>
     );
 }

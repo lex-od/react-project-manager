@@ -39,6 +39,7 @@ const login = credentials => async dispatch => {
         api.setToken(data.accessToken);
         dispatch(loginSuccess(data));
     } catch (error) {
+        alert('Помилка! Перевірте дані для входу!');
         dispatch(loginError(api.formatError(error)));
     }
 };
@@ -54,7 +55,7 @@ const logOut = () => async dispatch => {
     } catch (error) {
         dispatch(logoutError(api.formatError(error)));
 
-        if (error.response.status === 401) {
+        if (error.response?.status === 401) {
             dispatch(refreshToken(logOut));
         }
     }
@@ -63,14 +64,15 @@ const logOut = () => async dispatch => {
 const refreshToken = prevOps => async (dispatch, getState) => {
     const refreshToken = authSls.getRefreshToken(getState());
     const sid = authSls.getSid(getState());
+
     api.setToken(refreshToken);
     dispatch(refreshRequest());
 
     try {
         const data = await api.refresh(sid);
 
-        dispatch(refreshSuccess(data));
         api.setToken(data.newAccessToken);
+        dispatch(refreshSuccess(data));
 
         dispatch(prevOps());
     } catch (error) {

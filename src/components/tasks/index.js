@@ -1,5 +1,6 @@
 import Chart from './Chart/Chart';
-import ChartModal from './Chart/ChartModal';
+import ChartModal from './ChartModal/ChartModal';
+import ChartButton from './ChartButton/ChartButton';
 
 import TasksContent from './TasksContent/TasksContent';
 import TaskCard from './TaskCard/TaskCard';
@@ -13,4 +14,5 @@ export {
     TasksSideContent,
     Chart,
     ChartModal,
+    ChartButton,
 };

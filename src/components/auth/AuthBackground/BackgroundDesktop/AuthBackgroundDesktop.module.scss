@@ -1,32 +1,37 @@
 .elipse1 {
     position: absolute;
-    bottom: -20%;
-    right: 82%;
-    z-index: 0;
+
+    bottom: -14%;
+    right: 78%;
+    z-index: -1;
 }
 
 .elipse2 {
     position: absolute;
-    right: 83%;
-    bottom: -20%;
+
+    right: 81%;
+    bottom: -7%;
     opacity: 0.9;
     z-index: 6;
 }
 
 .elipse3 {
     position: absolute;
+
     top: 43%;
     left: -44%;
 }
 
 .elipse4 {
     position: absolute;
+
     top: 17%;
     left: -21%;
 }
 
 .elipse5 {
     position: absolute;
+
     top: -7%;
     right: -6%;
     z-index: -1;
@@ -34,20 +39,23 @@
 
 .elipse6 {
     position: absolute;
+
     top: -2%;
     right: -28%;
 }
 
 .union_white {
     position: absolute;
+
     left: 70%;
-    bottom: -18%;
+    bottom: -14%;
     z-index: -1;
 }
 
 .union_orange {
     position: absolute;
+
     z-index: -1;
-    left: 73%;
-    bottom: -11%;
+    left: 71%;
+    bottom: -12%;
 }

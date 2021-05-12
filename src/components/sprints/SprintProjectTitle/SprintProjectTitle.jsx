@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { sprintsOps } from '../../../redux/sprints';
-import styles from './TaskSprintTitle.module.scss';
+import { projectsOps } from '../../../redux/projects';
 
+import styles from '../SprintsContent/SprintsContent.module.scss';
 import spriteText from '../../../assets/icons/sprintsText.svg';
 
-const { sprintChangetOperation } = sprintsOps;
+const { changeProject } = projectsOps;
 
-export default function TaskSprintTitle({ sprint }) {
+export default function SprintProjectTitle({ project }) {
     const [activeInput, setTitleChange] = useState(false);
-    const [currentTitle, setTitle] = useState(sprint?.title || '');
+    const [currentTitle, setTitle] = useState(project?.title || '');
     const dispatch = useDispatch();
 
     const changeData = e => {
@@ -18,14 +18,18 @@ export default function TaskSprintTitle({ sprint }) {
     };
 
     useEffect(() => {
-        setTitle(sprint?.title);
-    }, [sprint]);
+        setTitle(project?.title);
+    }, [project]);
 
     const sendnewTitle = e => {
         e.preventDefault();
         setTitleChange(!activeInput);
         if (activeInput) {
-            dispatch(sprintChangetOperation(currentTitle, sprint._id));
+            const newTitle = {
+                title: currentTitle,
+            };
+
+            dispatch(changeProject(newTitle, project._id));
         }
     };
 
@@ -33,7 +37,7 @@ export default function TaskSprintTitle({ sprint }) {
         <div className={styles.sprintHead}>
             {activeInput ? (
                 <form onSubmit={sendnewTitle}>
-                    <textarea
+                    <input
                         type="text"
                         name="currentTitle"
                         onChange={changeData}
@@ -42,9 +46,9 @@ export default function TaskSprintTitle({ sprint }) {
                     />
                 </form>
             ) : (
-                <h1 className={styles.title}>{sprint?.title}</h1>
+                <h1 className={styles.title}>{project?.title}</h1>
             )}
-            <button onClick={sendnewTitle} className={styles.btnNone}>
+            <button onClick={sendnewTitle}>
                 <svg className={styles.textSvg}>
                     <use href={spriteText + '#icon-text'}></use>
                 </svg>

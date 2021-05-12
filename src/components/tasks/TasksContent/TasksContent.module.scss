@@ -84,3 +84,15 @@ ul {
         line-height: 1.22px;
     }
 }
+
+.chartBox {
+    position: fixed;
+    height: 44px;
+    bottom: 20px;
+    left: 20px;
+    @include for-size(tablet) {
+        left: auto;
+        bottom: 60px;
+        right: 55px;
+    }
+}

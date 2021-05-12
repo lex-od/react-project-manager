@@ -38,24 +38,33 @@ const sprintGetOperation = projectId => async dispatch => {
     dispatch(sprintGetRequest());
 
     try {
-        const sprints = await api.getSprint(projectId);
-        dispatch(sprintGetSuccess(sprints.data.sprints));
-    } catch ({ data, message }) {
-        dispatch(sprintGetError({ data, message }));
+        const { sprints } = await api.getSprints(projectId);
+
+        dispatch(sprintGetSuccess(Array.isArray(sprints) ? sprints : []));
+    } catch (error) {
+        dispatch(sprintGetError(api.formatError(error)));
+
+        if (error.response?.status === 401) {
+            const withParams = () => sprintGetOperation(projectId);
+            dispatch(authOps.refreshToken(withParams));
+        }
     }
 };
 
-const sprintChangetOperation = (newTitle, sprintId) => async dispatch => {
+const sprintChangetOperation = (title, sprintId) => async dispatch => {
     dispatch(sprintChangeRequest());
 
     try {
-        const changedTitle = await api.changeSprint(newTitle, sprintId);
+        const data = await api.changeSprint(title, sprintId);
 
-        console.log(changedTitle);
+        dispatch(sprintChangeSuccess({ data, sprintId }));
+    } catch (error) {
+        dispatch(sprintChangeError(api.formatError(error)));
 
-        dispatch(sprintChangeSuccess({ changedTitle, sprintId }));
-    } catch ({ data, message }) {
-        dispatch(sprintChangeError({ data, message }));
+        if (error.response?.status === 401) {
+            const withParams = () => sprintChangetOperation(title, sprintId);
+            dispatch(authOps.refreshToken(withParams));
+        }
     }
 };
 
@@ -63,10 +72,16 @@ const sprintDeletetOperation = sprintId => async dispatch => {
     dispatch(sprintDeleteRequest());
 
     try {
-        const sprint = await api.deleteSprint(sprintId);
+        await api.deleteSprint(sprintId);
+
         dispatch(sprintDeleteSuccess(sprintId));
-    } catch ({ data, message }) {
-        dispatch(sprintDeleteError({ data, message }));
+    } catch (error) {
+        dispatch(sprintDeleteError(api.formatError(error)));
+
+        if (error.response?.status === 401) {
+            const withParams = () => sprintDeletetOperation(sprintId);
+            dispatch(authOps.refreshToken(withParams));
+        }
     }
 };
 

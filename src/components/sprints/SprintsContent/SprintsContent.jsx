@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { projectsSls } from '../../../redux/projects';
 import { sprintsSls, sprintsOps } from '../../../redux/sprints';
 import SprintCard from '../SprintCard/SprintCard';
+import SprintProjectTitle from '../SprintProjectTitle/SprintProjectTitle';
 import AddButton from '../../common/addButton/AddButton';
 import { NewItemModal, NewMemberForm, NewSprintForm } from '../../common';
 
@@ -12,6 +14,7 @@ import spriteText from '../../../assets/icons/sprintsText.svg';
 import spriteDelete from '../../../assets/icons/sprintsDelete.svg';
 import spriteAddPeople from '../../../assets/icons/addPeople.svg';
 
+const { getAllProjects } = projectsSls;
 const { getAllSprints } = sprintsSls;
 const { sprintGetOperation } = sprintsOps;
 
@@ -23,33 +26,37 @@ export default function SprintsContent() {
     const toggleMembersModal = () => setIsShowMembersModal(state => !state);
 
     const { projectId } = useParams();
+    const projects = useSelector(getAllProjects);
+    const [actualProject, setactualProject] = useState(null);
     // console.log(projectId);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(sprintGetOperation(projectId));
-    }, [dispatch, projectId]);
+        projectId &&
+            projects.length > 0 &&
+            setactualProject(
+                projects.find(project => project._id === projectId),
+            );
+    }, [dispatch, projectId, projects]);
 
     const sprints = useSelector(getAllSprints);
     // console.log(sprints);
 
     return (
         <div className={styles.wrap}>
-            <div className={styles.sprintHead}>
-                <h1 className={styles.title}>Project 1</h1>
-                <svg className={styles.textSvg}>
-                    <use href={spriteText + '#icon-text'}></use>
-                </svg>
+            <div className={styles.addButtonWrap}>
+                <AddButton onClick={toggleSprintModal} />
+                <span className={styles.addButtonText}>Створити спринт</span>
             </div>
+            <SprintProjectTitle project={actualProject} />
             <div className={styles.sprintDescription}>
                 <p className={styles.sprintDescriptionText}>
                     Короткий опис проекту, якщо він є, розміщуєтсья тут. Ширина
                     тектового блоку
                 </p>
             </div>
-
-            <AddButton onClick={toggleSprintModal} />
 
             <div className={styles.addPeopleWrap}>
                 <svg className={styles.addPeopleSvg}>
@@ -66,89 +73,12 @@ export default function SprintsContent() {
             <ul className={styles.sprintsList}>
                 {sprints.length &&
                     sprints.map(sprint => (
-                        <li className={styles.sprintCard} key={sprint._id}>
-                            <SprintCard sprint={sprint} />
-                        </li>
+                        <Link to={`/sprints/${sprint._id}`} key={sprint._id}>
+                            <li className={styles.sprintCard}>
+                                <SprintCard sprint={sprint} />
+                            </li>
+                        </Link>
                     ))}
-
-                {/* // <li className={styles.sprintCard}>
-                //     <h2 className={styles.sprintCardHead}>
-                //         Sprint Burndown Chart 1
-                //     </h2>
-                //     <div className={styles.sprintItem}>
-                //         <span className={styles.sprintItemText}>
-                //             Дата початку
-                //         </span>
-                //         <span className={styles.sprintItemText}>10 Лип</span>
-                //     </div>
-                //     <div className={styles.sprintItem}>
-                //         <span className={styles.sprintItemText}>
-                //             Дата закінченя
-                //         </span>
-                //         <span className={styles.sprintItemText}>22 Лип</span>
-                //     </div>
-                //     <div className={styles.sprintItem}>
-                //         <span className={styles.sprintItemText}>
-                //             Тривалість
-                //         </span>
-                //         <span className={styles.sprintItemText}>226</span>
-                //     </div>
-                //     <svg className={styles.deleteSvg}>
-                //         <use href={spriteDelete + '#icon-delete'}></use>
-                //     </svg>
-                // </li>
-                // <li className={styles.sprintCard}>
-                //     <h2 className={styles.sprintCardHead}>
-                //         Sprint Burndown Chart 1
-                //     </h2>
-                //     <div className={styles.sprintItem}>
-                //         <span className={styles.sprintItemText}>
-                //             Дата початку
-                //         </span>
-                //         <span className={styles.sprintItemText}>10 Лип</span>
-                //     </div>
-                //     <div className={styles.sprintItem}>
-                //         <span className={styles.sprintItemText}>
-                //             Дата закінченя
-                //         </span>
-                //         <span className={styles.sprintItemText}>22 Лип</span>
-                //     </div>
-                //     <div className={styles.sprintItem}>
-                //         <span className={styles.sprintItemText}>
-                //             Тривалість
-                //         </span>
-                //         <span className={styles.sprintItemText}>226</span>
-                //     </div>
-                //     <svg className={styles.deleteSvg}>
-                //         <use href={spriteDelete + '#icon-delete'}></use>
-                //     </svg>
-                // </li>
-                // <li className={styles.sprintCard}>
-                //     <h2 className={styles.sprintCardHead}>
-                //         Sprint Burndown Chart 1
-                //     </h2>
-                //     <div className={styles.sprintItem}>
-                //         <span className={styles.sprintItemText}>
-                //             Дата початку
-                //         </span>
-                //         <span className={styles.sprintItemText}>10 Лип</span>
-                //     </div>
-                //     <div className={styles.sprintItem}>
-                //         <span className={styles.sprintItemText}>
-                //             Дата закінченя
-                //         </span>
-                //         <span className={styles.sprintItemText}>22 Лип</span>
-                //     </div>
-                //     <div className={styles.sprintItem}>
-                //         <span className={styles.sprintItemText}>
-                //             Тривалість
-                //         </span>
-                //         <span className={styles.sprintItemText}>226</span>
-                //     </div>
-                //     <svg className={styles.deleteSvg}>
-                //         <use href={spriteDelete + '#icon-delete'}></use>
-                //     </svg>
-                // </li> */}
             </ul>
 
             {isShowSprintModal && (
