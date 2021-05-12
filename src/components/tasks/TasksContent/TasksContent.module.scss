@@ -11,9 +11,6 @@ ul {
     flex-grow: 1;
 }
 
-
-
-
 .sprintsList {
     list-style: none;
     padding: 0;
@@ -26,5 +23,17 @@ ul {
 
     @include for-size(descktop) {
         flex-direction: column;
+    }
+}
+
+.chartBox {
+    position: fixed;
+    height: 44px;
+    bottom: 20px;
+    left: 20px;
+    @include for-size(tablet) {
+        left: auto;
+        bottom: 60px;
+        right: 55px;
     }
 }
