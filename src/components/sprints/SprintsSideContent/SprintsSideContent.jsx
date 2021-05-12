@@ -27,13 +27,15 @@ export default function SprintsContent() {
 
     return (
         <div className={styles.asideWrap}>
-            <AddButton onClick={toggleProjectModal} />
-
             <div className={styles.asideBack}>
-                <svg className={styles.backSvg}>
-                    <use href={spriteGoBack + '#icon-goBack'}></use>
-                </svg>
-                <span className={styles.asideBackText}>Показати проекти</span>
+                <button type="button" className={styles.asideBackButton}>
+                    <svg className={styles.backSvg}>
+                        <use href={spriteGoBack + '#icon-goBack'}></use>
+                    </svg>
+                    <span className={styles.asideBackText}>
+                        Показати проекти
+                    </span>
+                </button>
             </div>
             <ul className={styles.asideSprintsList}>
                 {projects.length &&
@@ -45,6 +47,12 @@ export default function SprintsContent() {
                         />
                     ))}
             </ul>
+            <div className={styles.asideAddButtonWrap}>
+                <AddButton
+                    className={styles.asideAddButton}
+                    onClick={toggleProjectModal}
+                />
+            </div>
 
             {isShowProjectModal && (
                 <NewItemModal

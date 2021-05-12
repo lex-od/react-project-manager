@@ -9,9 +9,6 @@ import AddButton from '../../common/addButton/AddButton';
 import { NewItemModal, NewMemberForm, NewSprintForm } from '../../common';
 
 import styles from './SprintsContent.module.scss';
-import spriteSearch from '../../../assets/icons/searchIcon.svg';
-import spriteText from '../../../assets/icons/sprintsText.svg';
-import spriteDelete from '../../../assets/icons/sprintsDelete.svg';
 import spriteAddPeople from '../../../assets/icons/addPeople.svg';
 
 const { getAllProjects } = projectsSls;
@@ -47,7 +44,10 @@ export default function SprintsContent() {
     return (
         <div className={styles.wrap}>
             <div className={styles.addButtonWrap}>
-                <AddButton onClick={toggleSprintModal} />
+                <AddButton
+                    className={styles.addButton}
+                    onClick={toggleSprintModal}
+                />
                 <span className={styles.addButtonText}>Створити спринт</span>
             </div>
             <SprintProjectTitle project={actualProject} />
