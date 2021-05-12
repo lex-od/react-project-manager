@@ -77,18 +77,7 @@ export default function TasksContent() {
 
             <div>
                 <div>
-                    <span
-                        onClick={() =>
-                            dispatch(
-                                tasksOps.taskChangetOperation(
-                                    { date: '2021-05-12', hours: 4 },
-                                    '609c06fe33a36061e804f400',
-                                ),
-                            )
-                        }
-                    >
-                        Задача
-                    </span>
+                    <span>Задача</span>
                     <span>Заплановано годин</span>
                     <span>Витрачено год / день</span>
                     <span>Витрачено годин</span>

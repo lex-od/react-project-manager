@@ -25,7 +25,23 @@ const tasksList = createReducer([], {
     [taskGetRequest]: () => [],
     [taskGetSuccess]: (_, { payload }) => payload,
 
-    [taskChangeSuccess]: (state, { payload: { data, taskId } }) => state,
+    [taskChangeSuccess]: (state, { payload: { data, taskId } }) => {
+        if (!data.day) return state;
+
+        return state.map(task =>
+            task._id === taskId
+                ? {
+                      ...task,
+                      hoursWasted: data.newWastedHours,
+                      hoursWastedPerDay: task.hoursWastedPerDay.map(dayObj =>
+                          dayObj.currentDay === data.day.currentDay
+                              ? data.day
+                              : dayObj,
+                      ),
+                  }
+                : task,
+        );
+    },
 
     [taskDeleteSuccess]: (state, { payload }) =>
         state.filter(({ _id }) => _id !== payload),

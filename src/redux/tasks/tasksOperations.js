@@ -75,8 +75,13 @@ const taskDeletetOperation = taskId => async dispatch => {
         await api.deleteTask(taskId);
 
         dispatch(taskDeleteSuccess(taskId));
-    } catch ({ data, message }) {
-        dispatch(taskDeleteError({ data, message }));
+    } catch (error) {
+        dispatch(taskDeleteError(api.formatError(error)));
+
+        if (error.response?.status === 401) {
+            const withParams = () => taskDeletetOperation(taskId);
+            dispatch(authOps.refreshToken(withParams));
+        }
     }
 };
 

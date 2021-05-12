@@ -31,7 +31,12 @@ const {
     sprintDeleteError,
     sprintChangeError,
 } = sprintsActs;
-const { taskAddError } = tasksActs;
+const {
+    taskGetError,
+    taskAddError,
+    taskDeleteError,
+    taskChangeError,
+} = tasksActs;
 
 const initUser = { id: null, email: null };
 
@@ -74,7 +79,10 @@ const user = createReducer(initUser, {
     [sprintDeleteError]: resetUserWhenInvalidSession,
     [sprintChangeError]: resetUserWhenInvalidSession,
 
+    [taskGetError]: resetUserWhenInvalidSession,
     [taskAddError]: resetUserWhenInvalidSession,
+    [taskDeleteError]: resetUserWhenInvalidSession,
+    [taskChangeError]: resetUserWhenInvalidSession,
 });
 
 const initTokens = { accessToken: null, refreshToken: null, sid: null };
@@ -127,7 +135,10 @@ const tokens = createReducer(initTokens, {
     [sprintDeleteError]: resetTokensWhenInvalidSession,
     [sprintChangeError]: resetTokensWhenInvalidSession,
 
+    [taskGetError]: resetTokensWhenInvalidSession,
     [taskAddError]: resetTokensWhenInvalidSession,
+    [taskDeleteError]: resetTokensWhenInvalidSession,
+    [taskChangeError]: resetTokensWhenInvalidSession,
 });
 
 const loading = createReducer(false, {
