@@ -18,9 +18,9 @@ const addProjectError = createAction('projects/addProject/error');
 
 // change project title
 
-const changedProjectRequest = createAction('projects/changedProject/request');
-const changedProjectSucess = createAction('projects/changedProject/success');
-const changedProjectError = createAction('projects/changedProject/error');
+const changeProjectRequest = createAction('projects/changeProject/request');
+const changeProjectSucess = createAction('projects/changeProject/success');
+const changeProjectError = createAction('projects/changeProject/error');
 
 // delete project
 
@@ -38,9 +38,11 @@ const projectsActions = {
     addProjectRequest,
     addProjectSuccess,
     addProjectError,
+    changeProjectRequest,
+    changeProjectSucess,
+    changeProjectError,
     deleteProjectRequest,
     deleteProjectSuccess,
     deleteProjectError,
 };
-
 export default projectsActions;
