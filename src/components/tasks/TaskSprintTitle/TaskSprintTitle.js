@@ -25,11 +25,7 @@ export default function TaskSprintTitle({ sprint }) {
         e.preventDefault();
         setTitleChange(!activeInput);
         if (activeInput) {
-            const newTitle = {
-                title: currentTitle,
-            };
-
-            dispatch(sprintChangetOperation(newTitle, sprint._id));
+            dispatch(sprintChangetOperation(currentTitle, sprint._id));
         }
     };
 

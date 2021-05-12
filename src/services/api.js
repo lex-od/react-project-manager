@@ -62,33 +62,37 @@ const deleteSprint = async sprintId =>
 const newTask = async (newTask, sprintId) =>
     (await axios.post(`/task/${sprintId}`, newTask)).data;
 
-const getTask = async sprintId => await axios.get(`/task/${sprintId}`);
+const getTask = async sprintId => (await axios.get(`/task/${sprintId}`)).data;
 
 const changeTask = async (newData, taskId) =>
-    await axios.patch(`/task/${taskId}`, newData);
+    (await axios.patch(`/task/${taskId}`, newData)).data;
 
 const deleteTask = async taskId => await axios.delete(`/task/${taskId}`);
 
 const api = {
     setToken,
     unsetToken,
+    formatError,
+
     register,
     login,
-    getSprints,
+    logOut,
+    refresh,
+
+    getProject,
+    addProject,
+    changeProject,
+    deleteProject,
     addMember,
+
+    getSprints,
     addSprint,
     changeSprint,
     deleteSprint,
+
     newTask,
     getTask,
     changeTask,
     deleteTask,
-    formatError,
-    logOut,
-    refresh,
-    addProject,
-    getProject,
-    changeProject,
-    deleteProject,
 };
 export default api;
