@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -12,17 +12,19 @@ const { taskChangetOperation, taskDeletetOperation } = tasksOps;
 
 export default function TaskCard({ date, task }) {
     const { sprintId } = useParams();
+    console.log(date);
+    console.log(task);
 
-    const actualDay = task.hoursWastedPerDay.find(day => {
+    const actualDayInTask = task.hoursWastedPerDay.find(day => {
         if (day.currentDay === date) return day;
     });
-
-    console.log(actualDay);
-    console.log(actualDay.singleHoursWasted);
-
-    const [hours, setHours] = useState(actualDay?.singleHoursWasted || 0);
+    const [hours, setHours] = useState(actualDayInTask.singleHoursWasted);
     const [walidHours, setwalidHours] = useState(true);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        actualDayInTask && setHours(actualDayInTask.singleHoursWasted);
+    }, [date]);
 
     const changeData = e => {
         const { value } = e.target;
@@ -52,14 +54,14 @@ export default function TaskCard({ date, task }) {
 
     return (
         <li className={styles.sprintCard}>
-            <span className={styles.sprintCardHead}>{task.title}</span>
+            <p className={styles.sprintCardHead}>{task.title}</p>
 
-            <ul>
+            <ul className={styles.sprintCardList}>
                 <li className={styles.sprintItem}>
                     <span className={styles.sprintItemText}>
                         Заплановано годин
                     </span>
-                    <span className={styles.sprintItemText}>
+                    <span className={styles.sprintItemData}>
                         {task.hoursPlanned}
                     </span>
                 </li>
@@ -73,7 +75,7 @@ export default function TaskCard({ date, task }) {
                         value={hours}
                         onChange={changeData}
                         onBlur={setchangeData}
-                        className={styles.sprintItemText}
+                        className={styles.sprintItemDataInput}
                     />
                     {!walidHours && <span>число должно быть больше 0</span>}
                 </li>
@@ -81,12 +83,12 @@ export default function TaskCard({ date, task }) {
                     <span className={styles.sprintItemText}>
                         Витрачено годин
                     </span>
-                    <span className={styles.sprintItemText}>
+                    <span className={styles.sprintItemData}>
                         {task.hoursWasted}
                     </span>
                 </li>
             </ul>
-            <button onClick={deleteTask}>
+            <button onClick={deleteTask} className={styles.btnDlt}>
                 <svg className={styles.deleteSvg}>
                     <use href={spriteDelete + '#icon-delete'}></use>
                 </svg>

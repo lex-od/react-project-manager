@@ -5,18 +5,48 @@ ul {
 }
 
 .wrap {
-    // width: 768px;
-    display: flex;
-    flex-direction: column;
     flex-grow: 1;
+    padding: 20px 0;
+
+    @include for-size(tablet) {
+        padding: 20px 0 0 20px;
+    }
+
+    @include for-size(desktop) {
+        padding: 20px 0 0 70px;
+        border-bottom: 1px solid rgba(24, 28, 39, 0.1);
+    }
 }
 
+.topList {
+    @include for-size(tablet) {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
 
-
-
-.sprintsList {
+.titleTaskList {
+    display: none;
+    @include for-size(desktop) {
+        height: 50px;
+        display: block;
+        padding: 8px 20px;
+    }
+}
+.titleTaskListText {
+    display: inline-block;
+    width: 100px;
+    margin-right: 100px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.22;
+}
+.tasksList {
     list-style: none;
     padding: 0;
+    margin-top: -10px;
     @include for-size(tablet) {
         display: flex;
         flex-wrap: wrap;
@@ -26,5 +56,31 @@ ul {
 
     @include for-size(descktop) {
         flex-direction: column;
+        margin-top: -10px;
+    }
+}
+
+.btnAddBlock {
+    display: flex;
+    align-items: center;
+}
+.btnAdd {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    @include for-size(tablet) {
+        position: static;
+    }
+}
+
+.btnAddText {
+    display: none;
+    @include for-size(desktop) {
+        display: inline-block;
+        margin-left: 20px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1.22px;
     }
 }

@@ -1,0 +1,49 @@
+@import 'styles/shared.scss';
+
+.asideSprintsItem {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.asideLink {
+    display: flex;
+    align-items: center;
+    min-height: 51px;
+    text-decoration: none;
+}
+
+// .asideActiveLink {
+//     font-weight: bold;
+// }
+
+.asideSprintsIcon {
+    width: 36px;
+    height: 36px;
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
+
+    .asideLink:hover &,
+    .asideLink:focus &,
+    .asideActiveLink & {
+        box-shadow: 2px 7px 26px rgba(0, 5, 97, 0.5);
+        transition: 250ms;
+    }
+}
+
+.asideSprintsName {
+    width: 119px;
+    margin-left: 15px;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+    color: $primaryTextColor;
+
+    .asideLink:hover &,
+    .asideLink:focus &,
+    .asideActiveLink & {
+        font-weight: bold;
+        transition: 250ms;
+    }
+}

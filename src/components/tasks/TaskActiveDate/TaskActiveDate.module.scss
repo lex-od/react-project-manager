@@ -1,0 +1,40 @@
+@import 'styles/shared.scss';
+
+.dateBlock {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnBaze {
+    border: none;
+    background-color: inherit;
+    padding: 0;
+    width: 22px;
+}
+
+.nextDate {
+    height: 12px;
+    width: 12px;
+}
+
+.dateText {
+    margin: 0 20px;
+}
+
+.dateTextActive {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.22px;
+}
+.dateTextDuration {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.22px;
+}
+
+.dateTextDate {
+    composes: dateTextDuration;
+    margin-left: 39px;
+}

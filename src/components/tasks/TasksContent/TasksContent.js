@@ -13,76 +13,88 @@ import TaskSprintTitle from '../TaskSprintTitle/TaskSprintTitle';
 import TaskActiveDate from '../TaskActiveDate/TaskActiveDate';
 
 const { getAllTasks } = tasksSls;
-const { taskGetOperation, taskAddOperation } = tasksOps;
+const { taskGetOperation } = tasksOps;
 const { getAllSprints } = sprintsSls;
 
 export default function TasksContent() {
     const [isShowTaskModal, setIsShowTaskModal] = useState(false);
-
-    const toggleTaskModal = () => setIsShowTaskModal(state => !state);
-
-    const { sprintId } = useParams();
-    const sprints = useSelector(getAllSprints);
     const [actualSprint, setactualSprint] = useState(null);
     const [activeDate, setactiveDate] = useState(null);
 
-    const dispatch = useDispatch();
+    const { sprintId } = useParams();
 
+    const sprints = useSelector(getAllSprints);
     const tasks = useSelector(getAllTasks);
 
-    // const activeDate = '';
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(taskGetOperation(sprintId));
-        sprintId &&
-            sprints.length > 0 &&
-            setactualSprint(sprints.find(sprint => sprint._id === sprintId));
+        // sprintId &&
+        //     sprints.length > 0 &&
+        const actSprint = sprints.find(sprint => sprint._id === sprintId);
 
-        // setactiveDate();
+        actSprint && setactualSprint(actSprint);
+        actSprint && setactiveDate(actSprint?.startDate);
     }, [dispatch, sprintId, sprints]);
 
-    const changeActiveDate = activeDate => {
-        setactiveDate(activeDate);
+    const changeActiveDate = newDate => {
+        setactiveDate(newDate);
     };
 
-    //временное решение. удалить при создании модалки
-    const newTask = {
-        title: 'Task 4',
-        hoursPlanned: 3,
-    };
-
-    //временное решение. заменить на модалку
-    const addNewTask = () => {
-        dispatch(taskAddOperation(newTask, sprintId));
-    };
+    const toggleTaskModal = () => setIsShowTaskModal(state => !state);
 
     return (
-        <div className={styles.wrap}>
-            <AddButton onClick={toggleTaskModal} />
-            {sprints?.length && (
-                <div>
-                    <TaskActiveDate
-                        sprint={actualSprint}
-                        changeActiveDate={changeActiveDate}
-                    />
-                    <TaskSprintTitle sprint={actualSprint} />
+        <div>
+            <div className={styles.wrap}>
+                <div className={styles.topList}>
+                    {sprints?.length && (
+                        <TaskActiveDate
+                            sprint={actualSprint}
+                            changeActiveDate={changeActiveDate}
+                        />
+                    )}
+                    <div>
+                        <p>тут будет компонент поиска</p>
+                    </div>
                 </div>
-            )}
+                <div className={styles.topList}>
+                    {sprints?.length && (
+                        <TaskSprintTitle sprint={actualSprint} />
+                    )}
+                    <div className={styles.btnAddBlock}>
+                        <AddButton
+                            onClick={toggleTaskModal}
+                            className={styles.btnAdd}
+                        />
+                        <span className={styles.btnAddText}>
+                            Створити задачу
+                        </span>
+                    </div>
+                </div>
 
-            <div>
-                <div>
-                    <span>Задача</span>
-                    <span>Заплановано годин</span>
-                    <span>Витрачено год / день</span>
-                    <span>Витрачено годин</span>
+                <div className={styles.titleTaskList}>
+                    <span className={styles.titleTaskListText}>Задача</span>
+                    <span className={styles.titleTaskListText}>
+                        Заплановано годин
+                    </span>
+                    <span className={styles.titleTaskListText}>
+                        Витрачено год / день
+                    </span>
+                    <span className={styles.titleTaskListText}>
+                        Витрачено годин
+                    </span>
                     <svg></svg>
                 </div>
-                <ul className={styles.sprintsList}>
+            </div>
+            <div className={styles.wrap}>
+                <ul className={styles.tasksList}>
                     {tasks.length > 0 &&
+                        activeDate &&
                         tasks.map(task => (
                             <TaskCard
                                 key={task._id}
-                                date={actualSprint?.startDate}
+                                date={activeDate}
                                 task={task}
                             />
                         ))}
