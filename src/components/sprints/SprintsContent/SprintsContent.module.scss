@@ -10,30 +10,64 @@ ul {
     flex-direction: column;
     flex-grow: 1;
     padding-top: 30px;
+    position: relative;
+    margin-bottom: 60px;
 
     @include for-size(tablet) {
-        position: relative;
         padding-top: 40px;
         padding-left: 20px;
     }
 }
 
-.addButtonWrap {
-    display: flex;
+// .addButtonWrap {
+//     @include for-size(desktop) {
+//         // display: flex;
+//         position: absolute;
+//         right: 0px;
+//         top: 40px;
+//     }
+// }
+
+// @include for-size(tablet) {
+//     position: absolute;
+//     top: 40px;
+//     right: 0px;
+//     // }
+
+// @include for-size(desktop) {
+//     bottom: 0;
+// }
+// }
+
+.addButton {
+    // display: flex;
     // align-items: center;
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-
+    margin-left: 235px;
+    bottom: 13px;
+    z-index: 5;
+    // top: 92%;
+    // right: 5%;
     @include for-size(tablet) {
         position: absolute;
-        top: 40px;
         right: 0px;
+        top: 40px;
+    }
+    @include for-size(desktop) {
+        right: 195px;
+        top: 40px;
     }
 }
 
 .addButtonText {
     display: none;
+
+    @include for-size(desktop) {
+        display: flex;
+        position: absolute;
+        right: 30px;
+        top: 53px;
+    }
 }
 
 .section {
@@ -153,6 +187,7 @@ ul {
     transition: 0.3s;
     margin-bottom: 10px;
     // position: relative;
+
     @include for-size(tablet) {
         margin-bottom: 0;
         margin-top: 20px;
