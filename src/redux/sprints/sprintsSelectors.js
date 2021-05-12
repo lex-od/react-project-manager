@@ -1,5 +1,8 @@
 const getAllSprints = state => state.sprints.sprintsList;
 
-const sprintsSls = { getAllSprints };
+const getLoading = state => state.sprints.loading;
 
+const getError = state => state.sprints.error;
+
+const sprintsSls = { getAllSprints, getLoading, getError };
 export default sprintsSls;
