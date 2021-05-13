@@ -18,21 +18,16 @@ const Chart = () => {
     const tasksList = useSelector(tasksSls.getAllTasks);
     const sprintsList = useSelector(sprintsSls.getAllSprints);
     const { sprintId } = useParams();
-    // console.log('tasksList :>> ', tasksList);
 
-    // ==== число, все часы на спринт
     const planedHours = tasksList.reduce(
         (acc, task) => (acc += task.hoursPlanned),
         0,
     );
-    // console.log('planedHours :>> ', planedHours);
-    // ==== число, шаг для планового графика
 
     const duration = sprintsList.find(sprint => sprint._id === sprintId)
         .duration;
     const deltaHours = (planedHours / duration).toFixed(2);
-    console.log('deltaHours :>> ', deltaHours);
-    // ==== массив массивов, потрачено часов на задачу в день
+
     const getWastedByTask = () => {
         return tasksList.map(task =>
             task.hoursWastedPerDay.reduce((acc, task) => {
@@ -41,9 +36,7 @@ const Chart = () => {
             }, []),
         );
     };
-    // console.log('getWastedByTask() :>> ', getWastedByTask());
 
-    // ==== график фактический
     const getWastedLine = () => {
         let myPlanedTasksHours = planedHours;
         const resultArr = [];
@@ -62,7 +55,6 @@ const Chart = () => {
         return resultArr;
     };
 
-    // ==== график план
     const getStreightLine = () => {
         const arr = [planedHours];
         let prev = planedHours;
@@ -74,7 +66,6 @@ const Chart = () => {
     };
     console.log('get :>> ', getStreightLine());
 
-    // ==== массив, дата таска
     const getDatesArray = () => {
         return tasksList.map(task => {
             return task.hoursWastedPerDay.reduce((acc, task) => {

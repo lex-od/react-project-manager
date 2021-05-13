@@ -90,12 +90,14 @@ ul {
     margin-left: 0px;
     bottom: 20px;
     z-index: 5;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
     @include for-size(tablet) {
-        margin-left: 368px;
-        bottom: 112px;
+        margin-left: 427px;
+        bottom: 140px;
     }
     @include for-size(desktop) {
-        margin-left: 900px;
-        bottom: 60px;
+        margin-left: 910px;
+        bottom: 80px;
     }
 }
