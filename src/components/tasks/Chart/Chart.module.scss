@@ -2,8 +2,7 @@
 
 .chartBox {
     padding: 20px;
-    // margin-bottom: 21px;
-    background-color: white;
+    background-color: $accentTextColor;
     width: 100%;
     @include for-size(mobile-only) {
         width: 1000px;
@@ -11,29 +10,8 @@
 
     @include for-size(tablet) {
         border-radius: 5px;
-        // width: 688px;
-        // height: 340px;
-        // overflow: hidden;
-        // padding: 10px;
-    }
-    @include for-size(desktop) {
-        // width: 933px;
-        // height: 461px;
     }
 }
-
-// .title {
-//     margin-top: 30px;
-//     @include for-size(tablet) {
-//         margin: 0;
-//     }
-// }
-
-//   .graph__content {
-//     background-color: white;
-//     padding: 20px;
-//     width: 100%;
-//     @media screen and (max-width: 767px) {
-//       width: 1000px;
-//     }
-//   }
+.title {
+    margin: 0;
+}

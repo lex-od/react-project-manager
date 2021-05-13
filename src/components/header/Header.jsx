@@ -7,9 +7,6 @@ import AppBar from './AppBar/AppBar';
 import css from './AppBar/AppBar.module.scss';
 import logo from '../../assets/icons/goit-logo.svg';
 
-// =======================================
-// import { DatePicker } from '../common';
-
 const Header = () => {
     const isAuth = useSelector(authSls.getIsAuth);
 
@@ -19,7 +16,6 @@ const Header = () => {
                 <NavLink exact to="/projects">
                     <img src={logo} className={css.logo} alt="logo" />
                 </NavLink>
-                {/* <DatePicker /> */}
                 <nav>{isAuth && <AppBar />}</nav>
             </nav>
         </header>
