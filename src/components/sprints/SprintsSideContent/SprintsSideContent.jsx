@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { projectsSls, projectsOps } from '../../../redux/projects';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { projectsSls } from '../../../redux/projects';
 import AddButton from '../../common/addButton/AddButton';
 import { NewItemModal, NewProjectForm } from '../../common';
 import spriteGoBack from '../../../assets/icons/goBackArrow.svg';
@@ -9,19 +9,11 @@ import styles from './SprintsSideContent.module.scss';
 import SprintSideCard from '../SprintsSideCard/SprintsSideCard';
 
 const { getAllProjects } = projectsSls;
-const { getProjects } = projectsOps;
 
 export default function SprintsContent() {
     const [isShowProjectModal, setIsShowProjectModal] = useState(false);
 
     const toggleProjectModal = () => setIsShowProjectModal(state => !state);
-
-    const dispatch = useDispatch();
-    const { projectId } = useParams();
-
-    useEffect(() => {
-        dispatch(getProjects(projectId));
-    }, [dispatch, projectId]);
 
     const projects = useSelector(getAllProjects);
 
