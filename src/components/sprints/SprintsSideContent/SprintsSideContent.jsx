@@ -18,51 +18,46 @@ export default function SprintsContent() {
     const projects = useSelector(getAllProjects);
 
     return (
-        <div className={styles.asideWrapFixedContainer}>
-            <div className={styles.asideWrap}>
-                <div className={styles.asideBack}>
-                    <Link to={'/projects'} className={styles.backLink}>
-                        <button
-                            type="button"
-                            className={styles.asideBackButton}
-                        >
-                            <svg className={styles.backSvg}>
-                                <use href={spriteGoBack + '#icon-goBack'}></use>
-                            </svg>
-                            <span className={styles.asideBackText}>
-                                Показати проекти
-                            </span>
-                        </button>
-                    </Link>
-                </div>
-                <ul className={styles.asideSprintsList}>
-                        projects.map((project, index) => (
-                            <SprintSideCard
-                                key={project._id}
-                                project={project}
-                                index={index}
-                            />
-                        ))
-                </ul>
-                <div className={styles.asideAddButtonWrap}>
-                    <AddButton
-                        className={styles.asideAddButton}
-                        onClick={toggleProjectModal}
-                    />
-                    <span className={styles.newProjectText}>
-                        Створити проект
-                    </span>
-                </div>
-
-                {isShowProjectModal && (
-                    <NewItemModal
-                        title="Створення проекту"
-                        onClose={toggleProjectModal}
-                    >
-                        <NewProjectForm onClose={toggleProjectModal} />
-                    </NewItemModal>
-                )}
+        // <div className={styles.asideWrapFixedContainer}>
+        <div className={styles.asideWrap}>
+            <div className={styles.asideBack}>
+                <Link to={'/projects'} className={styles.backLink}>
+                    <button type="button" className={styles.asideBackButton}>
+                        <svg className={styles.backSvg}>
+                            <use href={spriteGoBack + '#icon-goBack'}></use>
+                        </svg>
+                        <span className={styles.asideBackText}>
+                            Показати проекти
+                        </span>
+                    </button>
+                </Link>
             </div>
+            <ul className={styles.asideSprintsList}>
+                {projects.map((project, index) => (
+                    <SprintSideCard
+                        key={project._id}
+                        project={project}
+                        index={index}
+                    />
+                ))}
+            </ul>
+            <div className={styles.asideAddButtonWrap}>
+                <AddButton
+                    className={styles.asideAddButton}
+                    onClick={toggleProjectModal}
+                />
+                <span className={styles.newProjectText}>Створити проект</span>
+            </div>
+
+            {isShowProjectModal && (
+                <NewItemModal
+                    title="Створення проекту"
+                    onClose={toggleProjectModal}
+                >
+                    <NewProjectForm onClose={toggleProjectModal} />
+                </NewItemModal>
+            )}
         </div>
+        // </div>
     );
 }
