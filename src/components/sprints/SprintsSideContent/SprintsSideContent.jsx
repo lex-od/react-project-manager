@@ -40,7 +40,7 @@ export default function SprintsContent() {
                 </Link>
             </div>
             <ul className={styles.asideSprintsList}>
-                {projects.length &&
+                {!!projects.length &&
                     projects.map((project, index) => (
                         <SprintSideCard
                             key={project._id}

@@ -12,7 +12,7 @@ import styles from './SprintsContent.module.scss';
 import spriteAddPeople from '../../../assets/icons/addPeople.svg';
 
 const { getAllProjects } = projectsSls;
-const { getAllSprints } = sprintsSls;
+const { getAllSprints, getLoading } = sprintsSls;
 const { sprintGetOperation } = sprintsOps;
 
 export default function SprintsContent() {
@@ -24,6 +24,7 @@ export default function SprintsContent() {
 
     const { projectId } = useParams();
     const projects = useSelector(getAllProjects);
+    const loading = useSelector(getLoading);
     const [actualProject, setactualProject] = useState(null);
     const dispatch = useDispatch();
 
@@ -68,24 +69,19 @@ export default function SprintsContent() {
                 </button>
             </div>
             <ul className={styles.sprintsList}>
-                {sprints.length &&
+                {sprints.length || loading ? (
                     sprints.map(sprint => (
                         <li key={sprint._id} className={styles.sprintCard}>
-                            {/* <Link
-                                to={`/projects/${projectId}/sprints/${sprint._id}`}
-                                key={sprint._id}
-                                className={styles.sprintLink}
-                            >
-                                <SprintCard sprint={sprint} />
-                            </Link> */}
-
                             <SprintCard
                                 key={sprint._id}
                                 sprint={sprint}
                                 pathname={`/projects/${projectId}/sprints/${sprint._id}`}
                             />
                         </li>
-                    ))}
+                    ))
+                ) : (
+                    <span>Для створення спринта натисніть +</span>
+                )}
             </ul>
 
             {isShowSprintModal && (
