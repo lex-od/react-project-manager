@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { tasksSls, tasksOps } from '../../../redux/tasks';
+import { useSelector } from 'react-redux';
+import { tasksSls } from '../../../redux/tasks';
 import { sprintsSls } from '../../../redux/sprints';
 import { NewItemModal, NewTaskForm } from '../../common';
 import TaskCard from '../TaskCard/TaskCard';
@@ -15,7 +15,6 @@ import { ChartModal, ChartButton } from '../../tasks';
 import TaskFilter from '../TaskFilter/TaskFilter';
 
 const { getVisibleTasks } = tasksSls;
-const { taskGetOperation } = tasksOps;
 const { getAllSprints } = sprintsSls;
 
 export default function TasksContent() {
@@ -28,17 +27,14 @@ export default function TasksContent() {
     const sprints = useSelector(getAllSprints);
     const tasks = useSelector(getVisibleTasks);
 
-    const dispatch = useDispatch();
-
     useEffect(() => {
-        dispatch(taskGetOperation(sprintId));
         // sprintId &&
         //     sprints.length > 0 &&
         const actSprint = sprints.find(sprint => sprint._id === sprintId);
 
         actSprint && setactualSprint(actSprint);
         actSprint && setactiveDate(actSprint?.startDate);
-    }, [dispatch, sprintId, sprints]);
+    }, [sprintId, sprints]);
 
     const changeActiveDate = newDate => {
         setactiveDate(newDate);
