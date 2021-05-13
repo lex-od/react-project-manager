@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { projectsSls } from '../../../redux/projects';
 import { sprintsSls, sprintsOps } from '../../../redux/sprints';
@@ -25,8 +25,6 @@ export default function SprintsContent() {
     const { projectId } = useParams();
     const projects = useSelector(getAllProjects);
     const [actualProject, setactualProject] = useState(null);
-    // console.log(projectId);
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -53,8 +51,7 @@ export default function SprintsContent() {
             <SprintProjectTitle project={actualProject} />
             <div className={styles.sprintDescription}>
                 <p className={styles.sprintDescriptionText}>
-                    Короткий опис проекту, якщо він є, розміщуєтсья тут. Ширина
-                    тектового блоку
+                    {actualProject?.description}
                 </p>
             </div>
 
@@ -73,14 +70,21 @@ export default function SprintsContent() {
             <ul className={styles.sprintsList}>
                 {sprints.length &&
                     sprints.map(sprint => (
-                        <Link
-                            to={`/projects/${projectId}/sprints/${sprint._id}`}
-                            key={sprint._id}
-                        >
-                            <li className={styles.sprintCard}>
+                        <li key={sprint._id} className={styles.sprintCard}>
+                            {/* <Link
+                                to={`/projects/${projectId}/sprints/${sprint._id}`}
+                                key={sprint._id}
+                                className={styles.sprintLink}
+                            >
                                 <SprintCard sprint={sprint} />
-                            </li>
-                        </Link>
+                            </Link> */}
+
+                            <SprintCard
+                                key={sprint._id}
+                                sprint={sprint}
+                                pathname={`/projects/${projectId}/sprints/${sprint._id}`}
+                            />
+                        </li>
                     ))}
             </ul>
 

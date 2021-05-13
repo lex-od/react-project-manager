@@ -25,11 +25,7 @@ export default function SprintProjectTitle({ project }) {
         e.preventDefault();
         setTitleChange(!activeInput);
         if (activeInput) {
-            const newTitle = {
-                title: currentTitle,
-            };
-
-            dispatch(changeProject(newTitle, project._id));
+            dispatch(changeProject(currentTitle, project._id));
         }
     };
 
@@ -37,7 +33,7 @@ export default function SprintProjectTitle({ project }) {
         <div className={styles.sprintHead}>
             {activeInput ? (
                 <form onSubmit={sendnewTitle}>
-                    <input
+                    <textarea
                         type="text"
                         name="currentTitle"
                         onChange={changeData}
