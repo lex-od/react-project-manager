@@ -48,7 +48,7 @@ export default function SprintProjectTitle({ project }) {
             ) : (
                 <h1 className={styles.title}>{project?.title}</h1>
             )}
-            <button onClick={sendnewTitle}>
+            <button className={styles.projectNameBtn} onClick={sendnewTitle}>
                 <svg className={styles.textSvg}>
                     <use href={spriteText + '#icon-text'}></use>
                 </svg>
