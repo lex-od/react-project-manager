@@ -24,10 +24,9 @@ export default function TasksSideContent() {
                 <TaskLinkToSprint />
 
                 <ul className={styles.asideSprintsList}>
-                    {sprints.length &&
-                        sprints.map(sprint => (
-                            <TaskSprintCard key={sprint._id} sprint={sprint} />
-                        ))}
+                    {sprints.map(sprint => (
+                        <TaskSprintCard key={sprint._id} sprint={sprint} />
+                    ))}
                 </ul>
                 <div className={styles.newSprintBlock}>
                     <AddButton onClick={toggleSprintModal} />

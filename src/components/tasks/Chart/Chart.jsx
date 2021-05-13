@@ -13,7 +13,7 @@ const Chart = () => {
 
     useEffect(() => {
         chartLine();
-    }, []);
+    }, []); // eslint-disable-line
 
     const tasksList = useSelector(tasksSls.getAllTasks);
     const sprintsList = useSelector(sprintsSls.getAllSprints);

@@ -4,8 +4,11 @@ ul {
     padding: 0;
 }
 
-.wrap {
+.topWrapper {
     flex-grow: 1;
+}
+
+.wrap {
     padding: 20px 0;
 
     @include for-size(tablet) {

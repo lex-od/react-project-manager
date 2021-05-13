@@ -49,7 +49,7 @@ export default function TasksContent() {
     };
 
     return (
-        <div>
+        <div className={styles.topWrapper}>
             <div className={styles.wrap}>
                 <div className={styles.topList}>
                     {sprints?.length && (
