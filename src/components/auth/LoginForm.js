@@ -24,6 +24,7 @@ export default function Login() {
                 validationSchema={loginSchema}
                 onSubmit={values => {
                     const { email, password } = values;
+
                     dispatch(authOps.login({ email, password }));
                 }}
             >
@@ -71,7 +72,6 @@ export default function Login() {
                         <AccentButton
                             className={css.registerPageButton}
                             type="submit"
-                            disabled={isSubmitting}
                         >
                             Увійти
                         </AccentButton>
