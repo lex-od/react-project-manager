@@ -4,8 +4,8 @@ export const size = {
     mobile: '320px',
     beforeTablet: '767px',
     tablet: '768px',
-    beforeDesktop: '1279px',
-    desktop: '1280px',
+    beforeDesktop: '1199px',
+    desktop: '1200px',
 };
 
 export const device = {
