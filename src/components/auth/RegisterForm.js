@@ -85,7 +85,6 @@ export default function Register() {
                         <AccentButton
                             className={css.registerPageButton}
                             type="submit"
-                            disabled={isSubmitting}
                         >
                             Зареєструватися
                         </AccentButton>
