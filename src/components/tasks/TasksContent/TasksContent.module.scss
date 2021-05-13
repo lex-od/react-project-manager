@@ -28,12 +28,15 @@ ul {
 
 .chartBox {
     position: fixed;
-    height: 44px;
+    margin-left: 0px;
     bottom: 20px;
-    left: 20px;
+    z-index: 5;
     @include for-size(tablet) {
-        left: auto;
+        margin-left: 368px;
+        bottom: 112px;
+    }
+    @include for-size(desktop) {
+        margin-left: 900px;
         bottom: 60px;
-        right: 55px;
     }
 }

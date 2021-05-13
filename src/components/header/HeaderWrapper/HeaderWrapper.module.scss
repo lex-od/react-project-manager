@@ -1,3 +1,19 @@
+@import 'styles/shared.scss';
+
 .wrapper {
+    padding-bottom: 60px;
+    @include for-size(tablet) {
+        padding-bottom: 80px;
+    }
+}
+.wrapperFixed {
+    position: fixed;
+    width: 100%;
+    background: #fbfbfb;
+    z-index: 200;
+    height: 60px;
     border-bottom: 1px solid rgba(24, 28, 39, 0.1);
+    @include for-size(tablet) {
+        height: 80px;
+    }
 }
