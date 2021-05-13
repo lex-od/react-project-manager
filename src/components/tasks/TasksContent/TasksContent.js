@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { tasksSls, tasksOps } from '../../../redux/tasks';
+import { useSelector } from 'react-redux';
+import { tasksSls } from '../../../redux/tasks';
 import { sprintsSls } from '../../../redux/sprints';
 import { NewItemModal, NewTaskForm } from '../../common';
 import TaskCard from '../TaskCard/TaskCard';
@@ -12,32 +12,29 @@ import styles from './TasksContent.module.scss';
 import TaskSprintTitle from '../TaskSprintTitle/TaskSprintTitle';
 import TaskActiveDate from '../TaskActiveDate/TaskActiveDate';
 import { ChartModal, ChartButton } from '../../tasks';
+import TaskFilter from '../TaskFilter/TaskFilter';
 
-const { getAllTasks } = tasksSls;
-const { taskGetOperation } = tasksOps;
+const { getVisibleTasks } = tasksSls;
 const { getAllSprints } = sprintsSls;
 
 export default function TasksContent() {
     const [isShowTaskModal, setIsShowTaskModal] = useState(false);
-    const [actualSprint, setactualSprint] = useState(null);
-    const [activeDate, setactiveDate] = useState(null);
+    const [actualSprint, setactualSprint] = useState('');
+    const [activeDate, setactiveDate] = useState('');
 
     const { sprintId } = useParams();
 
     const sprints = useSelector(getAllSprints);
-    const tasks = useSelector(getAllTasks);
-
-    const dispatch = useDispatch();
+    const tasks = useSelector(getVisibleTasks);
 
     useEffect(() => {
-        dispatch(taskGetOperation(sprintId));
         // sprintId &&
         //     sprints.length > 0 &&
         const actSprint = sprints.find(sprint => sprint._id === sprintId);
 
         actSprint && setactualSprint(actSprint);
         actSprint && setactiveDate(actSprint?.startDate);
-    }, [dispatch, sprintId, sprints]);
+    }, [sprintId, sprints]);
 
     const changeActiveDate = newDate => {
         setactiveDate(newDate);
@@ -61,9 +58,8 @@ export default function TasksContent() {
                             changeActiveDate={changeActiveDate}
                         />
                     )}
-                    <div>
-                        <p>тут будет компонент поиска</p>
-                    </div>
+
+                    <TaskFilter />
                 </div>
                 <div className={styles.topList}>
                     {sprints?.length && (
@@ -96,7 +92,7 @@ export default function TasksContent() {
             </div>
             <div className={styles.wrap}>
                 <ul className={styles.tasksList}>
-                    {tasks.length > 0 &&
+                    {tasks?.length > 0 &&
                         activeDate &&
                         tasks.map(task => (
                             <TaskCard

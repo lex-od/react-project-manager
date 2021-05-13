@@ -1,0 +1,31 @@
+@import 'styles/shared.scss';
+
+.filteBlock {
+    display: block;
+    position: relative;
+    margin-top: 20px;
+    @include for-size(tablet) {
+        margin-top: 0;
+    }
+}
+
+.filterInput {
+    width: 100%;
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px solid rgba(24, 28, 39, 0.2);
+    outline: none;
+    height: 40px;
+}
+
+.nextDate {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    @include for-size(tablet) {
+        left: auto;
+        right: 10px;
+    }
+}

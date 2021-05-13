@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from '../SprintsSideContent/SprintsSideContent.module.scss';
 
 const colors = [
@@ -14,8 +14,6 @@ const colors = [
 ];
 
 export default function SprintSideCard({ project, index }) {
-    const { projectId } = useParams();
-
     return (
         <li className={styles.asideSprintsItem}>
             <Link className={styles.asideLink} to={`/projects/${project._id}`}>

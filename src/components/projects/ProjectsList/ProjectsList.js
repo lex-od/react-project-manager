@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import ProjectsListItem from '../ProjectsListItem/ProjectsListItem';
 
 import { AddButton, NewItemModal, NewProjectForm } from '../../common';
-import { projectsOps, projectsSls } from '../../../redux/projects';
+import { projectsSls } from '../../../redux/projects';
 
 import styles from './Projects.module.scss';
 
-const { getProjects } = projectsOps;
 const { getAllProjects, getLoading } = projectsSls;
 
 const colors = [
@@ -28,12 +27,7 @@ export default function ProjectsPage() {
     const [isShowModal, setIsShowModal] = useState(false);
     const toggleModal = () => setIsShowModal(state => !state);
     const history = useHistory();
-    const dispatch = useDispatch();
     const match = useRouteMatch();
-
-    useEffect(() => {
-        dispatch(getProjects());
-    }, [dispatch]);
 
     const onHandleClick = e => {
         const isDelete = e.target.closest('[data-process="delete"]');

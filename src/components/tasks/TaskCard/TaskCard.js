@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { tasksOps } from '../../../redux/tasks';
 
@@ -11,20 +10,17 @@ import styles from './TasksCard.module.scss';
 const { taskChangetOperation, taskDeletetOperation } = tasksOps;
 
 export default function TaskCard({ date, task }) {
-    const { sprintId } = useParams();
-    console.log(date);
-    console.log(task);
+    const actualDayInTask = task.hoursWastedPerDay.find(
+        day => day.currentDay === date,
+    );
 
-    const actualDayInTask = task.hoursWastedPerDay.find(day => {
-        if (day.currentDay === date) return day;
-    });
     const [hours, setHours] = useState(actualDayInTask.singleHoursWasted);
     const [walidHours, setwalidHours] = useState(true);
     const dispatch = useDispatch();
 
     useEffect(() => {
         actualDayInTask && setHours(actualDayInTask.singleHoursWasted);
-    }, [date]);
+    }, [date, actualDayInTask]);
 
     const changeData = e => {
         const { value } = e.target;
@@ -32,7 +28,7 @@ export default function TaskCard({ date, task }) {
     };
 
     const checkDate = newData => {
-        if (hours > 0) {
+        if (hours > 0 && hours <= 8) {
             dispatch(taskChangetOperation(newData, task._id));
             setwalidHours(true);
         } else {
@@ -77,7 +73,11 @@ export default function TaskCard({ date, task }) {
                         onBlur={setchangeData}
                         className={styles.sprintItemDataInput}
                     />
-                    {!walidHours && <span>число должно быть больше 0</span>}
+                    {!walidHours && (
+                        <span className={styles.taskInputError}>
+                            число от 1 до 8
+                        </span>
+                    )}
                 </li>
                 <li className={styles.sprintItem}>
                     <span className={styles.sprintItemText}>

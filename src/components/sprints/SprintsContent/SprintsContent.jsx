@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { projectsSls } from '../../../redux/projects';
-import { sprintsSls, sprintsOps } from '../../../redux/sprints';
+import { sprintsSls } from '../../../redux/sprints';
 import SprintCard from '../SprintCard/SprintCard';
 import SprintProjectTitle from '../SprintProjectTitle/SprintProjectTitle';
 import AddButton from '../../common/addButton/AddButton';
@@ -13,7 +13,6 @@ import spriteAddPeople from '../../../assets/icons/addPeople.svg';
 
 const { getAllProjects } = projectsSls;
 const { getAllSprints } = sprintsSls;
-const { sprintGetOperation } = sprintsOps;
 
 export default function SprintsContent() {
     const [isShowSprintModal, setIsShowSprintModal] = useState(false);
@@ -27,16 +26,13 @@ export default function SprintsContent() {
     const [actualProject, setactualProject] = useState(null);
     // console.log(projectId);
 
-    const dispatch = useDispatch();
-
     useEffect(() => {
-        dispatch(sprintGetOperation(projectId));
         projectId &&
             projects.length > 0 &&
             setactualProject(
                 projects.find(project => project._id === projectId),
             );
-    }, [dispatch, projectId, projects]);
+    }, [projectId, projects]);
 
     const sprints = useSelector(getAllSprints);
     // console.log(sprints);

@@ -7,7 +7,6 @@ import 'modern-normalize/modern-normalize.css';
 import './styles/index.scss';
 import App from './components/App';
 import { store, persistor } from './redux/store';
-import moment from 'moment';
 
 ReactDOM.render(
     <React.StrictMode>
@@ -21,5 +20,3 @@ ReactDOM.render(
     </React.StrictMode>,
     document.getElementById('root'),
 );
-
-console.log(moment().add(30, 'days').format('YYYY-MM-DD'));

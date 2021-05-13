@@ -207,7 +207,9 @@ ul {
 
     &:hover,
     &:focus {
+        box-shadow: 2px 7px 26px rgba(0, 5, 97, 0.5);
         transform: scale(1.07);
+        transition: 250ms;
     }
 
     &:not(:last-child) {

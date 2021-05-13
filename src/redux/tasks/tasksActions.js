@@ -16,6 +16,8 @@ const taskDeleteRequest = createAction('task/delete/request');
 const taskDeleteSuccess = createAction('task/delete/success');
 const taskDeleteError = createAction('task/delete/error');
 
+const taskFilterAct = createAction('task/filter');
+
 const tasksActs = {
     taskAddRequest,
     taskAddSuccess,
@@ -29,5 +31,6 @@ const tasksActs = {
     taskDeleteRequest,
     taskDeleteSuccess,
     taskDeleteError,
+    taskFilterAct,
 };
 export default tasksActs;
