@@ -14,7 +14,7 @@ const Header = () => {
     const isAuth = useSelector(authSls.getIsAuth);
 
     return (
-        <header>
+        <header className={css.headerContainer}>
             <nav className={css.header}>
                 <NavLink exact to="/projects">
                     <img src={logo} className={css.logo} alt="logo" />

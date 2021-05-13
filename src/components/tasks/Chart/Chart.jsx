@@ -31,7 +31,7 @@ const Chart = () => {
     const duration = sprintsList.find(sprint => sprint._id === sprintId)
         .duration;
     const deltaHours = (planedHours / duration).toFixed(2);
-    // console.log('deltaHours :>> ', deltaHours);
+    console.log('deltaHours :>> ', deltaHours);
     // ==== массив массивов, потрачено часов на задачу в день
     const getWastedByTask = () => {
         return tasksList.map(task =>
@@ -54,7 +54,7 @@ const Chart = () => {
             }, 0);
             resultArr.push(
                 myPlanedTasksHours - result < 0
-                    ? 0
+                    ? +0
                     : myPlanedTasksHours - result,
             );
             myPlanedTasksHours = myPlanedTasksHours - result;
@@ -67,12 +67,12 @@ const Chart = () => {
         const arr = [planedHours];
         let prev = planedHours;
         for (let i = 0; i < duration; i += 1) {
-            arr.push(prev - deltaHours).toFixed(2);
+            arr.push((prev - deltaHours).toFixed(1));
             prev = prev - deltaHours;
         }
         return arr;
     };
-    // console.log('get :>> ', getStreightLine());
+    console.log('get :>> ', getStreightLine());
 
     // ==== массив, дата таска
     const getDatesArray = () => {
@@ -138,7 +138,9 @@ const Chart = () => {
         <>
             <div className={css.chartBox}>
                 <p className={css.title}>Burndown Chart (Calendar Team)</p>
-                <Line data={chartData} width={600} height={250} />
+                <div>
+                    <Line data={chartData} width={900} height={450} />
+                </div>
             </div>
         </>
     );
