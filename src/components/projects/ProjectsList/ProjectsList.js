@@ -10,7 +10,7 @@ import { projectsOps, projectsSls } from '../../../redux/projects';
 import styles from './Projects.module.scss';
 
 const { getProjects } = projectsOps;
-const { getAllProjects } = projectsSls;
+const { getAllProjects, getLoading } = projectsSls;
 
 const colors = [
     '#8c72df',
@@ -50,7 +50,7 @@ export default function ProjectsPage() {
             <div className={styles.projectsContainer}>
                 <h2 className={styles.title}>Проекти</h2>
 
-                {!projects.length && !projectsSls.getLoading ? (
+                {!projects.length && !getLoading ? (
                     <p className={styles.projectsNone}>
                         Ваша колекція проектів порожня, скористайтесь кнопкою
                         "Створити проект"

@@ -74,12 +74,16 @@ main {
     top: 216px;
     color: rgba(24, 28, 39, 0.6);
 }
-
 .errorMessagePassword {
     position: absolute;
-    // max-width: 300px;
+
     top: 312px;
     color: rgba(24, 28, 39, 0.6);
+}
+
+@media (max-width: 767px) {
+    .errorMessagePassword {
+    }
 }
 .errorMessageConfirmPassword {
     position: absolute;

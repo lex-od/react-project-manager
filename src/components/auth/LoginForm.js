@@ -23,7 +23,6 @@ export default function Login() {
                 initialValues={{ email: '', password: '' }}
                 validationSchema={loginSchema}
                 onSubmit={values => {
-                    console.log(values);
                     const { email, password } = values;
 
                     dispatch(authOps.login({ email, password }));
