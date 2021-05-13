@@ -13,7 +13,7 @@ export default function TaskActiveDate({ sprint, changeActiveDate }) {
     useEffect(() => {
         const newDate = new Date();
 
-        if (moment(sprint?.endDate) < newDate)
+        if (moment(sprint?.endDate, 'YYYY-MM-DD') < newDate)
             return setActiveDate(sprint?.endDate);
         if (moment(sprint?.startDate) < newDate)
             return setActiveDate(moment(newDate).format('YYYY-MM-DD'));
@@ -69,7 +69,8 @@ export default function TaskActiveDate({ sprint, changeActiveDate }) {
                 )}
 
                 <button onClick={incrDate} className={styles.btnBaze}>
-                    {moment(activeDate) < moment(sprint?.endDate) && (
+                    {moment(activeDate) <
+                        moment(sprint?.endDate, 'YYYY-MM-DD') && (
                         <svg className={styles.nextDate}>
                             <use href={btnRight + '#Capa_1'}></use>
                         </svg>
