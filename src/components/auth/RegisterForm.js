@@ -7,15 +7,24 @@ import css from './Auth.module.scss';
 import AuthBackgroundDesktop from './AuthBackground/BackgroundDesktop/BackgroundDesktop';
 import BackgroundTablet from './AuthBackground/BackgroundTablet/BackgroundTablet';
 import AccentButton from '../common/AccentButton/AccentButton';
-import useWindowSize from '../../services/utils/useWindouSize';
+import useDeviceSizes from '../../services/utils/useDeviceSize';
+// import useWindowSize from '../../services/utils/useWindouSize';
 
 export default function Register() {
     const dispatch = useDispatch();
-    const { width } = useWindowSize();
+    // const { width } = useWindowSize();
+    // console.log(width);
+    const {
+        isMobileDevice,
+        isTabletDevice,
+        isDesktopDevice,
+        isLargeTablet,
+    } = useDeviceSizes();
+
     return (
         <div className={css.formWraper}>
-            {width > 1199 && <AuthBackgroundDesktop />}
-            {width > 767 && width < 1198 && <BackgroundTablet />}
+            {isDesktopDevice && <AuthBackgroundDesktop />}
+            {isTabletDevice && <BackgroundTablet />}
             <Formik
                 initialValues={{
                     email: '',

@@ -21,6 +21,7 @@ const colors = [
     '#e46cde',
     '#4394f1',
     '#d45535',
+    '#f10f9b',
 ];
 
 export default function ProjectsPage() {
@@ -63,13 +64,13 @@ export default function ProjectsPage() {
                                     id={project._id ? project._id : project.id}
                                     key={project._id}
                                     style={{
-                                        backgroundColor: colors[index % 8],
+                                        backgroundColor: colors[index % 9],
                                     }}
                                     onClick={onHandleClick}
                                 >
                                     <ProjectsListItem
                                         {...project}
-                                        color={colors[index % 8]}
+                                        color={colors[index % 9]}
                                     >
                                         <span
                                             className={
