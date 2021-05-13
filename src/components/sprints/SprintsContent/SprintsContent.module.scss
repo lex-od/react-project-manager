@@ -193,7 +193,7 @@ ul {
     margin-bottom: 10px;
 
     @include for-size(tablet) {
-        min-height: 255px;
+        // min-height: 255px;
         margin-bottom: 0;
         margin-top: 20px;
         margin-left: 20px;

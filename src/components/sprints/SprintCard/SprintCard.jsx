@@ -33,9 +33,9 @@ export default function SprintCard({ sprint, pathname }) {
     };
 
     const handleGoToCard = event => {
-        console.log(event);
         const { nodeName } = event.target;
-        if (nodeName === 'BUTTON' || nodeName === 'use') return;
+        if (nodeName === 'BUTTON' || nodeName === 'use' || nodeName === 'svg')
+            return;
         history.push(pathname);
     };
 

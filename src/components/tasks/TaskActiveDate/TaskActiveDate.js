@@ -48,7 +48,7 @@ export default function TaskActiveDate({ sprint, changeActiveDate }) {
                     onClick={decrDate}
                     className={styles.btnBaze}
                 >
-                    {activeDate > sprint?.startDate && (
+                    {moment(activeDate) > moment(sprint?.startDate) && (
                         <svg className={styles.nextDate}>
                             <use href={btnLeft + '#Capa_1'}></use>
                         </svg>
@@ -69,7 +69,7 @@ export default function TaskActiveDate({ sprint, changeActiveDate }) {
                 )}
 
                 <button onClick={incrDate} className={styles.btnBaze}>
-                    {activeDate < sprint?.endDate && (
+                    {moment(activeDate) < moment(sprint?.endDate) && (
                         <svg className={styles.nextDate}>
                             <use href={btnRight + '#Capa_1'}></use>
                         </svg>
