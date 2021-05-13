@@ -29,28 +29,32 @@ export default function TasksSideContent() {
     const sprints = useSelector(getAllSprints);
 
     return (
-        <div className={styles.asideWrap}>
-            <TaskLinkToSprint />
+        <div className={styles.asideWrapFixedContainer}>
+            <div className={styles.asideWrap}>
+                <TaskLinkToSprint />
 
-            <ul className={styles.asideSprintsList}>
-                {sprints.length &&
-                    sprints.map(sprint => (
-                        <TaskSprintCard key={sprint._id} sprint={sprint} />
-                    ))}
-            </ul>
-            <div className={styles.newSprintBlock}>
-                <AddButton onClick={toggleSprintModal} />
-                <span className={styles.newSprintText}>Створити спринт</span>
+                <ul className={styles.asideSprintsList}>
+                    {sprints.length &&
+                        sprints.map(sprint => (
+                            <TaskSprintCard key={sprint._id} sprint={sprint} />
+                        ))}
+                </ul>
+                <div className={styles.newSprintBlock}>
+                    <AddButton onClick={toggleSprintModal} />
+                    <span className={styles.newSprintText}>
+                        Створити спринт
+                    </span>
+                </div>
+
+                {isShowSprintModal && (
+                    <NewItemModal
+                        title="Створення спринта"
+                        onClose={toggleSprintModal}
+                    >
+                        <NewSprintForm onClose={toggleSprintModal} />
+                    </NewItemModal>
+                )}
             </div>
-
-            {isShowSprintModal && (
-                <NewItemModal
-                    title="Створення спринта"
-                    onClose={toggleSprintModal}
-                >
-                    <NewSprintForm onClose={toggleSprintModal} />
-                </NewItemModal>
-            )}
         </div>
     );
 }

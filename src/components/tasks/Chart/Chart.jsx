@@ -64,7 +64,6 @@ const Chart = () => {
         }
         return arr;
     };
-    console.log('get :>> ', getStreightLine());
 
     const getDatesArray = () => {
         return tasksList.map(task => {
