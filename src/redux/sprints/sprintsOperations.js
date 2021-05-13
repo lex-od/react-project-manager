@@ -68,7 +68,7 @@ const sprintChangetOperation = (title, sprintId) => async dispatch => {
     }
 };
 
-const sprintDeletetOperation = sprintId => async dispatch => {
+const sprintDeletedOperation = sprintId => async dispatch => {
     dispatch(sprintDeleteRequest());
 
     try {
@@ -79,7 +79,7 @@ const sprintDeletetOperation = sprintId => async dispatch => {
         dispatch(sprintDeleteError(api.formatError(error)));
 
         if (error.response?.status === 401) {
-            const withParams = () => sprintDeletetOperation(sprintId);
+            const withParams = () => sprintDeletedOperation(sprintId);
             dispatch(authOps.refreshToken(withParams));
         }
     }
@@ -89,6 +89,6 @@ const sprintsOperations = {
     addSprint,
     sprintGetOperation,
     sprintChangetOperation,
-    sprintDeletetOperation,
+    sprintDeletedOperation,
 };
 export default sprintsOperations;

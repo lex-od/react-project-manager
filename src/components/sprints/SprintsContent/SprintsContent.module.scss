@@ -59,6 +59,11 @@ ul {
     }
 }
 
+.addButton:hover,
+.addButton:focus {
+    transform: scale(1.15);
+}
+
 .addButtonText {
     display: none;
 
@@ -95,23 +100,65 @@ ul {
     margin-top: 0;
     margin-bottom: 0;
     margin-right: 20px;
+    width: 260px;
 
     @include for-size(tablet) {
+        width: 337px;
         font-size: 36px;
         line-height: 44px;
+        margin: 0 20px 0 0;
+    }
+
+    @include for-size(tablet) {
+        margin: 0 20px 0 0;
     }
 }
 
 .sprintHead {
     display: flex;
-    align-items: baseline;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    @include for-size(tablet) {
+        margin-bottom: 30px;
+    }
+    // align-items: baseline;
     // margin-bottom: 30px;
+}
+
+.title {
+    min-height: 88px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.23;
+    letter-spacing: 0.04em;
+    color: $primaryTextColor;
+    margin: 0;
+    width: 260px;
+    background-color: inherit;
+    outline: none;
+
+    @include for-size(tablet) {
+        font-size: 36px;
+        width: 337px;
+        margin: 0 20px 0 0;
+    }
+    @include for-size(desktop) {
+        margin: 0 43px 0 0;
+    }
 }
 
 .textSvg {
     width: 20px;
     height: 20px;
     cursor: pointer;
+}
+
+.projectNameBtn {
+    border: 0;
+    padding: 0;
+    background-color: inherit;
+    margin-top: 14px;
 }
 
 .sprintDescription {
@@ -146,6 +193,7 @@ ul {
 .addPeopleWrap {
     display: flex;
     align-items: center;
+    margin-bottom: 40px;
     @include for-size(tablet) {
         margin-bottom: 30px;
     }
@@ -172,43 +220,55 @@ ul {
 .sprintsList {
     list-style: none;
     padding: 0;
-    margin-top: 30px;
+    // margin-top: 30px;
+    margin-top: -10px;
     @include for-size(tablet) {
         display: flex;
         flex-wrap: wrap;
+        // align-items: stretch;
         margin-left: -20px;
         margin-top: -20px;
     }
 
     @include for-size(descktop) {
         flex-direction: column;
+        margin-top: -10px;
     }
 }
 
+.sprintLink {
+    text-decoration: none;
+}
+
 .sprintCard {
+    position: relative;
     background: #ffffff;
     box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
     border-radius: 5px;
-    padding: 20px 20px 10px 20px;
+    padding: 20px 20px 26px 20px;
     transition: 0.3s;
     margin-bottom: 10px;
     // position: relative;
 
     @include for-size(tablet) {
+        min-height: 255px;
         margin-bottom: 0;
         margin-top: 20px;
         margin-left: 20px;
         flex-basis: calc(100% / 2 - 20px);
         width: 216px;
+        padding-bottom: 30px;
     }
     @include for-size(desktop) {
+        width: 270px;
         flex-basis: calc(100% / 3 - 20px);
     }
 
     &:hover,
     &:focus {
-        box-shadow: 2px 7px 26px rgba(0, 5, 97, 0.5);
+        cursor: pointer;
         transform: scale(1.07);
+        box-shadow: 2px 7px 26px rgba(0, 5, 97, 0.5);
         transition: 250ms;
     }
 
@@ -231,11 +291,21 @@ ul {
     line-height: 20px;
     letter-spacing: 0.04em;
     color: #181c27;
+
+    @include for-size(tablet) {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    @include for-size(desktop) {
+        font-size: 19px;
+    }
 }
 
 .sprintItem {
     display: flex;
     justify-content: space-between;
+    // position: relative;
 }
 
 .sprintItem:not(:last-child) {
@@ -256,6 +326,11 @@ ul {
     color: #000000;
     width: 98px;
     flex-wrap: wrap;
+
+    @include for-size(tablet) {
+        font-size: 14px;
+        line-height: 17px;
+    }
 }
 
 .sprintItemDate {
@@ -267,11 +342,26 @@ ul {
     align-items: center;
     letter-spacing: 0.04em;
     color: #000000;
+
+    @include for-size(tablet) {
+        font-size: 14px;
+        line-height: 17px;
+    }
 }
 
 .deleteBtn {
     background: none;
     border: none;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 0;
+    height: 20px;
+}
+
+.deleteBtn:hover,
+.deleteBtn:focus {
+    cursor: pointer;
 }
 
 .deleteSvg {
@@ -281,6 +371,13 @@ ul {
     bottom: 0;
     right: 0;
     cursor: pointer;
+    transition: all 0.25s linear;
+}
+
+.deleteSvg:hover,
+.deleteSvg:focus {
+    transform: scale(1.2);
+    box-shadow: 0 0 25px #fff;
 }
 
 .leftSvg,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import { projectsSls } from '../../../redux/projects';
 import { sprintsSls } from '../../../redux/sprints';
 import SprintCard from '../SprintCard/SprintCard';
@@ -12,7 +12,7 @@ import styles from './SprintsContent.module.scss';
 import spriteAddPeople from '../../../assets/icons/addPeople.svg';
 
 const { getAllProjects } = projectsSls;
-const { getAllSprints } = sprintsSls;
+const { getAllSprints, getLoading } = sprintsSls;
 
 export default function SprintsContent() {
     const [isShowSprintModal, setIsShowSprintModal] = useState(false);
@@ -23,8 +23,8 @@ export default function SprintsContent() {
 
     const { projectId } = useParams();
     const projects = useSelector(getAllProjects);
+    const loading = useSelector(getLoading);
     const [actualProject, setactualProject] = useState(null);
-    // console.log(projectId);
 
     useEffect(() => {
         projectId &&
@@ -49,8 +49,7 @@ export default function SprintsContent() {
             <SprintProjectTitle project={actualProject} />
             <div className={styles.sprintDescription}>
                 <p className={styles.sprintDescriptionText}>
-                    Короткий опис проекту, якщо він є, розміщуєтсья тут. Ширина
-                    тектового блоку
+                    {actualProject?.description}
                 </p>
             </div>
 
@@ -67,17 +66,19 @@ export default function SprintsContent() {
                 </button>
             </div>
             <ul className={styles.sprintsList}>
-                {sprints.length &&
+                {sprints.length || loading ? (
                     sprints.map(sprint => (
-                        <Link
-                            to={`/projects/${projectId}/sprints/${sprint._id}`}
-                            key={sprint._id}
-                        >
-                            <li className={styles.sprintCard}>
-                                <SprintCard sprint={sprint} />
-                            </li>
-                        </Link>
-                    ))}
+                        <li key={sprint._id} className={styles.sprintCard}>
+                            <SprintCard
+                                key={sprint._id}
+                                sprint={sprint}
+                                pathname={`/projects/${projectId}/sprints/${sprint._id}`}
+                            />
+                        </li>
+                    ))
+                ) : (
+                    <span>Для створення спринта натисніть +</span>
+                )}
             </ul>
 
             {isShowSprintModal && (

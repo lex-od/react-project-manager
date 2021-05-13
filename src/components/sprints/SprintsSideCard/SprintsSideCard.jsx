@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from '../SprintsSideContent/SprintsSideContent.module.scss';
 
 const colors = [
@@ -11,18 +11,23 @@ const colors = [
     '#e46cde',
     '#4394f1',
     '#d45535',
+    '#f10f9b',
 ];
 
 export default function SprintSideCard({ project, index }) {
     return (
         <li className={styles.asideSprintsItem}>
-            <Link className={styles.asideLink} to={`/projects/${project._id}`}>
+            <NavLink
+                className={styles.asideLink}
+                to={`/projects/${project._id}`}
+                activeClassName={styles.asideActiveLink}
+            >
                 <div
-                    style={{ backgroundColor: colors[index % 3] }}
+                    style={{ backgroundColor: colors[index % 9] }}
                     className={styles.asideSprintsIcon}
                 ></div>
                 <span className={styles.asideSprintsName}>{project.title}</span>
-            </Link>
+            </NavLink>
         </li>
     );
 }

@@ -36,14 +36,13 @@ export default function SprintsContent() {
                     </Link>
                 </div>
                 <ul className={styles.asideSprintsList}>
-                    {projects.length &&
                         projects.map((project, index) => (
                             <SprintSideCard
                                 key={project._id}
                                 project={project}
                                 index={index}
                             />
-                        ))}
+                        ))
                 </ul>
                 <div className={styles.asideAddButtonWrap}>
                     <AddButton
