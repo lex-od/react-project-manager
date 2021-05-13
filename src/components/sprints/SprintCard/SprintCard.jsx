@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import { sprintsOps } from '../../../redux/sprints';
 
 import styles from '../SprintsContent/SprintsContent.module.scss';
 import spriteDelete from '../../../assets/icons/sprintsDelete.svg';
 
-const { sprintChangedOperation, sprintDeletedOperation } = sprintsOps;
+const { sprintDeletedOperation } = sprintsOps;
 
 const monthes = [
     'Січ',

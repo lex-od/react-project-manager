@@ -11,6 +11,13 @@ export default function TaskActiveDate({ sprint, changeActiveDate }) {
     const [activeDate, setActiveDate] = useState(sprint?.startDate || '');
 
     useEffect(() => {
+        const newDate = new Date();
+
+        if (moment(sprint?.endDate) < newDate)
+            return setActiveDate(sprint?.endDate);
+        if (moment(sprint?.startDate) < newDate)
+            return setActiveDate(moment(newDate).format('YYYY-MM-DD'));
+
         setActiveDate(sprint?.startDate);
     }, [sprint]);
 
