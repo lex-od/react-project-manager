@@ -39,7 +39,6 @@ const login = credentials => async dispatch => {
         api.setToken(data.accessToken);
         dispatch(loginSuccess(data));
     } catch (error) {
-        alert('Помилка! Перевірте дані для входу!');
         dispatch(loginError(api.formatError(error)));
     }
 };

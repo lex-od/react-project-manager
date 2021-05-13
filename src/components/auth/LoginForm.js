@@ -7,21 +7,24 @@ import css from './Auth.module.scss';
 import BackgroundDesktop from './AuthBackground/BackgroundDesktop/BackgroundDesktop';
 import BackgroundTablet from './AuthBackground/BackgroundTablet/BackgroundTablet';
 import AccentButton from '../common/AccentButton/AccentButton';
-import useWindowSize from '../../services/utils/useWindouSize';
+
+import useDeviceSizes from '../../services/utils/useDeviceSize';
 
 export default function Login() {
     const dispatch = useDispatch();
-    const { width } = useWindowSize();
+
+    const { isTabletDevice, isDesktopDevice } = useDeviceSizes();
 
     return (
         <div className={css.formWraper}>
-            {width > 1199 && <BackgroundDesktop />}
-            {width > 767 && width < 1198 && <BackgroundTablet />}
+            {isDesktopDevice && <BackgroundDesktop />}
+            {isTabletDevice && <BackgroundTablet />}
             <Formik
                 initialValues={{ email: '', password: '' }}
                 validationSchema={loginSchema}
                 onSubmit={values => {
                     const { email, password } = values;
+
                     dispatch(authOps.login({ email, password }));
                 }}
             >
@@ -69,7 +72,6 @@ export default function Login() {
                         <AccentButton
                             className={css.registerPageButton}
                             type="submit"
-                            disabled={isSubmitting}
                         >
                             Увійти
                         </AccentButton>

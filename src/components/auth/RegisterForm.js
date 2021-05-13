@@ -7,15 +7,17 @@ import css from './Auth.module.scss';
 import AuthBackgroundDesktop from './AuthBackground/BackgroundDesktop/BackgroundDesktop';
 import BackgroundTablet from './AuthBackground/BackgroundTablet/BackgroundTablet';
 import AccentButton from '../common/AccentButton/AccentButton';
-import useWindowSize from '../../services/utils/useWindouSize';
+import useDeviceSizes from '../../services/utils/useDeviceSize';
 
 export default function Register() {
     const dispatch = useDispatch();
-    const { width } = useWindowSize();
+
+    const { isTabletDevice, isDesktopDevice } = useDeviceSizes();
+
     return (
         <div className={css.formWraper}>
-            {width > 1199 && <AuthBackgroundDesktop />}
-            {width > 767 && width < 1198 && <BackgroundTablet />}
+            {isDesktopDevice && <AuthBackgroundDesktop />}
+            {isTabletDevice && <BackgroundTablet />}
             <Formik
                 initialValues={{
                     email: '',
@@ -83,7 +85,6 @@ export default function Register() {
                         <AccentButton
                             className={css.registerPageButton}
                             type="submit"
-                            disabled={isSubmitting}
                         >
                             Зареєструватися
                         </AccentButton>

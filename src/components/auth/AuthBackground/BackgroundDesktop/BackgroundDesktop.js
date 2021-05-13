@@ -11,7 +11,7 @@ import union_orange from '../../../../assets/authImages/EllipseDesktop/UnionOran
 
 const BackgroundDesktop = () => {
     return (
-        <div className={css.wraperElipse}>
+        <>
             <img src={elipse1} alt="white-ball" className={css.elipse1} />
             <img src={elipse2} alt="orange-ball" className={css.elipse2} />
             <img src={elipse3} alt="whire-ball" className={css.elipse3} />
@@ -20,7 +20,7 @@ const BackgroundDesktop = () => {
             <img src={elipse6} alt="orange-ball" className={css.elipse6} />
             <img src={union_white} alt="" className={css.union_white} />
             <img src={union_orange} alt="" className={css.union_orange} />
-        </div>
+        </>
     );
 };
 

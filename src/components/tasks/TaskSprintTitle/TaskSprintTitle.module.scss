@@ -3,9 +3,11 @@
 .sprintHead {
     display: flex;
     align-items: flex-start;
+    margin-top: 20px;
     margin-bottom: 10px;
     @include for-size(tablet) {
         margin-bottom: 30px;
+        margin-top: 0;
     }
 }
 
@@ -30,6 +32,12 @@
     @include for-size(desktop) {
         margin: 0 43px 0 0;
     }
+}
+
+.title1 {
+    composes: title;
+    font-size: 24px;
+    font-style: italic;
 }
 
 .textSvg {

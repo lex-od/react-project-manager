@@ -1,5 +1,9 @@
 @import 'styles/shared.scss';
 
+.asideWrapFixedContainer {
+    position: fixed;
+}
+
 .asideWrap {
     width: 100%;
     height: 100%;

@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import ProjectsListItem from '../ProjectsListItem/ProjectsListItem';
 
 import { AddButton, NewItemModal, NewProjectForm } from '../../common';
-import { projectsOps, projectsSls } from '../../../redux/projects';
+import { projectsSls } from '../../../redux/projects';
 
 import styles from './Projects.module.scss';
 
-const { getProjects } = projectsOps;
-const { getAllProjects } = projectsSls;
+const { getAllProjects, getLoading } = projectsSls;
 
 const colors = [
     '#8c72df',
@@ -21,18 +20,14 @@ const colors = [
     '#e46cde',
     '#4394f1',
     '#d45535',
+    '#f10f9b',
 ];
 
 export default function ProjectsPage() {
     const [isShowModal, setIsShowModal] = useState(false);
     const toggleModal = () => setIsShowModal(state => !state);
     const history = useHistory();
-    const dispatch = useDispatch();
     const match = useRouteMatch();
-
-    useEffect(() => {
-        dispatch(getProjects());
-    }, [dispatch]);
 
     const onHandleClick = e => {
         const isDelete = e.target.closest('[data-process="delete"]');
@@ -49,7 +44,7 @@ export default function ProjectsPage() {
             <div className={styles.projectsContainer}>
                 <h2 className={styles.title}>Проекти</h2>
 
-                {!projects.length && !projectsSls.getLoading ? (
+                {!projects.length && !getLoading ? (
                     <p className={styles.projectsNone}>
                         Ваша колекція проектів порожня, скористайтесь кнопкою
                         "Створити проект"
@@ -63,13 +58,13 @@ export default function ProjectsPage() {
                                     id={project._id ? project._id : project.id}
                                     key={project._id}
                                     style={{
-                                        backgroundColor: colors[index % 8],
+                                        backgroundColor: colors[index % 9],
                                     }}
                                     onClick={onHandleClick}
                                 >
                                     <ProjectsListItem
                                         {...project}
-                                        color={colors[index % 8]}
+                                        color={colors[index % 9]}
                                     >
                                         <span
                                             className={

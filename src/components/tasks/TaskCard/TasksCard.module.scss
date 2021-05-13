@@ -24,6 +24,7 @@
     &:hover,
     &:focus {
         box-shadow: 2px 7px 26px rgba(0, 5, 97, 0.5);
+        transform: scale(1.07);
         transition: 250ms;
         cursor: pointer;
         transform: scale(1.07);
@@ -53,9 +54,15 @@
     }
 }
 .sprintItem {
+    position: relative;
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    align-items: baseline;
+
+    @include for-size(tablet) {
+        align-items: stretch;
+    }
 
     @include for-size(desktop) {
         margin-top: 0;
@@ -131,5 +138,21 @@
     bottom: 10px;
     @include for-size(desktop) {
         position: static;
+    }
+}
+
+.taskInputError {
+    position: absolute;
+    font-size: 10px;
+    line-height: 1.2;
+    color: red;
+    bottom: -14px;
+    right: 1px;
+
+    @include for-size(tablet) {
+        right: 1px;
+    }
+    @include for-size(desktop) {
+        right: 45px;
     }
 }
