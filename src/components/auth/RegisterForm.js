@@ -8,18 +8,11 @@ import AuthBackgroundDesktop from './AuthBackground/BackgroundDesktop/Background
 import BackgroundTablet from './AuthBackground/BackgroundTablet/BackgroundTablet';
 import AccentButton from '../common/AccentButton/AccentButton';
 import useDeviceSizes from '../../services/utils/useDeviceSize';
-// import useWindowSize from '../../services/utils/useWindouSize';
 
 export default function Register() {
     const dispatch = useDispatch();
-    // const { width } = useWindowSize();
-    // console.log(width);
-    const {
-        isMobileDevice,
-        isTabletDevice,
-        isDesktopDevice,
-        isLargeTablet,
-    } = useDeviceSizes();
+
+    const { isTabletDevice, isDesktopDevice } = useDeviceSizes();
 
     return (
         <div className={css.formWraper}>

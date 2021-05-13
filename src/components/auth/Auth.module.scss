@@ -1,3 +1,5 @@
+@import 'styles/shared.scss';
+
 main {
     overflow: hidden;
 }
@@ -69,19 +71,21 @@ main {
 }
 .errorMessageEmail {
     position: absolute;
-    top: 241px;
+    top: 216px;
     color: rgba(24, 28, 39, 0.6);
 }
 
 .errorMessagePassword {
     position: absolute;
-    top: 342px;
+    // max-width: 300px;
+    top: 312px;
     color: rgba(24, 28, 39, 0.6);
 }
 .errorMessageConfirmPassword {
     position: absolute;
+
     color: rgba(24, 28, 39, 0.6);
-    top: 440px;
+    top: 412px;
 }
 @media (min-width: 768px) {
     .formWraper {
