@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { projectsSls } from '../../../redux/projects';
 import { sprintsSls } from '../../../redux/sprints';
 import SprintCard from '../SprintCard/SprintCard';
