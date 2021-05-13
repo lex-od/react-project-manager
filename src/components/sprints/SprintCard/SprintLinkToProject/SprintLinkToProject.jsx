@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import spriteGoBack from '../../../../assets/icons/goBackArrow.svg';
 
 import styles from '../../SprintsSideContent/SprintsSideContent.module.scss';
 
 export default function SprintLinkToProject() {
-    const { projectId } = useParams();
     return (
         <div className={styles.asideBack}>
             <Link to={'/projects'} className={styles.backLinkMobile}>

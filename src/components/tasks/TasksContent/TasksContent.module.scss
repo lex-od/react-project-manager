@@ -9,11 +9,11 @@ ul {
     padding: 20px 0;
 
     @include for-size(tablet) {
-        padding: 20px 0 0 20px;
+        padding: 0 0 0 20px;
     }
 
     @include for-size(desktop) {
-        padding: 20px 0 0 70px;
+        padding: 10px 0 0 70px;
         border-bottom: 1px solid rgba(24, 28, 39, 0.1);
     }
 }
@@ -23,6 +23,11 @@ ul {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+        margin-top: 8px;
+    }
+
+    @include for-size(desktop) {
+        margin-top: 10px;
     }
 }
 
@@ -51,7 +56,7 @@ ul {
         display: flex;
         flex-wrap: wrap;
         margin-left: -20px;
-        margin-top: -20px;
+        margin-top: 0;
     }
 
     @include for-size(descktop) {
@@ -68,6 +73,7 @@ ul {
     position: absolute;
     right: 20px;
     bottom: 20px;
+    z-index: 5;
     @include for-size(tablet) {
         position: static;
     }
