@@ -5,7 +5,6 @@ ul {
 }
 
 .wrap {
-    // width: 768px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -19,35 +18,11 @@ ul {
     }
 }
 
-// .addButtonWrap {
-//     @include for-size(desktop) {
-//         // display: flex;
-//         position: absolute;
-//         right: 0px;
-//         top: 40px;
-//     }
-// }
-
-// @include for-size(tablet) {
-//     position: absolute;
-//     top: 40px;
-//     right: 0px;
-//     // }
-
-// @include for-size(desktop) {
-//     bottom: 0;
-// }
-// }
-
 .addButton {
-    // display: flex;
-    // align-items: center;
     position: fixed;
     margin-left: 235px;
     bottom: 13px;
     z-index: 5;
-    // top: 92%;
-    // right: 5%;
     @include for-size(tablet) {
         position: absolute;
         right: 0px;
@@ -100,16 +75,12 @@ ul {
     margin-top: 0;
     margin-bottom: 0;
     margin-right: 20px;
-    width: 260px;
+    background-color: inherit;
+    outline: none;
 
     @include for-size(tablet) {
-        width: 337px;
         font-size: 36px;
         line-height: 44px;
-        margin: 0 20px 0 0;
-    }
-
-    @include for-size(tablet) {
         margin: 0 20px 0 0;
     }
 }
@@ -117,35 +88,6 @@ ul {
 .sprintHead {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 10px;
-    @include for-size(tablet) {
-        margin-bottom: 30px;
-    }
-    // align-items: baseline;
-    // margin-bottom: 30px;
-}
-
-.title {
-    // min-height: 88px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 26px;
-    line-height: 1.23;
-    letter-spacing: 0.04em;
-    color: $primaryTextColor;
-    margin: 0;
-    width: 260px;
-    background-color: inherit;
-    outline: none;
-
-    @include for-size(tablet) {
-        font-size: 36px;
-        width: 337px;
-        margin: 0 20px 0 0;
-    }
-    @include for-size(desktop) {
-        margin: 0 43px 0 0;
-    }
 }
 
 .textSvg {
@@ -158,7 +100,11 @@ ul {
     border: 0;
     padding: 0;
     background-color: inherit;
-    margin-top: 14px;
+    margin-top: 5px;
+
+    @include for-size(tablet) {
+        margin-top: 14px;
+    }
 }
 
 .sprintDescription {
@@ -214,18 +160,15 @@ ul {
     background: none;
     border: none;
     border-bottom: 1px solid #181c27;
-    // text-decoration: underline;
 }
 
 .sprintsList {
     list-style: none;
     padding: 0;
-    // margin-top: 30px;
     margin-top: -10px;
     @include for-size(tablet) {
         display: flex;
         flex-wrap: wrap;
-        // align-items: stretch;
         margin-left: -20px;
         margin-top: -20px;
     }
@@ -248,7 +191,6 @@ ul {
     padding: 20px 20px 26px 20px;
     transition: 0.3s;
     margin-bottom: 10px;
-    // position: relative;
 
     @include for-size(tablet) {
         // min-height: 255px;
@@ -284,8 +226,6 @@ ul {
 .sprintCardHead {
     margin-top: 0;
     margin-bottom: 20px;
-    // padding-bottom: 8px;
-    // border-bottom: 1px solid rgba(24, 28, 39, 0.2);
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
@@ -305,7 +245,6 @@ ul {
 .sprintItem {
     display: flex;
     justify-content: space-between;
-    // position: relative;
 }
 
 .sprintItem:not(:last-child) {
@@ -367,7 +306,6 @@ ul {
 .deleteSvg {
     width: 20px;
     height: 20px;
-    // position: absolute;
     bottom: 0;
     right: 0;
     cursor: pointer;
