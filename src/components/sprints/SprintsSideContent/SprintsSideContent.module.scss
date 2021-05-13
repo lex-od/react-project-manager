@@ -7,15 +7,34 @@
     padding: 20px 0;
 
     @include for-size(desktop) {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
+        padding-left: 15px;
+        //     display: flex;
+        //     flex-direction: column;
+        //     justify-content: space-evenly;
     }
 }
 
 .asideAddButtonWrap {
     display: flex;
-    justify-content: center;
+    // justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newSprintBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newProjectText {
+    display: inline-block;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 15px;
+    letter-spacing: 0.04em;
+    color: $primaryTextColor;
 }
 
 .asideBack {
@@ -23,9 +42,27 @@
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
+
+    // @include for-size(desktop) {
+    //     justify-content: center;
+    //     padding-left: 55px;
+    // }
+}
+
+.backLink {
+    text-decoration: none;
+}
+
+.backLinkMobile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    text-decoration: none;
 }
 
 .asideBackButton {
+    cursor: pointer;
     display: flex;
     align-items: center;
     background: none;
@@ -51,9 +88,47 @@
 }
 
 .asideSprintsList {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     list-style: none;
-    margin-top: 60px;
-    margin-bottom: 0;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: -20px;
+    padding-top: 20px;
+    padding-left: 20px;
+
+    height: calc(100vh - 234px - 158px);
+    overflow-y: scroll;
+
+    @include for-size(desktop) {
+        overflow-x: hidden;
+        // padding-left: 55px;
+        margin-top: 80px;
+    }
+
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);
+        border-radius: 10px;
+        background-color: #cccccc;
+    }
+
+    &::-webkit-scrollbar {
+        width: 12px;
+        background-color: #f5f5f5;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #ff6b08;
+        background-image: -webkit-linear-gradient(
+            90deg,
+            transparent,
+            rgba(0, 0, 0, 0.4) 50%,
+            transparent,
+            transparent
+        );
+    }
 }
 
 .asideSprintsIcon {
@@ -61,18 +136,44 @@
     height: 36px;
     background: #8c72df;
     border-radius: 5px;
+
+    .asideLink:hover &,
+    .asideLink:focus &,
+    .asideActiveLink & {
+        box-shadow: 2px 7px 26px rgba(0, 5, 97, 0.5);
+        transition: 250ms;
+    }
 }
 
 .asideSprintsItem {
     display: flex;
     align-items: center;
+
+    @include for-size(tablet) {
+        margin-bottom: 32px;
+    }
+}
+
+.asideLink {
+    display: flex;
+    align-items: center;
+    min-height: 51px;
+    text-decoration: none;
 }
 
 .asideSprintsName {
+    width: 119px;
     margin-left: 15px;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0.04em;
-    color: #181c27;
+    color: $primaryTextColor;
+
+    .asideLink:hover &,
+    .asideLink:focus &,
+    .asideActiveLink & {
+        font-weight: bold;
+        transition: 250ms;
+    }
 }

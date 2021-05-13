@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { projectsSls, projectsOps } from '../../../redux/projects';
 import AddButton from '../../common/addButton/AddButton';
 import { NewItemModal, NewProjectForm } from '../../common';
@@ -28,14 +28,16 @@ export default function SprintsContent() {
     return (
         <div className={styles.asideWrap}>
             <div className={styles.asideBack}>
-                <button type="button" className={styles.asideBackButton}>
-                    <svg className={styles.backSvg}>
-                        <use href={spriteGoBack + '#icon-goBack'}></use>
-                    </svg>
-                    <span className={styles.asideBackText}>
-                        Показати проекти
-                    </span>
-                </button>
+                <Link to={'/projects'} className={styles.backLink}>
+                    <button type="button" className={styles.asideBackButton}>
+                        <svg className={styles.backSvg}>
+                            <use href={spriteGoBack + '#icon-goBack'}></use>
+                        </svg>
+                        <span className={styles.asideBackText}>
+                            Показати проекти
+                        </span>
+                    </button>
+                </Link>
             </div>
             <ul className={styles.asideSprintsList}>
                 {projects.length &&
@@ -52,6 +54,7 @@ export default function SprintsContent() {
                     className={styles.asideAddButton}
                     onClick={toggleProjectModal}
                 />
+                <span className={styles.newProjectText}>Створити проект</span>
             </div>
 
             {isShowProjectModal && (

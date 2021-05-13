@@ -111,6 +111,7 @@ ul {
 .textSvg {
     width: 20px;
     height: 20px;
+    cursor: pointer;
 }
 
 .sprintDescription {
@@ -135,6 +136,11 @@ ul {
     @include for-size(desktop) {
         width: 400px;
     }
+}
+
+.projectNameBtn {
+    background: none;
+    border: none;
 }
 
 .addPeopleWrap {
@@ -261,12 +267,18 @@ ul {
     color: #000000;
 }
 
+.deleteBtn {
+    background: none;
+    border: none;
+}
+
 .deleteSvg {
     width: 20px;
     height: 20px;
     // position: absolute;
     bottom: 0;
     right: 0;
+    cursor: pointer;
 }
 
 .leftSvg,
