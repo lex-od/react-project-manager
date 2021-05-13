@@ -12,20 +12,21 @@ import styles from './TasksContent.module.scss';
 import TaskSprintTitle from '../TaskSprintTitle/TaskSprintTitle';
 import TaskActiveDate from '../TaskActiveDate/TaskActiveDate';
 import { ChartModal, ChartButton } from '../../tasks';
+import TaskFilter from '../TaskFilter/TaskFilter';
 
-const { getAllTasks } = tasksSls;
+const { getVisibleTasks } = tasksSls;
 const { taskGetOperation } = tasksOps;
 const { getAllSprints } = sprintsSls;
 
 export default function TasksContent() {
     const [isShowTaskModal, setIsShowTaskModal] = useState(false);
-    const [actualSprint, setactualSprint] = useState(null);
-    const [activeDate, setactiveDate] = useState(null);
+    const [actualSprint, setactualSprint] = useState('');
+    const [activeDate, setactiveDate] = useState('');
 
     const { sprintId } = useParams();
 
     const sprints = useSelector(getAllSprints);
-    const tasks = useSelector(getAllTasks);
+    const tasks = useSelector(getVisibleTasks);
 
     const dispatch = useDispatch();
 
@@ -61,9 +62,8 @@ export default function TasksContent() {
                             changeActiveDate={changeActiveDate}
                         />
                     )}
-                    <div>
-                        <p>тут будет компонент поиска</p>
-                    </div>
+
+                    <TaskFilter />
                 </div>
                 <div className={styles.topList}>
                     {sprints?.length && (
@@ -96,7 +96,7 @@ export default function TasksContent() {
             </div>
             <div className={styles.wrap}>
                 <ul className={styles.tasksList}>
-                    {tasks.length > 0 &&
+                    {tasks?.length > 0 &&
                         activeDate &&
                         tasks.map(task => (
                             <TaskCard

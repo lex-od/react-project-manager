@@ -33,11 +33,11 @@ export default function TaskSprintTitle({ sprint }) {
         <div className={styles.sprintHead}>
             {activeInput ? (
                 <form onSubmit={sendnewTitle}>
-                    <textarea
+                    <input
                         type="text"
                         name="currentTitle"
                         onChange={changeData}
-                        className={styles.title}
+                        className={styles.title1}
                         value={currentTitle}
                     />
                 </form>

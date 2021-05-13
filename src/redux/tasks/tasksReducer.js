@@ -14,6 +14,7 @@ const {
     taskDeleteRequest,
     taskDeleteSuccess,
     taskDeleteError,
+    taskFilterAct,
 } = tasksActs;
 
 const tasksList = createReducer([], {
@@ -76,10 +77,15 @@ const error = createReducer(null, {
     [taskDeleteError]: (_, { payload }) => payload,
 });
 
+const filter = createReducer('', {
+    [taskFilterAct]: (_, { payload }) => payload,
+});
+
 export default combineReducers({
     tasksList,
     loading,
     error,
+    filter,
 });
 
 // [taskChangeSuccess]: (state, { payload }) =>
