@@ -85,6 +85,12 @@ ul {
     }
 }
 
+.title1 {
+    composes: title;
+    font-size: 24px;
+    font-style: italic;
+}
+
 .sprintHead {
     display: flex;
     align-items: flex-start;
