@@ -9,7 +9,7 @@ export default function SprintSideCard({ project, index }) {
 
     return (
         <li className={styles.asideSprintsItem}>
-            <Link to={`/projects/${projectId}`}>
+            <Link to={`/projects/${project._id}`}>
                 <div
                     style={{ backgroundColor: colors[index % 3] }}
                     className={styles.asideSprintsIcon}
