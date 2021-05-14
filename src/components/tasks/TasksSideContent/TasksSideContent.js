@@ -29,7 +29,10 @@ export default function TasksSideContent() {
                     ))}
                 </ul>
                 <div className={styles.newSprintBlock}>
-                    <AddButton onClick={toggleSprintModal} />
+                    <AddButton
+                        onClick={toggleSprintModal}
+                        className={styles.btnAdd}
+                    />
                     <span className={styles.newSprintText}>
                         Створити спринт
                     </span>

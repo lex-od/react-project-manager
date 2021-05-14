@@ -71,3 +71,10 @@
     letter-spacing: 0.04em;
     color: $primaryTextColor;
 }
+
+.btnAdd {
+    &:hover,
+    &:focus {
+        transform: scale(1.15);
+    }
+}
