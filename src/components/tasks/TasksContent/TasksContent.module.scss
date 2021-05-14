@@ -102,7 +102,7 @@ ul {
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
         box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
     @include for-size(tablet) {
-        margin-left: 427px;
+        margin-left: 630px;
         bottom: 140px;
     }
     @include for-size(desktop) {
@@ -117,3 +117,23 @@ ul {
 //     letter-spacing: 0.04em;
 //     color: grey;
 // }
+
+.btnAddBlock {
+    display: flex;
+    align-items: center;
+}
+.btnAdd {
+    position: fixed;
+    margin-left: 235px;
+    bottom: 20px;
+
+    z-index: 5;
+
+    &:hover,
+    &:focus {
+        transform: scale(1.15);
+    }
+    @include for-size(tablet) {
+        position: static;
+    }
+}
