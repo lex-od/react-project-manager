@@ -102,6 +102,13 @@ export default function TasksContent() {
                             />
                         ))}
                 </ul>
+
+                {/* {!tasks.length && !loading && (
+                    <p className={styles.projectsNone}>
+                        Ваша колекція проектів порожня, скористайтесь кнопкою
+                        "Створити проект"
+                    </p>
+                )} */}
             </div>
 
             {isShowTaskModal && (

@@ -41,9 +41,7 @@ export default function NewProjectForm({ onClose }) {
                             placeholder=" "
                             className={css.nameInp}
                         />
-                        <span className={css.nameLabelText}>
-                            Название проекта
-                        </span>
+                        <span className={css.nameLabelText}>Назва проекту</span>
                         {errors.title && touched.title ? (
                             <span className={css.errorText}>
                                 {errors.title}
@@ -57,7 +55,7 @@ export default function NewProjectForm({ onClose }) {
                             placeholder=" "
                             className={css.descrInp}
                         />
-                        <span className={css.descrLabelText}>Описание</span>
+                        <span className={css.descrLabelText}>Опис</span>
                         {errors.description && touched.description ? (
                             <span className={css.errorText}>
                                 {errors.description}
